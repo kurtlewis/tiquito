@@ -42,14 +42,14 @@ Tiquito will solve a consistent problem at hackathons, connecting mentors with h
 Developers on this project will communicate using a private channel in slack, hosted at acmcincy.slack.com. We will host our project at github.com. Project management will occur using projects and issues on the repo at github.com. We will track hours on a shared google drive spreadsheet.
 
 ## Risks
-Team member does not do their work
-Dependency is updated and is no longer compatible/accessible
-Participants don’t want to use our software
-Mentors forget to close tickets
+- Team member does not do their work
+- Dependency is updated and is no longer compatible/accessible
+- Participants don’t want to use our software
+- Mentors forget to close tickets
 
 ## Benefits
-Expedites and simplifies ticket management for future hackathons 
-Increases the interest of beginning programmers if they can easily receive help with complicated problems
+- Expedites and simplifies ticket management for future hackathons 
+- Increases the interest of beginning programmers if they can easily receive help with complicated problems
 
 ## Project Milestones
 1. Project initialized
