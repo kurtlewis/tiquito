@@ -6,7 +6,7 @@ A hackathon is a programming competition that encourages people to learn new thi
 
 ## Scope
 This project will:
-Allow hackathon participants to create a help ticket on the website
+- Allow hackathon participants to create a help ticket on the website
 - Allow assignment of a mentor to a ticket using the desktop and mobile apps
 - Allow mentors to resolve tickets using the desktop and mobile apps
 - Allow for participants or mentors to add comments to tickets
