@@ -13,7 +13,7 @@ This project will:
 - Allow for participants or mentors to add comments to tickets
 - Allow participants to resolve only their own tickets
 - Allow for custom theming by deploying party on the website
-Maintain and continue to display resolved tickets for later reference
+- Maintain and continue to display resolved tickets for later reference
 
 This project will not:
 - Automatically assign tickets
