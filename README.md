@@ -6,7 +6,9 @@ A hackathon is a programming competition that encourages people to learn new thi
 
 ## Scope
 This project will:
-- Consist of a website (frontend and backend), desktop application, and mobile application
+- Consist of a website (frontend and backend)
+- Electron application for use on Linux, macOS 10.9 and up, and Windows 7 and up desktops
+- Android 6.0 mobile application
 - Allow hackathon participants to create a help ticket on the website
 - Allow assignment of a mentor to a ticket using the desktop and mobile apps
 - Allow mentors to resolve tickets using the desktop and mobile apps
@@ -25,6 +27,8 @@ Tiquito will solve a consistent problem at hackathons, connecting mentors with h
 ## Team
 |Name| Role |
 |:------|:-------|
+|Ken Baker| CEO|
+|Chuck Zimmer| CTO|
 |Kurt Lewis | Project Manager, Android Developer, Deployment Engineer|
 |Laura Tebben|Backend Web Developer, Android Developer|
 |Zachary Collins|Desktop Application Developer|
