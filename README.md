@@ -101,3 +101,6 @@ Total: 42 hours a week of billable time for $840
 - The hackathon staff and participants will only have access to their respective clients
 - Hackathon organizers will have full access to all functionality
 - Participants and mentors will be willing to work with the system
+- Mentors and organizers will not act with malicious intent when using the desktop and Android applications
+- Mentors and organizers will not create tickets for others to handle
+- Mentors and organizers will not reassign tickets to other mentors who have not agreed to handle the ticket
