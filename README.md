@@ -24,7 +24,7 @@ Tiquito will solve a consistent problem at hackathons, connecting mentors with h
 
 ## Team
 |Name| Role |
-|:------:|:-------:|
+|:------|:-------|
 |Kurt Lewis | Project Manager, Android Developer, Deployment Engineer|
 |Laura Tebben|Backend Web Developer, Android Developer|
 |Zachary Collins|Desktop Application Developer|
@@ -33,7 +33,7 @@ Tiquito will solve a consistent problem at hackathons, connecting mentors with h
 
 ## Participants
 | Stakeholder| Description|
-|:-------:|:--------:|
+|:-------|:--------|
 |Hackathon Participants|Create issues|
 |Hackathon Mentors|Network with students and resolve tickets|
 |Hackathon Sponsors|Fund the hackathon|
