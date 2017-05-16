@@ -7,7 +7,7 @@ A hackathon is a programming competition that encourages people to learn new thi
 ## Scope
 This project will:
 - Consist of a website (frontend and backend)
-- Electron application for use on Linux, macOS 10.9 and up, and Windows 7 and up desktops
+- Electron application for use on macOS 10.9 and above, Windows 7 and above, and Linux distributions Ubuntu 12.04 and above, Fedora 21 and above, and Debian 8 and above 
 - Android 6.0 mobile application
 - Allow hackathon participants to create a help ticket on the website
 - Allow assignment of a mentor to a ticket using the desktop and mobile apps
