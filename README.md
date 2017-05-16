@@ -17,10 +17,14 @@ This project will:
 - Allow participants to resolve only their own tickets
 - Allow for custom theming by deploying party on the website
 - Maintain and continue to display resolved tickets for later reference
+- Prevent participants from closing others' tickets
 
 This project will not:
 - Automatically assign tickets
-- Allow participants to close others’ tickets
+- Have a login based authentication system
+- Encrypt the ticket data
+- Prevent outside people with access to the website from creating tickets
+- Handle any portion of hackathon registration and check-in
 
 ## Objectives
 Tiquito will solve a consistent problem at hackathons, connecting mentors with hackers who need help. Utilizing a familiar IT ticket system, participants will be able to request help from knowledged industry mentors without going to find one, something that has been difficult in the past at hackathons.
