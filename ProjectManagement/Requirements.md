@@ -377,7 +377,7 @@ The database software used to store all ticket data and other information for th
 # Website
 ## R2001 - Participant must be able to create a ticket on the website
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 When a hackathon participant navigates to the Tiquito website, they must see a “Create” button to create a ticket.
 That button must take them to a page where they must fill out the following fields:  creator name, date of creation, creator location, problem title, problem description, assigned mentor, status [open, closed, in progress], creation PIN for closing, comments on ticket, and tags for the problem.
@@ -386,13 +386,13 @@ The new ticket must then be viewable on the website, the mobile app, and the des
 
 ## R2002 - Hackathon participants must be able to view an individual ticket on the website
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> James Hillman
 #### Description 
 Any user of the website must be able to click on any ticket from the list of all tickets to navigate the the ticket detail view. On clicking any ticket entry from the list of all tickets, they will be navigated to a new page displaying the ticket detail view.
 
 ## R2003 - Any user must be able to view (detail view) closed tickets through the website
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 When viewing the list of all tickets, clicking the “detail view” button on a ticket should display all of the same details that are displayed on the detail view of an open ticket. These details are:
 1. Creator first name
@@ -407,7 +407,7 @@ When viewing the list of all tickets, clicking the “detail view” button on a
 
 ## R2004 - Website detail view must have the following fields: creator first name, creator last name, timestamp, creator location, problem title, problem description, tags, assigned mentor, and ticket status
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 When a user selects a ticket to view in detail on the website, they should see the following details:
 * Creator first name
@@ -422,13 +422,13 @@ When a user selects a ticket to view in detail on the website, they should see t
 
 ## R2005 - Hackathon participants must be able to view closed (archived) tickets on the website
 #### Priority -> 2
-#### Owner -> <Owner Name>
+#### Owner -> James Hillman
 #### Description 
 On the website, the user must be able to view closed tickets to possibly find help from already closed issues. By default, closed tickets will be prioritized last and will be put at the end of the list of all tickets. Users can find these tickets by navigating to the last entries of the list of all tickets. Alternatively, users will also be able to filter tickets by status to specifically query for closed tickets using the filter functionality in the top bar.
 
 ## R2006 - Hackathon participants must be able to view a list of all tickets on the website
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> James Hillman
 #### Description 
 When a user visits the website, they will be able to view a list of all submitted tickets that are in any status. The list will be paginated to less than 50 items per page to ensure satisfactory performance. Each ticket in the list will be represented as a small card containing the following information:
 * Title
@@ -437,55 +437,55 @@ When a user visits the website, they will be able to view a list of all submitte
 
 ## R2007 - All users should be able to select the “detail view” button associated with a ticket in list view to load the detail view on the website
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> James Jillman
 #### Description 
 When viewing the list of tickets, users should be able to click “detail view” on one ticket, which will take them to a page with details about the selected ticket. See R2YYY for information about which details will be displayed.
 
 ## R2008 - All users should be able to search tickets on the website
 #### Priority -> 2
-#### Owner -> <Owner Name>
+#### Owner -> James Hillman
 #### Description 
 When viewing the list of tickets, users should be able to enter a search query in a text box and click “Search.” The result will be the list of tickets that contain their search term.
 
 ## R2009 - All users should be able to filter tickets on the website
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> James Hillman
 #### Description 
 When viewing the list of tickets, users should be able to select “Open”, “Closed”, or “Open and Closed” from a dropdown to filter for tickets matching the selected status. The result will be the list of tickets matching the selected status.
 
 ## R2010 - All users should be able to sort tickets on the website
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> James Hillman
 #### Description
 When viewing the list of tickets, users should be able to sort tickets according to Submission Time or Title by clicking on the corresponding header cell. The result will be the list of tickets sorted chronologically by time or alphabetically by title. 
 
 ## R2011 - Any user must be able to comment on tickets through the website
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description
 The detail view of a ticket on the website should have a comments section at the bottom displaying every comment that has been posted to the ticket. There will be a text box along with a “Submit” button at the bottom of the comments section. Typing text in the text box and pressing the “Submit” button should add that comment to the bottom of the comment section.
 
 ## R2012 - The website must encourage the participant to write out the solution to a ticket when closing the ticket
 #### Priority -> 2
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 When a participant is closing his or her own ticket on the website, the website must encourage the user to write about the solution to the problem described in the ticket. This is so that other participants can reference past tickets to find solutions to their problems. When a participant clicks on the “Close ticket” button, an editable text box with the title “Solution” must appear. The text box will not be a required field. Additionally, “Submit” and “Cancel” buttons will appear.
 
 ## R2013 - A participant must be able to close his or her own tickets through the website
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 When a ticket is created, one of the required fields is a 4 digit PIN, used to close the ticket. When a participant is closing a ticket, clicking a “Submit” button after clicking the “Close ticket” button will cause a popup box to appear. The popup box will be titled “PIN” and the participant must enter the PIN used to create the ticket, and then hit “Enter.” If an incorrect PIN is entered, the popup box will refresh with an empty PIN field and a message saying the PIN was incorrect. Pressing a “Cancel” button on the popup box will close the box and make no changes to the ticket.
 
 ## R2014 - The website should only allow one ticket closure every 5 seconds per user client
 #### Priority -> 2
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 For added database security, hackathon participants using the website client should only be allowed to submit one ticket close attempt every 5 seconds. This will cut down on fraudulent attempts to close tickets.
 
 ## R2015 - Website functionality must be consistent on desktop and mobile devices (Non-functional)
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 All functionality available on the website must be available when the website is viewed through a desktop or mobile device. Following use cases must be available for both desktop and mobile version on the website:
 * Create ticket
@@ -498,13 +498,14 @@ All functionality available on the website must be available when the website is
 
 ## R2016 - The website will be compatible with Chrome, Firefox and Safari (Non-functional)
 #### Priority -> 2
-#### Owner -> <Owner Name>
+#### Owner -> James Hillman
 #### Description 
 The website will be compatible with Chrome 56, Firefox 61 and Safari 10 (mobile and desktop versions). The website will not use any javascript, styling or html features that are not compatible with these browser versions.
 
 ## R2017 - During ticket creation, the UI will monitor if the user's input is valid and give feedback if changes are needed
 #### Priority -> 2
-#### Owner -> Zachary Sang
+#### 
+<-> Zachary Sang
 #### Description 
 During ticket creation, if a user puts an invalid entry for one of the fields (Eg: invalid characters in the PIN or Phone number fields), the user will get see an error displayed next to the relevant field and be blocked from submitting the ticket until the errors are corrected and the error messages are removed.
 
