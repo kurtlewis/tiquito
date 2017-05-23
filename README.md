@@ -25,6 +25,12 @@ This project will not:
 - Encrypt the ticket data
 - Prevent outside people with access to the website from creating tickets
 - Handle any portion of hackathon registration and check-in
+- Provide suggestions for ticket solutions
+- Allow for lookup of hackathon participants
+- Prevent hackathon mentors from abusing the powers of the desktop and Android applications
+- Require a password for organizer and mentor actions on the desktop and Android applications
+- Prevent duplicate ticket submissions
+- Allow participants to delete their own tickets
 
 ## Objectives
 Tiquito will solve a consistent problem at hackathons, connecting mentors with hackers who need help. Utilizing a familiar IT ticket system, participants will be able to request help from knowledged industry mentors without going to find one, something that has been difficult in the past at hackathons.
