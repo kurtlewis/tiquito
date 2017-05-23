@@ -324,7 +324,7 @@ The application should be clear to use without the use or need for a user manual
 #### Priority -> 1 
 #### Owner -> Zachary Sang
 #### Description 
-When creating tickets, hackathon participants see fields for entering their first name, last name, contact information, location at the hackathon, a title for their issue, a detailed description of their issue, and a simple 4 digit PIN for resolving their ticket. Additionally, tickets stored in the database should also contain the time of the ticket’s creation, the assigned mentor (if available), the status of the ticket (“Open”, “Closed”, and “In Progress”), comments on the ticket, and identification tags for the participant’s problem.
+Tickets in the database must include information for required fields such as first name, location at the hackathon, a title for their issue, and a simple 4 digit PIN for resolving their ticket]. Additionally, tickets stored in the database should also contain the time of the ticket’s creation, the assigned mentor (if available), the status of the ticket (“Open”, “Closed”, and “In Progress”), comments on the ticket, and identification tags for the participant’s problem.
 
 ## R1002 - Creator of ticket must be notified when a ticket is created or updated
 #### Priority -> 3
@@ -356,7 +356,7 @@ Hackathon participants must fill out the minimum needed information in order to 
 #### Description 
 When the hackathon participants create their tickets, they are required to submit a 4 digit PIN. When the hackathon participants move to resolve said tickets, they should be prompted for the PIN they submitted. If the PIN received matches that of the one created earlier the ticket will be successfully closed. If the PINs do not match, the ticket will not be closed.
 
-## R1007 - Ticket submission fields should protect against attempts to enter the wrong data types
+## R1007 - Ticket submission should protect against attempts to enter the wrong data types
 #### Priority -> 1
 #### Owner -> Zachary Sang
 #### Description 
