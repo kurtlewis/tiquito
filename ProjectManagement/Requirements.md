@@ -63,8 +63,8 @@ A person who is part of the group hosting the event
 
 ## Instructions
 
-- Requirements are named with RXYYY where X is the project identifier and Y are increasing digits
-- Use cases are named with UCXXX where X are increasing digits
+- Requirements are named with RXYYY where X is the project identifier and Y are increasing digits, forming a unique identifier
+- Use cases are named with UCXXX where X are increasing digits, forming a unique identifier
 - Priority ranges from 1-3, with 1 being the most important, and 3 being the least important 
 
 ### Project Identifiers
@@ -106,7 +106,7 @@ Copy and paste the below raw markdown when creating a use case.
 #### Flow of Events
 1. Participant clicks on “Create” button on ticket webpage
 2. This takes them to a form that has the following fields ( * denotes mandatory):
-  *  Creator first name *
+  * Creator first name *
   * Creator last name
   * Date and time of creation *(automatic)
   * Creator location in the hackerspace *
@@ -299,7 +299,6 @@ The actor sees a resulting list of tickets related to the topic they searched fo
 #### Owner -> Kurt Lewis
 #### Description
 The database must be fast. When viewing the list of tickets in the database, after clicking on the “view ticket” button, it should take no more than three seconds to retrieve and display the ticket from the database. This measurement should not take into account latency and network speed. The lookup and retrieval from the database of the ticket should take no more than three seconds.
-1. The database will be MongoDB
 
 ## R0002 -The UI will be consistent among the website, Android app, and Electron application
 #### Priority -> 2 
@@ -490,7 +489,6 @@ When a ticket is created, one of the required fields is a 4 digit PIN, used to c
 #### Description 
 For added database security, hackathon participants using the website client should only be allowed to submit one ticket close attempt every 5 seconds. This will cut down on fraudulent attempts to close tickets.
 
-
 ## R2015 - Website functionality must be consistent on desktop and mobile devices
 #### Priority -> 1 
 #### Owner -> <Owner Name>
@@ -524,7 +522,6 @@ The desktop app should have a list of all tickets. The list of tickets should au
 #### Description 
 There must be the option to view closed tickets on the electron app. On the list view of all tickets, closed tickets are not excluded unless explicitly done through sorting. Tickets that have a status of “Closed” should be visibly denoted from “Open” or “In Progress” tickets
 
-
 ## R3003 - Mentors and organizers must be able to view an individual ticket on the Electron app
 #### Priority -> 1 
 #### Owner -> Zach Collins
@@ -546,8 +543,7 @@ When the detail view is loaded for one ticket, the following fields must be pres
 8. Contact info
 9. Assigned mentor
 10. Ticket status
-
-Fields not filled out will be left blank.
+(Fields not filled out will be left blank.)
 
 ## R3005 - Organizers must be able to edit every field of a ticket except Time of Creation and PIN
 #### Priority -> 1 
@@ -574,7 +570,6 @@ Through the Android application, mentors and organizers must be able to click on
 * Problem title
 * Problem description
 * Tags for the problem
-* Assigned mentor
 * Ticket status
 
 ## R4002 - Mentors and organizers must be able to assign a ticket on the Android app
