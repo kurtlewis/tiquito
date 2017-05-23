@@ -294,95 +294,95 @@ The actor sees a resulting list of tickets related to the topic they searched fo
 # Requirements
 # Application Unspecific
 
-## R0YYY - It should take no more than three seconds to retrieve a ticket from the database
+## R0001 - It should take no more than three seconds to retrieve a ticket from the database
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Kurt Lewis
 #### Description
 The database must be fast. When viewing the list of tickets in the database, after clicking on the “view ticket” button, it should take no more than three seconds to retrieve and display the ticket from the database. This measurement should not take into account latency and network speed. The lookup and retrieval from the database of the ticket should take no more than three seconds.
 1. The database will be MongoDB
 
-## R0YYY -The UI will be consistent among the website, Android app, and Electron application
+## R0002 -The UI will be consistent among the website, Android app, and Electron application
 #### Priority -> 2 
-#### Owner -> <Owner Name>
+#### Owner -> Kurt Lewis
 #### Description
 All 3 platforms will use a similar color scheme. The arrangement of data and buttons will be the same on all 3 platforms. Buttons and fields will be named the same on all 3 platforms.
 
-## R0YYY - The list of tickets must always be up to date
+## R0003 - The list of tickets must always be up to date
 #### Priority -> 3 
-#### Owner -> <Owner Name>
+#### Owner -> Kurt Lewis
 #### Description
 The list of tickets retrieved by any of the Tiquito clients should be continually updated via asynchronous functionality to show the most up to date information possible at any given time with little or no interference with the user’s experience.
 
-## RXYYY - User must be able to fluidly use the application without referencing a user manual
+## R0004 - User must be able to fluidly use the application without referencing a user manual
 #### Priority -> 2
-#### Owner -> <Owner Name>
+#### Owner -> Kurt Lewis
 #### Description 
 The application should be clear to use without the use or need for a user manual or help page. This will be accomplished through the use of placeholder text and clear UI flow. The system will not differ greatly from a traditional IT ticket system, relying on user’s native understanding of such systems for understanding of actions.
 
 # Backend
 
-## R1YYY - Tickets must include all required fields and store appropriate information
+## R1001 - Tickets must include all required fields and store appropriate information
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 When creating tickets, hackathon participants should have fields to enter their first name, last name, contact information, location at the hackathon, a title for their issue, a detailed description of their issue, and a simple 4 digit PIN for resolving their ticket. Additionally, tickets stored in the database should also contain the time of the ticket’s creation, the assigned mentor (if available), the status of the ticket (“Open”, “Closed”, and “In Progress”), comments on the ticket, and identification tags for the participant’s problem.
 
-## R1YYY - Creator of ticket must be notified when a ticket is created or updated
+## R1002 - Creator of ticket must be notified when a ticket is created or updated
 #### Priority -> 3
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 Tiquito needs an email notification system for when a ticket is created and updated. Upon ticket creation, the creator of a ticket will receive an email confirming that a ticket has been created. Then, additional email updates will be sent each time a comment is posted to the ticket, when the ticket is assigned to a mentor, and when the ticket is closed.
 
-## R1YYY - Closed tickets must persist in the database
+## R1003 - Closed tickets must persist in the database
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 When a ticket is closed, its “status” property will be changed to “closed.” However, this does not mean that the ticket is not useful anymore. It is important that anyone be able to view closed tickets in the list of all tickets. When a ticket is closed, it should not be deleted.
 
-## R1YYY - The database must store/ persist tickets
+## R1004 - The database must store/ persist tickets
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 The database should be able to store a reasonable number of tickets. Tickets should be persisted unless explicitly cleared. The database should be able to persist data even if the website or any of the other applications crash.
 
-## R1YYY - Error handling should be implemented that handles when the database, or a specific ticket, can not be found
+## R1005 - Error handling should be implemented that handles when the database, or a specific ticket, can not be found
 #### Priority -> 2
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 In the event that any of Tiquito’s clients are unable to recall information from the ticket database, the respective clients should be redirected to a “404 page” that can be used by staff to diagnose the problem.
 
-## R1YYY - All required ticket fields must be filled out before a ticket can be created
+## R1006 - All required ticket fields must be filled out before a ticket can be created
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 Hackathon participants must fill out the minimum needed information in order to successfully create a ticket. These fields are first name, location at the hackathon, problem title, and the PIN for resolving the ticket.
 
-## R1YYY - Ticket’s creators must be able to close their tickets using predetermined PINs
+## R1007 - Ticket’s creators must be able to close their tickets using predetermined PINs
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 When the hackathon participants create their tickets, they are required to submit a 4 digit PIN. When the hackathon participants move to resolve said tickets, they should be prompted for the PIN they submitted. If the PIN received matches that of the one created earlier the ticket will be successfully closed. If the PINs do not match, the ticket will not be closed.
 
-## R1YYY - Ticket submission fields should protect against attempts to enter the wrong data types
+## R1008 - Ticket submission fields should protect against attempts to enter the wrong data types
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 Item fields, such as PIN number, should not allow hackathon participants to submit inappropriate data types. Ex. PIN number should only accept an int and block attempts to submit strings or special characters.
 
-## R1YYY - Data must be served over https
+## R1009 - Data must be served over https
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 Any ticket data served over the hackathon network should be handled through https to ensure the security of hackathon participants’ personal information.
 
-## R1YYY - The database will be MongoDB
+## R1010 - The database will be MongoDB
 #### Priority -> 2
-#### Owner -> <Owner Name>
+#### Owner -> Zachary Sang
 #### Description 
 The database software used to store all ticket data and other information for this application will be MongoDB. The database will be accessed by the website, and the Android and Desktop applications. The schema-less nature of this database will allow us to be flexible when collecting information. This software will enable us to define our own custom classes of objects that will exist in the database, allowing us to tailor the database’s functionality to our data.
 
 # Website
-## R2YYY - Participant must be able to create a ticket on the website
+## R2001 - Participant must be able to create a ticket on the website
 #### Priority -> 1 
 #### Owner -> <Owner Name>
 #### Description 
@@ -391,13 +391,13 @@ That button must take them to a page where they must fill out the following fiel
 Once they’ve filled out the fields, they should be able to click “Submit”, which stores the ticket and all its information in the database
 The new ticket must then be viewable on the website, the mobile app, and the desktop app
 
-## R2YYY - Hackathon participants must be able to view an individual ticket on the website
+## R2002 - Hackathon participants must be able to view an individual ticket on the website
 #### Priority -> 1 
 #### Owner -> <Owner Name>
 #### Description 
 Any user of the website must be able to click on any ticket from the list of all tickets to navigate the the ticket detail view. On clicking any ticket entry from the list of all tickets, they will be navigated to a new page displaying the ticket detail view.
 
-## R2YYY - Any user must be able to view (detail view) closed tickets through the website
+## R2003 - Any user must be able to view (detail view) closed tickets through the website
 #### Priority -> 1 
 #### Owner -> <Owner Name>
 #### Description 
@@ -412,7 +412,7 @@ When viewing the list of all tickets, clicking the “detail view” button on a
 8. Assigned mentor
 9. Ticket status
 
-## R2YYY - Website detail view must have the following fields: creator first name, creator last name, timestamp, creator location, problem title, problem description, tags, assigned mentor, and ticket status
+## R2004 - Website detail view must have the following fields: creator first name, creator last name, timestamp, creator location, problem title, problem description, tags, assigned mentor, and ticket status
 #### Priority -> 1 
 #### Owner -> <Owner Name>
 #### Description 
@@ -427,13 +427,13 @@ When a user selects a ticket to view in detail on the website, they should see t
 * Assigned mentor
 * Ticket status
 
-## R2YYY - Hackathon participants must be able to view closed (archived) tickets on the website
+## R2005 - Hackathon participants must be able to view closed (archived) tickets on the website
 #### Priority -> 2
 #### Owner -> <Owner Name>
 #### Description 
 On the website, the user must be able to view closed tickets to possibly find help from already closed issues. By default, closed tickets will be prioritized last and will be put at the end of the list of all tickets. Users can find these tickets by navigating to the last entries of the list of all tickets. Alternatively, users will also be able to filter tickets by status to specifically query for closed tickets using the filter functionality in the top bar.
 
-## R2YYY - Hackathon participants must be able to view a list of all tickets on the website
+## R2006 - Hackathon participants must be able to view a list of all tickets on the website
 #### Priority -> 1 
 #### Owner -> <Owner Name>
 #### Description 
@@ -442,56 +442,56 @@ When a user visits the website, they will be able to view a list of all submitte
 * Tags
 * Ticket status (open, closed, in progress)
 
-## R2YYY - All users should be able to select the “detail view” button associated with a ticket in list view to load the detail view on the website
+## R2007 - All users should be able to select the “detail view” button associated with a ticket in list view to load the detail view on the website
 #### Priority -> 1
 #### Owner -> <Owner Name>
 #### Description 
 When viewing the list of tickets, users should be able to click “detail view” on one ticket, which will take them to a page with details about the selected ticket. See R2YYY for information about which details will be displayed.
 
-## R2YYY - All users should be able to search tickets on the website
+## R2008 - All users should be able to search tickets on the website
 #### Priority -> 2
 #### Owner -> <Owner Name>
 #### Description 
 When viewing the list of tickets, users should be able to enter a search query in a text box and click “Search.” The result will be the list of tickets that contain their search term.
 
-## R2YYY - All users should be able to filter tickets on the website
+## R2009 - All users should be able to filter tickets on the website
 #### Priority -> 1
 #### Owner -> <Owner Name>
 #### Description 
 When viewing the list of tickets, users should be able to select “Open”, “Closed”, or “Open and Closed” from a dropdown to filter for tickets matching the selected status. The result will be the list of tickets matching the selected status.
 
-## R2YYY - All users should be able to sort tickets on the website
+## R2010 - All users should be able to sort tickets on the website
 #### Priority -> 1
 #### Owner -> <Owner Name>
 #### Description
 When viewing the list of tickets, users should be able to sort tickets according to Submission Time or Title by clicking on the corresponding header cell. The result will be the list of tickets sorted chronologically by time or alphabetically by title. 
 
-## R2YYY - Any user must be able to comment on tickets through the website
+## R2011 - Any user must be able to comment on tickets through the website
 #### Priority -> 1 
 #### Owner -> <Owner Name>
 #### Description
 The detail view of a ticket on the website should have a comments section at the bottom displaying every comment that has been posted to the ticket. There will be a text box along with a “Submit” button at the bottom of the comments section. Typing text in the text box and pressing the “Submit” button should add that comment to the bottom of the comment section.
 
-## R2YYY - The website must encourage the participant to write out the solution to a ticket when closing the ticket
+## R2012 - The website must encourage the participant to write out the solution to a ticket when closing the ticket
 #### Priority -> 2
 #### Owner -> <Owner Name>
 #### Description 
 When a participant is closing his or her own ticket on the website, the website must encourage the user to write about the solution to the problem described in the ticket. This is so that other participants can reference past tickets to find solutions to their problems. When a participant clicks on the “Close ticket” button, an editable text box with the title “Solution” must appear. The text box will not be a required field. Additionally, “Submit” and “Cancel” buttons will appear.
 
-## R2YYY - A participant must be able to close his or her own tickets through the website
+## R2013 - A participant must be able to close his or her own tickets through the website
 #### Priority -> 1 
 #### Owner -> <Owner Name>
 #### Description 
 When a ticket is created, one of the required fields is a 4 digit PIN, used to close the ticket. When a participant is closing a ticket, clicking a “Submit” button after clicking the “Close ticket” button will cause a popup box to appear. The popup box will be titled “PIN” and the participant must enter the PIN used to create the ticket, and then hit “Enter.” If an incorrect PIN is entered, the popup box will refresh with an empty PIN field and a message saying the PIN was incorrect. Pressing a “Cancel” button on the popup box will close the box and make no changes to the ticket.
 
-## R2YYY - The website should only allow one ticket closure every 5 seconds
+## R2014 - The website should only allow one ticket closure every 5 seconds
 #### Priority -> 2
 #### Owner -> <Owner Name>
 #### Description 
 For added database security, hackathon participants using the website client should only be allowed to submit one ticket close attempt every 5 seconds. This will cut down on fraudulent attempts to close tickets.
 
 
-## R2YYY - Website functionality must be consistent on desktop and mobile devices
+## R2015 - Website functionality must be consistent on desktop and mobile devices
 #### Priority -> 1 
 #### Owner -> <Owner Name>
 #### Description 
@@ -504,7 +504,7 @@ All functionality available on the website must be available when the website is
 * Comment on tickets
 * Close ticket with PIN
 
-## R2YYY - The website will be compatible with Chrome, Firefox and Safari
+## R2016 - The website will be compatible with Chrome, Firefox and Safari
 #### Priority -> 2
 #### Owner -> <Owner Name>
 #### Description 
@@ -512,28 +512,28 @@ The website will be compatible with Chrome 56, Firefox 61 and Safari 10 (mobile 
 
 # Desktop
 
-## R3YYY - Mentors and organizers must be able to view a list of all tickets on the Electron app
+## R3001 - Mentors and organizers must be able to view a list of all tickets on the Electron app
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zach Collins
 #### Description 
 The desktop app should have a list of all tickets. The list of tickets should auto-update when a new ticket is submitted. The list of information for each ticket should include ticket name, tags, and status.
 
-## R3YYY - Mentors and organizers must be able to view closed tickets on the Electron app
+## R3002 - Mentors and organizers must be able to view closed tickets on the Electron app
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Zach Collins
 #### Description 
 There must be the option to view closed tickets on the electron app. On the list view of all tickets, closed tickets are not excluded unless explicitly done through sorting. Tickets that have a status of “Closed” should be visibly denoted from “Open” or “In Progress” tickets
 
 
-## R3YYY - Mentors and organizers must be able to view an individual ticket on the Electron app
+## R3003 - Mentors and organizers must be able to view an individual ticket on the Electron app
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zach Collins
 #### Description 
 The electron app will have an individual ticket view from the list of all tickets. The individual view should contain displays of fields including creator name, title, description, date, tags, location, status, and assigned mentor. 
 
-## R3YYY - The Electron app detail view must have the following fields: creator first name, creator last name, timestamp, creator location, problem title, problem description, tags, contact info, assigned mentor, and ticket status
+## R3004 - The Electron app detail view must have the following fields: creator first name, creator last name, timestamp, creator location, problem title, problem description, tags, contact info, assigned mentor, and ticket status
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Zach Collins
 #### Description 
 When the detail view is loaded for one ticket, the following fields must be present:
 1. Creator first name
@@ -549,22 +549,22 @@ When the detail view is loaded for one ticket, the following fields must be pres
 
 Fields not filled out will be left blank.
 
-## R3YYY - Organizers must be able to edit every field of a ticket except Time of Creation and PIN
+## R3005 - Organizers must be able to edit every field of a ticket except Time of Creation and PIN
 #### Priority -> 1 
-#### Owner -> <Owner Name>
+#### Owner -> Zach Collins
 #### Description 
 Using the desktop or Android clients, organizers must be able to edit any field of a ticket except for the Time of Creation and PIN. On the ticket view page, organizers should be able to select a field. When the field is selected, an “edit” button should appear for the field. After clicking on the edit button, the field should become an editable text box and “Confirm” and “Cancel” buttons should appear. Clicking on “Confirm” will apply the changes; clicking on “Cancel” will revert all changes. Mostly, this feature should be used for moderation. Organizers need to be able to edit tickets to remove inappropriate or hateful text in any field. The time of creation will be automated server-side, so it cannot contain anything inappropriate. The PIN should not be editable, because it is a number personal to the participant who created the ticket.
 
-## R3YYY - Mentors and organizers must be able to assign a ticket on the Electron app
+## R3006 - Mentors and organizers must be able to assign a ticket on the Electron app
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Zach Collins
 #### Description 
 From the individual view on a ticket, there should be a field to enter a mentor name and a button to assign the ticket. Once the mentor has inputted a name, they can click the button to officially update the ticket to assigned. 
 
 # Android
-## R4YYY - Mentors and organizers must be able to view an individual ticket on the Android app
+## R4001 - Mentors and organizers must be able to view an individual ticket on the Android app
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Laura Tebben
 #### Description 
 Through the Android application, mentors and organizers must be able to click on any ticket from the list of all tickets to navigate the the ticket detail view. On clicking any ticket entry from the list of all tickets, they will be navigated to a new screen displaying the ticket detail view. The detail view should contain the following information:
 * Creator first name
@@ -577,29 +577,29 @@ Through the Android application, mentors and organizers must be able to click on
 * Assigned mentor
 * Ticket status
 
-## R4YYY - Mentors and organizers must be able to assign a ticket on the Android app
+## R4002 - Mentors and organizers must be able to assign a ticket on the Android app
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Laura Tebben
 #### Description 
 Through the Android App, mentors and organizers must be able to assign a ticket. The user will first need to navigate to the detail view of a specific ticket by selecting a ticket from the list of all tickets. Once the detail view is open, the user will be able to see if the ticket is already claimed, and if so, by whom. If the user wants to continue to claim the ticket, they will be able to select the claim ticket button. On selection of this action, the user will be asked to enter their name and to confirm the claim action (especially when the ticket is already claimed). Once the user has entered their name and confirmed this action, the database will update the status of the ticket to ‘In Progress’. When the database has updated the status of this ticket, the ticket status can be viewed as ‘In Progress’ from the list view and detail view.
 
-## R4YYY - Mentors and organizers must be able to close a ticket on the Android app
+## R4003 - Mentors and organizers must be able to close a ticket on the Android app
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Laura Tebben
 #### Description 
 Through the Android app, mentors and organizers must be able to close any ticket. The user will select a specific ticket to close from the list of all tickets by choosing a ticket and navigating to it’s detail view. The user will then see a ‘Close Ticket’ button if the ticket is in an ‘Open’ or ‘In Progress’ state. Otherwise the button will be greyed out. When the user clicks on the ‘Close Ticket’ button, they will be asked to confirm the close action. If they confirm the action, the ticket will be marked as archived and the state will be updated in the database to ‘Closed’.
 
-## R4YYY - Mentors and organizers must be able to view a list of all tickets on the Android app
+## R4004 - Mentors and organizers must be able to view a list of all tickets on the Android app
 #### Priority -> 1
-#### Owner -> <Owner Name>
+#### Owner -> Kurt Lewis
 #### Description 
 Mentors and organizers using the Android app must be able to view a list of all submitted tickets that are in any status. The list will be paginated to less than 50 items at a time to ensure satisfactory performance. Each ticket in the list will be represented as a small card containing the following information:
 * Title
 * Tags
 * Ticket status (open, closed, in progress)
 
-## R4YYY - Mentors and organizers must be able to view closed tickets on the Android app
+## R4005 - Mentors and organizers must be able to view closed tickets on the Android app
 #### Priority -> 1
-#### Owner -> <Owner>
+#### Owner -> Kurt Lewis
 #### Description 
 There must be the option to view closed tickets on the android app. On the list view of all tickets, closed tickets are not excluded unless explicitly done through sorting. Tickets that have a status of “Closed” should be visibly denoted from “Open” or “In Progress” tickets.
