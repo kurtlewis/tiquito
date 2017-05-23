@@ -374,12 +374,6 @@ Any ticket data served over the hackathon network should be handled through http
 #### Description 
 The database software used to store all ticket data and other information for this application will be MongoDB. The database will be accessed by the website, and the Android and Desktop applications. The schema-less nature of this database will allow us to be flexible when collecting information. This software will enable us to define our own custom classes of objects that will exist in the database, allowing us to tailor the database’s functionality to our data.
 
-## R1010 - During ticket creation, the UI will monitor if the user's input is valid and give feedback if changes are needed
-#### Priority -> 2
-#### Owner -> Zachary Sang
-#### Description 
-During ticket creation, if a user puts an invalid entry for one of the fields (Eg: invalid characters in the PIN or Phone number fields), the user will get see an error displayed next to the relevant field and be blocked from submitting the ticket until the errors are corrected and the error messages are removed.
-
 # Website
 ## R2001 - Participant must be able to create a ticket on the website
 #### Priority -> 1 
@@ -507,6 +501,12 @@ All functionality available on the website must be available when the website is
 #### Owner -> <Owner Name>
 #### Description 
 The website will be compatible with Chrome 56, Firefox 61 and Safari 10 (mobile and desktop versions). The website will not use any javascript, styling or html features that are not compatible with these browser versions.
+
+## R2017 - During ticket creation, the UI will monitor if the user's input is valid and give feedback if changes are needed
+#### Priority -> 2
+#### Owner -> Zachary Sang
+#### Description 
+During ticket creation, if a user puts an invalid entry for one of the fields (Eg: invalid characters in the PIN or Phone number fields), the user will get see an error displayed next to the relevant field and be blocked from submitting the ticket until the errors are corrected and the error messages are removed.
 
 # Desktop
 
