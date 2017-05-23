@@ -324,57 +324,51 @@ The application should be clear to use without the use or need for a user manual
 #### Priority -> 1 
 #### Owner -> Zachary Sang
 #### Description 
-When creating tickets, hackathon participants should have fields to enter their first name, last name, contact information, location at the hackathon, a title for their issue, a detailed description of their issue, and a simple 4 digit PIN for resolving their ticket. Additionally, tickets stored in the database should also contain the time of the ticket’s creation, the assigned mentor (if available), the status of the ticket (“Open”, “Closed”, and “In Progress”), comments on the ticket, and identification tags for the participant’s problem.
+When creating tickets, hackathon participants see fields for entering their first name, last name, contact information, location at the hackathon, a title for their issue, a detailed description of their issue, and a simple 4 digit PIN for resolving their ticket. Additionally, tickets stored in the database should also contain the time of the ticket’s creation, the assigned mentor (if available), the status of the ticket (“Open”, “Closed”, and “In Progress”), comments on the ticket, and identification tags for the participant’s problem.
 
 ## R1002 - Creator of ticket must be notified when a ticket is created or updated
 #### Priority -> 3
 #### Owner -> Zachary Sang
 #### Description 
-Tiquito needs an email notification system for when a ticket is created and updated. Upon ticket creation, the creator of a ticket will receive an email confirming that a ticket has been created. Then, additional email updates will be sent each time a comment is posted to the ticket, when the ticket is assigned to a mentor, and when the ticket is closed.
+Tiquito should have an email notification system for when a ticket is created and updated. Upon ticket creation, the creator of a ticket will receive an email confirming that a ticket has been created. Then, additional email updates will be sent each time a comment is posted to the ticket, when the ticket is assigned to a mentor, and when the ticket is closed.
 
-## R1003 - Closed tickets must persist in the database
-#### Priority -> 1 
-#### Owner -> Zachary Sang
-#### Description 
-When a ticket is closed, its “status” property will be changed to “closed.” However, this does not mean that the ticket is not useful anymore. It is important that anyone be able to view closed tickets in the list of all tickets. When a ticket is closed, it should not be deleted.
-
-## R1004 - Tickets must be persisted using a database
+## R1003 - All tickets, including closed tickets, must be persisted using a database
 #### Priority -> 1
 #### Owner -> Zachary Sang
 #### Description 
-The database should be able to store a reasonable number of tickets. Tickets should be persisted unless explicitly cleared. The database should be able to persist data even if the website or any of the other applications crash.
+The database should be able to store a reasonable number of tickets. Tickets should be persisted unless explicitly cleared. The database should be able to persist data even if the website or any of the other applications crash. What's more, tickets should be persisted even if in a closed state.
 
-## R1005 - Error handling should be implemented that handles when the database, or a specific ticket, can not be found
+## R1004 - Error handling should be implemented that handles when the database, or a specific ticket, can not be found
 #### Priority -> 2
 #### Owner -> Zachary Sang
 #### Description 
 In the event that any of Tiquito’s clients are unable to recall information from the ticket database, the respective clients should be redirected to a “404 page” that can be used by staff to diagnose the problem.
 
-## R1006 - All required ticket fields must be filled out before a ticket can be created
+## R1005 - All required ticket fields must be filled out before a ticket can be created
 #### Priority -> 1
 #### Owner -> Zachary Sang
 #### Description 
 Hackathon participants must fill out the minimum needed information in order to successfully create a ticket. These fields are first name, location at the hackathon, problem title, and the PIN for resolving the ticket.
 
-## R1007 - Ticket’s creators must be able to close their tickets using predetermined PINs
+## R1006 - Ticket’s creators must be able to close their tickets using predetermined PINs
 #### Priority -> 1
 #### Owner -> Zachary Sang
 #### Description 
 When the hackathon participants create their tickets, they are required to submit a 4 digit PIN. When the hackathon participants move to resolve said tickets, they should be prompted for the PIN they submitted. If the PIN received matches that of the one created earlier the ticket will be successfully closed. If the PINs do not match, the ticket will not be closed.
 
-## R1008 - Ticket submission fields should protect against attempts to enter the wrong data types
+## R1007 - Ticket submission fields should protect against attempts to enter the wrong data types
 #### Priority -> 1
 #### Owner -> Zachary Sang
 #### Description 
 Item fields, such as PIN number, should not allow hackathon participants to submit inappropriate data types. Ex. PIN number should only accept an int and block attempts to submit strings or special characters.
 
-## R1009 - Data must be served over https (Non-functional)
+## R1008 - Data must be served over https (Non-functional)
 #### Priority -> 1
 #### Owner -> Zachary Sang
 #### Description 
 Any ticket data served over the hackathon network should be handled through https to ensure the security of hackathon participants’ personal information.
 
-## R1010 - The database will be MongoDB (Non-functional)
+## R1009 - The database will be MongoDB (Non-functional)
 #### Priority -> 2
 #### Owner -> Zachary Sang
 #### Description 
@@ -483,7 +477,7 @@ When a participant is closing his or her own ticket on the website, the website 
 #### Description 
 When a ticket is created, one of the required fields is a 4 digit PIN, used to close the ticket. When a participant is closing a ticket, clicking a “Submit” button after clicking the “Close ticket” button will cause a popup box to appear. The popup box will be titled “PIN” and the participant must enter the PIN used to create the ticket, and then hit “Enter.” If an incorrect PIN is entered, the popup box will refresh with an empty PIN field and a message saying the PIN was incorrect. Pressing a “Cancel” button on the popup box will close the box and make no changes to the ticket.
 
-## R2014 - The website should only allow one ticket closure every 5 seconds
+## R2014 - The website should only allow one ticket closure every 5 seconds per user client
 #### Priority -> 2
 #### Owner -> <Owner Name>
 #### Description 
@@ -598,3 +592,9 @@ Mentors and organizers using the Android app must be able to view a list of all 
 #### Owner -> Kurt Lewis
 #### Description 
 There must be the option to view closed tickets on the android app. On the list view of all tickets, closed tickets are not excluded unless explicitly done through sorting. Tickets that have a status of “Closed” should be visibly denoted from “Open” or “In Progress” tickets.
+
+## R4006 - Android app will be compatible with Android KitKat and up (Non-functional)
+#### Priority -> 1
+#### Owner -> Kurt Lewis
+#### Description 
+The Android application will be compatible with devices running Android KitKat (4.4+) as to accommodate a reasonably wide range of users.
