@@ -294,13 +294,13 @@ The actor sees a resulting list of tickets related to the topic they searched fo
 # Requirements
 # Application Unspecific
 
-## R0001 - It should take no more than three seconds to retrieve a ticket from the database
+## R0001 - It should take no more than three seconds to retrieve a ticket from the database (Non-functional)
 #### Priority -> 1 
 #### Owner -> Kurt Lewis
 #### Description
 The database must be fast. When viewing the list of tickets in the database, after clicking on the “view ticket” button, it should take no more than three seconds to retrieve and display the ticket from the database. This measurement should not take into account latency and network speed. The lookup and retrieval from the database of the ticket should take no more than three seconds.
 
-## R0002 -The UI will be consistent among the website, Android app, and Electron application
+## R0002 -The UI will be consistent among the website, Android app, and Electron application (Non-functional)
 #### Priority -> 2 
 #### Owner -> Kurt Lewis
 #### Description
@@ -312,7 +312,7 @@ All 3 platforms will use a similar color scheme. The arrangement of data and but
 #### Description
 The list of tickets retrieved by any of the Tiquito clients should be continually updated via asynchronous functionality to show the most up to date information possible at any given time with little or no interference with the user’s experience.
 
-## R0004 - User must be able to fluidly use the application without referencing a user manual
+## R0004 - User must be able to fluidly use the application without referencing a user manual (Non-functional)
 #### Priority -> 2
 #### Owner -> Kurt Lewis
 #### Description 
@@ -338,7 +338,7 @@ Tiquito needs an email notification system for when a ticket is created and upda
 #### Description 
 When a ticket is closed, its “status” property will be changed to “closed.” However, this does not mean that the ticket is not useful anymore. It is important that anyone be able to view closed tickets in the list of all tickets. When a ticket is closed, it should not be deleted.
 
-## R1004 - The database must store/ persist tickets
+## R1004 - Tickets must be persisted using a database
 #### Priority -> 1
 #### Owner -> Zachary Sang
 #### Description 
@@ -368,13 +368,13 @@ When the hackathon participants create their tickets, they are required to submi
 #### Description 
 Item fields, such as PIN number, should not allow hackathon participants to submit inappropriate data types. Ex. PIN number should only accept an int and block attempts to submit strings or special characters.
 
-## R1009 - Data must be served over https
+## R1009 - Data must be served over https (Non-functional)
 #### Priority -> 1
 #### Owner -> Zachary Sang
 #### Description 
 Any ticket data served over the hackathon network should be handled through https to ensure the security of hackathon participants’ personal information.
 
-## R1010 - The database will be MongoDB
+## R1010 - The database will be MongoDB (Non-functional)
 #### Priority -> 2
 #### Owner -> Zachary Sang
 #### Description 
@@ -489,7 +489,7 @@ When a ticket is created, one of the required fields is a 4 digit PIN, used to c
 #### Description 
 For added database security, hackathon participants using the website client should only be allowed to submit one ticket close attempt every 5 seconds. This will cut down on fraudulent attempts to close tickets.
 
-## R2015 - Website functionality must be consistent on desktop and mobile devices
+## R2015 - Website functionality must be consistent on desktop and mobile devices (Non-functional)
 #### Priority -> 1 
 #### Owner -> <Owner Name>
 #### Description 
@@ -502,7 +502,7 @@ All functionality available on the website must be available when the website is
 * Comment on tickets
 * Close ticket with PIN
 
-## R2016 - The website will be compatible with Chrome, Firefox and Safari
+## R2016 - The website will be compatible with Chrome, Firefox and Safari (Non-functional)
 #### Priority -> 2
 #### Owner -> <Owner Name>
 #### Description 
