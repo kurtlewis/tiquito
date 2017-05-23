@@ -322,7 +322,7 @@ The application should be clear to use without the use or need for a user manual
 
 ## R1001 - Tickets must include all required fields and store appropriate information
 #### Priority -> 1 
-#### Owner -> Zachary Sang
+#### Owner -> Laura Tebben
 #### Description 
 Tickets in the database must include information for required fields such as first name, location at the hackathon, a title for their issue, and a simple 4 digit PIN for resolving their ticket]. Additionally, tickets stored in the database should also contain the time of the ticket’s creation, the assigned mentor (if available), the status of the ticket (“Open”, “Closed”, and “In Progress”), comments on the ticket, and identification tags for the participant’s problem.
 
@@ -334,7 +334,7 @@ Tiquito should have an email notification system for when a ticket is created an
 
 ## R1003 - All tickets, including closed tickets, must be persisted using a database
 #### Priority -> 1
-#### Owner -> Zachary Sang
+#### Owner -> Laura Tebben
 #### Description 
 The database should be able to store a reasonable number of tickets. Tickets should be persisted unless explicitly cleared. The database should be able to persist data even if the website or any of the other applications crash. What's more, tickets should be persisted even if in a closed state.
 
@@ -352,19 +352,19 @@ Hackathon participants must fill out the minimum needed information in order to 
 
 ## R1006 - Ticket’s creators must be able to close their tickets using predetermined PINs
 #### Priority -> 1
-#### Owner -> Zachary Sang
+#### Owner -> Laura Tebben
 #### Description 
 When the hackathon participants create their tickets, they are required to submit a 4 digit PIN. When the hackathon participants move to resolve said tickets, they should be prompted for the PIN they submitted. If the PIN received matches that of the one created earlier the ticket will be successfully closed. If the PINs do not match, the ticket will not be closed.
 
 ## R1007 - Ticket submission should protect against attempts to enter the wrong data types
 #### Priority -> 1
-#### Owner -> Zachary Sang
+#### Owner -> Laura Tebben
 #### Description 
 Item fields, such as PIN number, should not allow hackathon participants to submit inappropriate data types. Ex. PIN number should only accept an int and block attempts to submit strings or special characters.
 
 ## R1008 - Data must be served over https (Non-functional)
 #### Priority -> 1
-#### Owner -> Zachary Sang
+#### Owner -> Kurt Lewis
 #### Description 
 Any ticket data served over the hackathon network should be handled through https to ensure the security of hackathon participants’ personal information.
 
