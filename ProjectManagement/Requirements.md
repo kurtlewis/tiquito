@@ -25,8 +25,10 @@ This project will:
 
 This project will not:
 - Automatically assign tickets
-- Allow participants to close others’ tickets
-- Require participants to login
+- Have a login based authentication system
+- Encrypt the ticket data
+- Prevent outside people with access to the website from creating tickets
+- Handle any portion of hackathon registration and check-in
 
 ## Constraints
 * Student scheduling conflicts
