@@ -63,6 +63,10 @@ A person who is at the hackathon to help participants with issues
 #### Organizer: 
 A person who is part of the group hosting the event
 
+## Data Dictionary:
+| Table Name| Attribute Name| Type| Length| Required| Default Value| Notes|
+|Tickets|Title|String|30|Y|||
+
 ## Instructions
 
 - Requirements are named with RXYYY where X is the project identifier and Y are increasing digits, forming a unique identifier
