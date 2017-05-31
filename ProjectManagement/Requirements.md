@@ -65,6 +65,7 @@ A person who is part of the group hosting the event
 
 ## Data Dictionary:
 | Table Name| Attribute Name| Type| Length| Required| Default Value| Notes|
+|:----------|:--------------|:----|:------|:--------|:-------------|:-----|
 |Tickets|TicketID|String|10|Y||Auto-generated on creation|
 |Tickets|Problem Title|String|30|Y|||
 |Tickets|Problem Description|String|500|N|''||
