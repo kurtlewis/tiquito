@@ -66,7 +66,22 @@ A person who is part of the group hosting the event
 ## Data Dictionary:
 | Table Name| Attribute Name| Type| Length| Required| Default Value| Notes|
 |:----------|:--------------|:----|:------|:--------|:-------------|:-----|
-|Tickets|Title|String|30|Y|a|b|
+|Tickets|TicketID|String|10|Y||Auto-generated on creation|
+|Tickets|Problem Title|String|30|Y|||
+|Tickets|Problem Description|String|500|N|''||
+|Tickets|First Name|String|20|Y|||
+|Tickets|Last Name|String|30|N|''||
+|Tickets|Creation Time|String|11|Y||Automatically generated on ticket creation. Takes form: 'mm/dd-hh:mm'|
+|Tickets|Location|String|50|Y|||
+|Tickets|PIN|String|4|Y||Used for closing ticket|
+|Tickets|Tags|[String]|15 each|N|[]|Set of tags used to help identify the problem|
+|Tickets|Contact Info|String|50|N|''||
+|Tickets|Comments|[{String name, String body,  String timestamp}]|900 each|N||Set of comments on the problem|
+|Tickets|Status|String|12|Y||"Open","Closed" or "In progress"|
+|Tickets|Mentor Name|String|20|N|'None'||
+|Tickets|Creator Registration ID|Integer|10|N|-1|UC007|
+
+
 
 ## Instructions
 
