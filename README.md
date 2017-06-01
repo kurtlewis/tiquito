@@ -1,6 +1,4 @@
-# Tiquito
-
-# Project Charter
+# Tiquito Project Charter
 
 ## Background
 A hackathon is a programming competition that encourages people to learn new things and to build something creative and novel. Because of the explorative nature of hackathons, it is common for participants to have questions and issues throughout the event. While mentors are usually present, it is a challenge to connect teams having issues with mentors with the relevant knowledge. Tiquito is the solution to this. Tiquito is a customer service ticket tracking system designed for hackathons that will allow participants to publish a description of their issue with tags indicating the relevant topics. Mentors will then be able to view issues, assign themselves, and ultimately resolve the issues.
@@ -73,26 +71,17 @@ Developers on this project will communicate using a private channel in slack, ho
 ## Benefits
 - Expedites and simplifies ticket management for future hackathons 
 - Increases the interest of beginning programmers if they can easily receive help with complicated problems
+- Provides an easy way for participants to get connected with mentors
+- Reduces time taken from a problem arising to finding a solution
 
 ## Project Milestones
-1. Project initialized
-2. Basic file structure setup
-3. Dev environments setup
-4. Web pages created and routed to
-5. Backend for creating ticket
-6. Web frontend for creating tickets
-7. Android frontend for creating tickets
-8. Desktop frontend for viewing tickets
-9. Backend for resolving tickets
-10. Desktop frontend for resolving tickets
-11. Android frontend for resolving tickets
-12. Backend for commenting on tickets
-13. Web frontend for commenting on tickets
-14. Android frontend for commenting on tickets
-15. Web frontend for resolving tickets
-16. Web component complete
-17. Deployment of web backend and site
-18. Tests for web component complete
+1. Solution architecture complete
+2. Server initialized
+3. Backend complete
+4. Website frontend complete
+5. Android app complete
+6. Electron app complete
+7. Solution thoroughly tested and debugged
 
 ## Project Budget
 Developers are paid $20/hr (good co-op pay)
