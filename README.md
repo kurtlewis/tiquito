@@ -1,3 +1,4 @@
+# Tiquito
 
 # Project Charter
 
@@ -31,6 +32,12 @@ This project will not:
 - Require a password for organizer and mentor actions on the desktop and Android applications
 - Prevent duplicate ticket submissions
 - Allow participants to delete their own tickets
+
+## Deliverables
+- Server for all applications hosted on Amazon Web Services
+- Website with domain tiquito.com hosted with the server
+- Source code and installation instructions for Android app
+- Source code and installation instructions for Electron app
 
 ## Objectives
 Tiquito will solve a consistent problem at hackathons, connecting mentors with hackers who need help. Utilizing a familiar IT ticket system, participants will be able to request help from knowledged industry mentors without going to find one, something that has been difficult in the past at hackathons.
