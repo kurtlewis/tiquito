@@ -79,7 +79,6 @@ A person who is part of the group hosting the event
 |Tickets|Comments|[{String name, String body,  String timestamp}]|900 each|N||Set of comments on the problem|
 |Tickets|Status|String|12|Y||"Open","Closed" or "In progress"|
 |Tickets|Mentor Name|String|20|N|'None'||
-|Tickets|Creator Registration ID|Integer|10|N|-1|UC007|
 
 ## Instructions
 
@@ -248,7 +247,6 @@ For Hackathon Participants (Web)
 For Hackathon Mentors and Organizers  (Electron Client and Android app)
   * Creator’s First Name
   * Creator’s Last Name
-  * Creator’s Hackathon Registration ID
   * Creator’s Location at Hackathon
   * Problem Title
   * Problem Description
