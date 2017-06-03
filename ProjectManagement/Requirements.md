@@ -64,21 +64,21 @@ A person who is at the hackathon to help participants with issues
 A person who is part of the group hosting the event
 
 ## Data Dictionary:
-| Table Name| Attribute Name| Type| Length| Required| Default Value| Notes|
-|:----------|:--------------|:----|:------|:--------|:-------------|:-----|
-|Tickets|TicketID|String|10|Y||Auto-generated on creation|
-|Tickets|Problem Title|String|30|Y|||
-|Tickets|Problem Description|String|500|N|''||
-|Tickets|First Name|String|20|Y|||
-|Tickets|Last Name|String|30|N|''||
-|Tickets|Creation Time|String|11|Y||Automatically generated on ticket creation. Takes form: 'mm/dd-hh:mm'|
-|Tickets|Location|String|50|Y|||
-|Tickets|PIN|String|4|Y||Used for closing ticket|
-|Tickets|Tags|[String]|15 each|N|[]|Set of tags used to help identify the problem|
-|Tickets|Contact Info|String|50|N|''||
-|Tickets|Comments|[{String name, String body,  String timestamp}]|900 each|N||Set of comments on the problem|
-|Tickets|Status|String|12|Y||"Open","Closed" or "In progress"|
-|Tickets|Mentor Name|String|20|N|'None'||
+| Table Name| Attribute Name| Type| Length| Required| Default Value|About| Notes|
+|:----------|:--------------|:----|:------|:--------|:-------------|:----|:-----|
+|Tickets|TicketID|String|10|Y||A unique string used by the application to identify stored tickets|Auto-generated on creation|
+|Tickets|Problem Title|String|30|Y||A one-line description of the ticket||
+|Tickets|Problem Description|String|500|N|''|An explanation of the ticket that is longer and more detailed than the Problem Title||
+|Tickets|First Name|String|20|Y||First name of the ticket creator||
+|Tickets|Last Name|String|30|N|''|Last name of the ticket creator||
+|Tickets|Creation Time|String|11|Y||Record of the time the ticket was created/ submitted|Automatically generated on ticket creation. Takes form: 'mm/dd-hh:mm'|
+|Tickets|Location|String|50|Y||A description of where the creator and their team are located at the hackathon venue||
+|Tickets|PIN|String|4|Y||A passcode to be used by the ticket creator for editing and closing their ticket|Used for closing ticket|
+|Tickets|Tags|[String]|15 each|N|[empty string]|A set of keywords that help categorize and describe a ticket|Set of tags used to help identify the problem|
+|Tickets|Contact Info|String|50|N|''|Information on how a mentor can contact the creator of the ticket||
+|Tickets|Comments|[{String name, String body,  String timestamp}]|900 each|N||Set of comments on the problem||
+|Tickets|Status|String|12|Y||The current status of the ticket|"Open","Closed" or "In progress"|
+|Tickets|Mentor Name|String|20|N|'None'|The name of the mentor who has claimed the ticket||
 
 ## Instructions
 
