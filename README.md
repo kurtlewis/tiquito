@@ -75,13 +75,13 @@ Developers on this project will communicate using a private channel in slack, ho
 - Reduces time taken from a problem arising to finding a solution
 
 ## Project Milestones
-- 23 June, 2017 - Solution architecture complete
-- 30 June, 2017 - Server initialized
-- 07 July, 2017 - Backend complete
-- 14 July, 2017 - Website frontend complete
-- 14 July, 2017 - Android app complete
-- 14 July, 2017 - Electron app complete
-- 21 July, 2017 - Solution thoroughly tested and debugged
+23 June, 2017 - Solution architecture complete
+30 June, 2017 - Server initialized
+07 July, 2017 - Backend complete
+14 July, 2017 - Website frontend complete
+14 July, 2017 - Android app complete
+14 July, 2017 - Electron app complete
+21 July, 2017 - Solution thoroughly tested and debugged
 
 ## Project Budget
 Developers are paid $20/hr (good co-op pay)
