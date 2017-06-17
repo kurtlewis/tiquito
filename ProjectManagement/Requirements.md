@@ -69,8 +69,7 @@ A person who is part of the group hosting the event
 |Tickets|TicketID|String|10|Y||A unique string used by the application to identify stored tickets|Auto-generated on creation|
 |Tickets|Problem Title|String|30|Y||A one-line description of the ticket||
 |Tickets|Problem Description|String|500|N|''|An explanation of the ticket that is longer and more detailed than the Problem Title||
-|Tickets|First Name|String|20|Y||First name of the ticket creator||
-|Tickets|Last Name|String|30|N|''|Last name of the ticket creator||
+|Tickets|Creator|{String firstName, String lastName, String location, String contactInfo}|30|Y|''|Object representing the firstName*, lastName, location* and contactInfo of the creator of the ticket||
 |Tickets|Creation Time|String|11|Y||Record of the time the ticket was created/ submitted|Automatically generated on ticket creation. Takes form: 'mm/dd-hh:mm'|
 |Tickets|Location|String|50|Y||A description of where the creator and their team are located at the hackathon venue||
 |Tickets|PIN|String|4|Y||A passcode to be used by the ticket creator for editing and closing their ticket|Used for closing ticket|
