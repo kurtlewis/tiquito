@@ -3,8 +3,11 @@
 # Ignore downloaded dependencies. Instead install using 'npm install'
 node_modules
 
-#Ignore env files
+# Ignore env files
 env.json
 
-#Logs
+# Logs
 npm-debug.log
+
+# Auto-generated files
+*.css
