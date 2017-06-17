@@ -1,4 +1,26 @@
 extends layout
 
+mixin newTicket(title,tags,status,id)
+    tr.ticket
+        td.ticketTitle= title
+        td.ticketTags= tags
+        td.ticketStatus= status
+        td
+            a.detailLink(href="/detail?id=" + id) View
+
 block content
-    
+    div.header
+        h1 Tiquito 
+        //Consider moving the above stuff into the layout.pug so it appears in every page
+    div.query
+        div.sort
+        div.filter
+        div.search
+    div.results
+        table.list
+            +newTicket("tomatoes are too soft for what we need","cooking","open")
+            +newTicket("how come I can't juice this pumpkin","help","in progress")
+            +newTicket("apples are too hard for what we need","rendering","closed")
+
+block append head
+    link(rel="stylesheet", href="/list.css")
