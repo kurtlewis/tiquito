@@ -5,3 +5,6 @@ node_modules
 
 #Ignore env files
 env.json
+
+#Logs
+npm-debug.log
