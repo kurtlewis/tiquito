@@ -69,10 +69,13 @@ Developers on this project will communicate using a private channel in slack, ho
 - Mentors forget to close tickets
 
 ## Benefits
-- Expedites and simplifies ticket management for future hackathons 
-- Increases the interest of beginning programmers if they can easily receive help with complicated problems
-- Provides an easy way for participants to get connected with mentors
-- Reduces time taken from a problem arising to finding a solution
+- Expedites and simplifies ticket management for future hackathons
+- Reduces time from as much as 1 hour to less than 20 minutes for finding a suitable mentor for an issue
+- Increases the interest of beginner programmers by helping them find solutions to difficult problems
+- Reduces average number of idle mentors from 10 to less than 5
+- Provides an easy way for mentors to connect with participants
+- Doubles number of issues submitted (from roughly 30 to 60) to issue platform in use, reducing unsubmitted issues
+- Reduces overall time taken from a problem arising to finding a solution
 
 ## Project Milestones
 - 23 June, 2017 - Solution architecture complete
@@ -117,4 +120,4 @@ Total: 42 hours a week of billable time for $840
 |:------|:-------|
 |23 May, 2017|Expand scope|
 |01 June, 2017|Redo milestones, add title, add deliverables|
-|19 June, 2017|Add revision history to document|
+|19 June, 2017|Add revision history to document, add quantified benefits|
