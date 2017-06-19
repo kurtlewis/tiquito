@@ -114,6 +114,7 @@ Total: 42 hours a week of billable time for $840
 
 ## Revision History
 |Date|Revision|
+|:------|:-------|
 |23 May, 2017|Expand scope|
 |01 June, 2017|Redo milestones, add title, add deliverables|
 |19 June, 2017|Add revision history to document|
