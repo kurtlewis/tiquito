@@ -1,7 +1,7 @@
 # Tiquito Project Charter
 
 ## Revision History
-|Name|Date|Revision|
+|Name|Date of Change|Description of Change|
 |:-------|:------|:-------|
 |Zachary Collins|23 May, 2017|Expand scope|
 |Zachary Collins|01 June, 2017|Redo milestones, add title, add deliverables|
