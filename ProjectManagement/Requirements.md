@@ -1,20 +1,21 @@
 # Requirements Document
 
-## Amendment History
-
+## Revision History
 |Name|Date of Change| Description of Change|
 |:----------------------------------|:--------------|:------------------|
-|Kurt Lewis, Laura Tebben, Zachary Collins, James Hillman, Zachary Sang| 23 May, 2017|Created|
-|Kurt Lewis, Laura Tebben| 19 June, 2017 | Add Scenarios |
+|Kurt Lewis, Laura Tebben, Zachary Collins, James Hillman, Zachary Sang|23 May, 2017|Created|
+|Zachary Collins, Zachary Sang|19 June, 2017|Add roles, add constraints, add actors to requirements|
+|Kurt Lewis, Laura Tebben|19 June, 2017|Add Scenarios|
 
 ## Introduction
-
 A hackathon is a programming competition that encourages people to learn new things and to build something creative and novel. Because of the explorative nature of hackathons, it is common for participants to have questions and issues throughout the event. While mentors are usually present, it is a challenge to connect teams having issues with mentors with the relevant knowledge. Tiquito is the solution to this. Tiquito is a customer service ticket tracking system designed for hackathons that allows participants to publish a description of their issue with tags indicating the relevant topics. Mentors will then be able to view issues, assign themselves, and ultimately resolve the issues.
 
-
 ## Scope
-
 This project will:
+- Consist of:
+    - A website
+    - Electron application for use on macOS 10.9 and above, Windows 7 and above, and Linux distributions Ubuntu 12.04 and above, Fedora 21 and above, and Debian 8 and above 
+    - Android 6.0 mobile application
 - Allow hackathon participants to create a help ticket on the website
 - Allow assignment of a mentor to a ticket using the desktop and mobile apps
 - Allow mentors to resolve tickets using the desktop and mobile apps
@@ -22,6 +23,7 @@ This project will:
 - Allow participants to resolve only their own tickets
 - Allow for custom theming by deploying party on the website
 - Maintain and continue to display resolved tickets for later reference
+- Prevent participants from closing others' tickets
 
 This project will not:
 - Automatically assign tickets
@@ -29,11 +31,30 @@ This project will not:
 - Encrypt the ticket data
 - Prevent outside people with access to the website from creating tickets
 - Handle any portion of hackathon registration and check-in
+- Provide suggestions for ticket solutions
+- Allow for lookup of hackathon participants
+- Prevent hackathon mentors from abusing the powers of the desktop and Android applications
+- Require a password for organizer and mentor actions on the desktop and Android applications
+- Prevent duplicate ticket submissions
+- Allow participants to delete their own tickets
+
+## Team
+|Name| Role |
+|:------|:-------|
+|Ken Baker|CEO|
+|Chuck Zimmer|CTO|
+|Kurt Lewis |Project Manager, Android Developer, Deployment Engineer|
+|Laura Tebben|Backend Web Developer, Android Developer|
+|Zachary Collins|Desktop Application Developer|
+|James Hillman|Frontend UI/UX Developer|
+|Zachary Sang|Web Developer|
 
 ## Constraints
-* Student scheduling conflicts
-* Experience in needed technology, ex. Electron, Android Development
-* Time constraint: 11 weeks to complete
+- Time constraint: 11 weeks to complete
+- The Tiquito server will have 100% uptime during any hackathon for which it is used
+- Project must be implemented without login-based authentication to prevent barriers to entry
+- Ticket submission must allow omitting most fields to expedite submission
+- Ticket creators must remember a 4 digit PIN for security
 
 ## Definitions
 
@@ -81,13 +102,11 @@ A person who is part of the group hosting the event
 |Tickets|Mentor Name|String|20|N|'None'|The name of the mentor who has claimed the ticket||
 
 ## Instructions
-
 - Requirements are named with RXYYY where X is the project identifier and Y are increasing digits, forming a unique identifier
 - Use cases are named with UCXXX where X are increasing digits, forming a unique identifier
 - Priority ranges from 1-3, with 1 being the most important, and 3 being the least important 
 
 ### Project Identifiers
-
 |Identifier| Project|
 |:---------|:-------|
 |0 | application-unspecific|
@@ -421,7 +440,7 @@ When the hackathon participants create their tickets, they are required to submi
 #### Priority -> 1
 #### Owner -> Laura Tebben
 #### Description 
-Item fields, such as PIN number, should not allow hackathon participants to submit inappropriate data types. Ex. PIN number should only accept an int and block attempts to submit strings or special characters.
+Item fields, such as PIN number, should not allow hackathon participants to submit inappropriate data types. PIN should only accept an int and block attempts to submit strings or special characters. All other fields filled out by the ticket creator are strings.
 
 ## R1008 - Data must be served over https (Non-functional)
 #### Priority -> 1
@@ -565,8 +584,7 @@ The website will be compatible with Chrome 56, Firefox 61 and Safari 10 (mobile 
 
 ## R2017 - During ticket creation, the UI will monitor if the user's input is valid and give feedback if changes are needed
 #### Priority -> 2
-#### 
-<-> Zachary Sang
+#### Owner -> Zachary Sang
 #### Description 
 During ticket creation, if a user puts an invalid entry for one of the fields (Eg: invalid characters in the PIN or Phone number fields), the user will get see an error displayed next to the relevant field and be blocked from submitting the ticket until the errors are corrected and the error messages are removed.
 
