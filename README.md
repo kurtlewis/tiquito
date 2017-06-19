@@ -1,5 +1,12 @@
 # Tiquito Project Charter
 
+## Revision History
+|Name|Date|Revision|
+|:-------|:------|:-------|
+|Zachary Collins|23 May, 2017|Expand scope|
+|Zachary Collins|01 June, 2017|Redo milestones, add title, add deliverables|
+|Zachary Collins, Zachary Sang|19 June, 2017|Add revision history to document, add quantified benefits|
+
 ## Background
 A hackathon is a programming competition that encourages people to learn new things and to build something creative and novel. Because of the explorative nature of hackathons, it is common for participants to have questions and issues throughout the event. While mentors are usually present, it is a challenge to connect teams having issues with mentors with the relevant knowledge. Tiquito is the solution to this. Tiquito is a customer service ticket tracking system designed for hackathons that will allow participants to publish a description of their issue with tags indicating the relevant topics. Mentors will then be able to view issues, assign themselves, and ultimately resolve the issues.
 
@@ -114,10 +121,3 @@ Total: 42 hours a week of billable time for $840
 - Mentors will not create tickets for others to handle
 - Mentors and organizers will not close tickets before they have been handled by a mentor
 - Mentors and organizers will not reassign tickets to other mentors who have not agreed to handle the ticket
-
-## Revision History
-|Date|Revision|
-|:------|:-------|
-|23 May, 2017|Expand scope|
-|01 June, 2017|Redo milestones, add title, add deliverables|
-|19 June, 2017|Add revision history to document, add quantified benefits|
