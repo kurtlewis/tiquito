@@ -111,3 +111,8 @@ Total: 42 hours a week of billable time for $840
 - Mentors will not create tickets for others to handle
 - Mentors and organizers will not close tickets before they have been handled by a mentor
 - Mentors and organizers will not reassign tickets to other mentors who have not agreed to handle the ticket
+
+## Revision History
+|Date|Revision|
+|23 May, 2017|Expand scope|
+|01 June, 2017|Redo milestones, add title, add deliverables|
