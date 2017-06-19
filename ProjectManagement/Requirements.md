@@ -4,8 +4,8 @@
 
 |Name|Date of Change| Description of Change|
 |:----------------------------------|:--------------|:------------------|
-|Kurt Lewis, Laura Tebben, Zachary Collins, James Hillman, Zachary Sang| 23-May-2017|Created|
-
+|Kurt Lewis, Laura Tebben, Zachary Collins, James Hillman, Zachary Sang| 23 May, 2017|Created|
+|Kurt Lewis, Laura Tebben| 19 June, 2017 | Add Scenarios |
 
 ## Introduction
 
@@ -117,6 +117,15 @@ Copy and paste the below raw markdown when creating a use case.
 <Entry condition goes here>
 #### Exit Condition
 <Exit condition goes here>
+```
+
+## Scenario Template
+Copy and paste the below raw markdown when creating a scenario.
+```
+## SXXX - <Title>
+#### Actor -> <Actor>
+#### Flow of events
+<Flow of events as formatted markdown goes here>
 ```
 
 # Use Cases
@@ -308,6 +317,40 @@ The actor sees the appropriate tickets only.
 An actor is looking at the list of tickets and wants to find a ticket related to a certain concept and searches for it.
 #### Exit Condition
 The actor sees a resulting list of tickets related to the topic they searched for.
+
+# Scenarios
+## S001 - Javascript Problem
+#### Actor -> Noah:Participant, Chris:Mentor
+#### Flow of events
+1. Noah is at a local hackathon, working hard into the late hours of the night in the corner of the event space. While working on his web application, he runs into a problem where his webserver will not start. He asks his nearby friends for help, but they can't solve the problem.
+2. Noah creates a ticket in the Tiquito system. He notes a description of the problem and names it descriptively. He uses tags like javascript, Nodejs, and deployment. He also includes a description of his location, and his username in the event chat room. He creates a simple pin of "5555" so that he can close the ticket if he needs to.
+3. Chris, hanging out near the snacks, notices that a new ticket with the tag of "Javascript" has been created on the list in the electron app he's watching on his laptop. Knowing javascript well, he clicks on the detailed view to see if he might be able to help.
+4. Chris thinks he may be able to help, so he clicks to claim the ticket as in progress on the electron app.
+5. Chris uses the description of the location to walk towards Noah, but having never met Noah before, he does not know what he looks like.
+6. Chris uses the contact information Noah included to message him. They find each other, and through a few minutes of debugging, manages to solve the problem.
+7. Chris uses the electron app to mark the ticket as closed, and returns to the snack table.
+
+## S002 - Inappropriate Language in a Ticket
+#### Actor -> Kurt:Organizer
+#### Flow of events
+1. Kurt, while browsing the list of open tickets from the Tiquito android app, notices that one of the tickets includes foul language in the title.
+2. Kurt looks at the description of the ticket and determines that it is a valid ticket, likely with explicitives included in the title out of frustration.
+3. Kurt clicks on the edit button of the ticket, and renames the ticket to not include inappropriate language. Kurt determines that no further steps are necessary.
+
+## S003 - A bored organizer
+#### Actor -> Isiah:Organizer
+#### Flow of events
+1. Isiah has nothing else to do, so he begins browsing for tickets he might be able to assist with on the android app.
+2. Isiah is particurarly interested in robotics, so he searches for tickets with the tag "robots."
+3. Isiah finds a few tickets, and filters them for time created. He finds one that he thinks he can help with, and uses the android app to mark it as "In Progress".
+4. Isiah goes to find the group, and help resolve the ticket.
+
+## S004 - Solving your own problem
+#### Actor -> Dominic:Participant
+#### Flow of events
+1. Dom, while working at a local hackathon, runs into a problem. He has created a website and is trying to save input to a form, but when the form is saved a field is missing. 
+2. Dom creates a ticket at the Tiquito website, including a description of the problem, descriptive tags, and a title. He also creats a pin of "4321". 
+3. Dom realizes that he forgot to include a simple line to save the data from the form! He changes the ticket status to resolved, using his pin of "4321" to verify closing the ticket.
 
 # Requirements
 # Application Unspecific
