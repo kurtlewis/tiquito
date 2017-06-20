@@ -149,7 +149,7 @@ The desktop application has the following objects.
 | <ul><li>Ticket</li></ul>|
 | <ul><li>Update()</li></ul>|
  
-For the desktop user interface mockup, see file: https://docs.google.com/drawings/d/1gvQ3sjp4ZGPF7WDGN5ndHKsMT-N8q0aV4FSTva4VXrw/edit?usp=sharing
+[For the desktop user interface mockup, see file DesktopView.pdf](DesktopView.pdf)
  
 ## Android Application Architecture
 The Android application is a tool used by mentors and organizers but not participants at the hackathon. It is an administration program feature-equivalent to the desktop application. The Android application will be distributed to mentors and organizers at a hackathon. The Android application gives users the ability to edit all fields of a ticket except PIN and date. Additionally, the Android application can be used to permanently delete tickets.
