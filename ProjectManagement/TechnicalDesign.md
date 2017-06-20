@@ -94,11 +94,11 @@ The high-level architecture of this project will follow an Model-View-Controller
 - Deployment: Dokku (Docker), Ubuntu
  
 # Diagram of Technologies Being Used
-See file: https://drive.google.com/open?id=0BwrUJBNACdVCS0oxblBCTy1VSUk
+[See file TechnologyInteractions.PNG.](TechnologyInteractions.PNG)
  
 # Diagram of How Application Components Fit Together
  
-See file: https://drive.google.com/open?id=0B-1BSFAD7UuhdVpIVk5YZjF5WjA
+[See file DiagramOfHowComponentsFitTogether.JPG.](DiagramOfHowComponentsFitTogether.JPG)
  
  
 Note: Mentors and Organizers have the same access privileges and can each access both the Android and desktop applications
@@ -169,11 +169,10 @@ The Android application is a tool used by mentors and organizers but not partici
 | <ul><li>Ticket</li></ul> |
 | <ul><li>onCreate(Bundle)</li><li>submitEdit(View)</li></ul> |
  
-For Android list view UI, see file: https://github.com/kurtlewis/tiquito/blob/master/ProjectManagement/Android-List-View.pdf 
+[For Android list view UI, see file Android-List-View.pdf.](Android-List-View.pdf) 
  
-For Android detail view UI, see file: 
-https://github.com/kurtlewis/tiquito/blob/master/ProjectManagement/Android-Individual-View.pdf 
- 
+[For Android detail view UI, see file Android-Individual-View.pdf.](Android-Individual-View.pdf)
+
 ## API Architecture
 The API component will consist of just one class ‘API’ that will have methods for taking requests and either returning data back from the database component or performing required updates to the database’s persistent data.
  
@@ -184,7 +183,7 @@ The API component will consist of just one class ‘API’ that will have method
  
 ## Database Architecture
 ### ER Diagram illustrating the organization of the data for this application
-See file: https://drive.google.com/open?id=0B-1BSFAD7UuhdjAtVDVUM25BMVU
+[See file DatabaseERD.JPG](DatabaseERD.JPG)
  
 Since MongoDB is non-relational, the weak entities: ‘Creator’ and ‘Comment’ will just be nested objects defined under the Ticket model. While this causes the loss of the ability to join and manipulate entities, because all of the data will be in one structure, we are able to more succinctly and more easily query the data we need. Additionally, because our data model is not overly complex, the manipulations and processing that would be achievable with a relational database are not truly necessary.
  
@@ -228,8 +227,7 @@ None - Because of the simplicity of our data model, and because our data is to b
  
 Tiquito will be hosted on an Amazon EC2 server, pointed to by https://tiquito.com. All of the API endpoints for all three applications will be on https://tiquito.com. Because all of the traffic is through https, the only port used by network traffic is port 443.
  
-For the network architecture diagram, see file: https://drive.google.com/open?id=0B5Av_KazCj2YWWhJd05McTQtdXc
- 
+[For the network architecture diagram, see file NetworkDiagram.png](NetworkDiagram.png)
 ## Appendix Definitions
 
 #### Web Component: 
