@@ -99,6 +99,10 @@ The high-level architecture of this project will follow an Model-View-Controller
 # Diagram of How Application Components Fit Together
  
 [See file DiagramOfHowComponentsFitTogether.JPG.](DiagramOfHowComponentsFitTogether.JPG)
+
+#Diagram of How Classes Fit Together
+
+[See file 'Class Diagram.pdf'](ClassDiagram.pdf)
  
  
 Note: Mentors and Organizers have the same access privileges and can each access both the Android and desktop applications
@@ -116,6 +120,25 @@ The web client is a tool used by the participants at the hackathon. It is a “b
 The web client will be written in HTML, CSS, PUG, and Javascript.
  
 The web client has the following objects.
+
+[For the UI mockup for creating a new ticket, see file WebUI/form.tiff](WebUI/Form.tiff)
+
+[For the UI mockup for viewing a list of tickets, see file WebUI/ListView.tiff](WebUI/ListView.tiff)
+
+[For the UI mockup for viewing the landing page for the web client, see file WebUI/MainPage.tiff](WebUI/MainPage.tiff)
+
+[For the UI mockup for viewing a specific ticket's information on the detail page, see file WebUI/Ticket1.tiff](WebUI/Ticket1.tiff)
+
+[For the UI mockup for viewing a tickets comments from the detail view, see file WebUI/Ticket2.tiff](WebUI/Ticket2.tiff)
+
+[For the UI mockup of the 'Resolve Ticket' button on the detail view, see file WebUI/Ticket3.tiff](WebUI/Ticket3.tiff)
+
+[For the UI mockup of the 'Reopen Ticket' button on the detail view, see file WebUI/Ticket3-reopen.tiff](WebUI/Ticket3-reopen.tiff)
+
+[For the UI mockup of the popup for resolving tickets, see file WebUI/ticket-resolve.tiff](WebUI/ticket-resolve.tiff)
+
+[For the UI mockup of the popup for a failed attempt to resolve ticket (invalid PIN), see file WebUI/ticket-resolve-fail.tiff](WebUI/ticket-resolve-fail.tiff)
+
  
 | ListView |
 |:-----------:|
