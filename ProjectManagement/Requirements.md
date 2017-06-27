@@ -1,20 +1,21 @@
 # Requirements Document
 
-## Amendment History
-
+## Revision History
 |Name|Date of Change| Description of Change|
 |:----------------------------------|:--------------|:------------------|
-|Kurt Lewis, Laura Tebben, Zachary Collins, James Hillman, Zachary Sang| 23-May-2017|Created|
-
+|Kurt Lewis, Laura Tebben, Zachary Collins, James Hillman, Zachary Sang|23 May, 2017|Created|
+|Zachary Collins, Zachary Sang|19 June, 2017|Add roles, add constraints, add actors to requirements|
+|Kurt Lewis, Laura Tebben|19 June, 2017|Add Scenarios|
 
 ## Introduction
-
 A hackathon is a programming competition that encourages people to learn new things and to build something creative and novel. Because of the explorative nature of hackathons, it is common for participants to have questions and issues throughout the event. While mentors are usually present, it is a challenge to connect teams having issues with mentors with the relevant knowledge. Tiquito is the solution to this. Tiquito is a customer service ticket tracking system designed for hackathons that allows participants to publish a description of their issue with tags indicating the relevant topics. Mentors will then be able to view issues, assign themselves, and ultimately resolve the issues.
 
-
 ## Scope
-
 This project will:
+- Consist of:
+    - A website
+    - Electron application for use on macOS 10.9 and above, Windows 7 and above, and Linux distributions Ubuntu 12.04 and above, Fedora 21 and above, and Debian 8 and above 
+    - Android 6.0 mobile application
 - Allow hackathon participants to create a help ticket on the website
 - Allow assignment of a mentor to a ticket using the desktop and mobile apps
 - Allow mentors to resolve tickets using the desktop and mobile apps
@@ -22,6 +23,7 @@ This project will:
 - Allow participants to resolve only their own tickets
 - Allow for custom theming by deploying party on the website
 - Maintain and continue to display resolved tickets for later reference
+- Prevent participants from closing others' tickets
 
 This project will not:
 - Automatically assign tickets
@@ -29,11 +31,30 @@ This project will not:
 - Encrypt the ticket data
 - Prevent outside people with access to the website from creating tickets
 - Handle any portion of hackathon registration and check-in
+- Provide suggestions for ticket solutions
+- Allow for lookup of hackathon participants
+- Prevent hackathon mentors from abusing the powers of the desktop and Android applications
+- Require a password for organizer and mentor actions on the desktop and Android applications
+- Prevent duplicate ticket submissions
+- Allow participants to delete their own tickets
+
+## Team
+|Name| Role |
+|:------|:-------|
+|Ken Baker|CEO|
+|Chuck Zimmer|CTO|
+|Kurt Lewis |Project Manager, Android Developer, Deployment Engineer|
+|Laura Tebben|Backend Web Developer, Android Developer|
+|Zachary Collins|Desktop Application Developer|
+|James Hillman|Frontend UI/UX Developer|
+|Zachary Sang|Web Developer|
 
 ## Constraints
-* Student scheduling conflicts
-* Experience in needed technology, ex. Electron, Android Development
-* Time constraint: 11 weeks to complete
+- Time constraint: 11 weeks to complete
+- The Tiquito server will have 100% uptime during any hackathon for which it is used
+- Project must be implemented without login-based authentication to prevent barriers to entry
+- Ticket submission must allow omitting most fields to expedite submission
+- Ticket creators must remember a 4 digit PIN for security
 
 ## Definitions
 
@@ -80,13 +101,11 @@ A person who is part of the group hosting the event
 |Tickets|Mentor Name|String|20|N|'None'|The name of the mentor who has claimed the ticket||
 
 ## Instructions
-
 - Requirements are named with RXYYY where X is the project identifier and Y are increasing digits, forming a unique identifier
 - Use cases are named with UCXXX where X are increasing digits, forming a unique identifier
 - Priority ranges from 1-3, with 1 being the most important, and 3 being the least important 
 
 ### Project Identifiers
-
 |Identifier| Project|
 |:---------|:-------|
 |0 | application-unspecific|
@@ -116,6 +135,15 @@ Copy and paste the below raw markdown when creating a use case.
 <Entry condition goes here>
 #### Exit Condition
 <Exit condition goes here>
+```
+
+## Scenario Template
+Copy and paste the below raw markdown when creating a scenario.
+```
+## SXXX - <Title>
+#### Actor -> <Actor>
+#### Flow of events
+<Flow of events as formatted markdown goes here>
 ```
 
 # Use Cases
@@ -308,6 +336,40 @@ An actor is looking at the list of tickets and wants to find a ticket related to
 #### Exit Condition
 The actor sees a resulting list of tickets related to the topic they searched for.
 
+# Scenarios
+## S001 - Javascript Problem
+#### Actor -> Noah:Participant, Chris:Mentor
+#### Flow of events
+1. Noah is at a local hackathon, working hard into the late hours of the night in the corner of the event space. While working on his web application, he runs into a problem where his webserver will not start. He asks his nearby friends for help, but they can't solve the problem.
+2. Noah creates a ticket in the Tiquito system. He notes a description of the problem and names it descriptively. He uses tags like javascript, Nodejs, and deployment. He also includes a description of his location, and his username in the event chat room. He creates a simple pin of "5555" so that he can close the ticket if he needs to.
+3. Chris, hanging out near the snacks, notices that a new ticket with the tag of "Javascript" has been created on the list in the electron app he's watching on his laptop. Knowing javascript well, he clicks on the detailed view to see if he might be able to help.
+4. Chris thinks he may be able to help, so he clicks to claim the ticket as in progress on the electron app.
+5. Chris uses the description of the location to walk towards Noah, but having never met Noah before, he does not know what he looks like.
+6. Chris uses the contact information Noah included to message him. They find each other, and through a few minutes of debugging, manages to solve the problem.
+7. Chris uses the electron app to mark the ticket as closed, and returns to the snack table.
+
+## S002 - Inappropriate Language in a Ticket
+#### Actor -> Kurt:Organizer
+#### Flow of events
+1. Kurt, while browsing the list of open tickets from the Tiquito android app, notices that one of the tickets includes foul language in the title.
+2. Kurt looks at the description of the ticket and determines that it is a valid ticket, likely with explicitives included in the title out of frustration.
+3. Kurt clicks on the edit button of the ticket, and renames the ticket to not include inappropriate language. Kurt determines that no further steps are necessary.
+
+## S003 - A bored organizer
+#### Actor -> Isiah:Organizer
+#### Flow of events
+1. Isiah has nothing else to do, so he begins browsing for tickets he might be able to assist with on the android app.
+2. Isiah is particurarly interested in robotics, so he searches for tickets with the tag "robots."
+3. Isiah finds a few tickets, and filters them for time created. He finds one that he thinks he can help with, and uses the android app to mark it as "In Progress".
+4. Isiah goes to find the group, and help resolve the ticket.
+
+## S004 - Solving your own problem
+#### Actor -> Dominic:Participant
+#### Flow of events
+1. Dom, while working at a local hackathon, runs into a problem. He has created a website and is trying to save input to a form, but when the form is saved a field is missing. 
+2. Dom creates a ticket at the Tiquito website, including a description of the problem, descriptive tags, and a title. He also creats a pin of "4321". 
+3. Dom realizes that he forgot to include a simple line to save the data from the form! He changes the ticket status to resolved, using his pin of "4321" to verify closing the ticket.
+
 # Requirements
 # Application Unspecific
 
@@ -377,7 +439,7 @@ When the hackathon participants create their tickets, they are required to submi
 #### Priority -> 1
 #### Owner -> Laura Tebben
 #### Description 
-Item fields, such as PIN number, should not allow hackathon participants to submit inappropriate data types. Ex. PIN number should only accept an int and block attempts to submit strings or special characters.
+Item fields, such as PIN number, should not allow hackathon participants to submit inappropriate data types. PIN should only accept an int and block attempts to submit strings or special characters. All other fields filled out by the ticket creator are strings.
 
 ## R1008 - Data must be served over https (Non-functional)
 #### Priority -> 1
@@ -521,8 +583,7 @@ The website will be compatible with Chrome 56, Firefox 61 and Safari 10 (mobile 
 
 ## R2017 - During ticket creation, the UI will monitor if the user's input is valid and give feedback if changes are needed
 #### Priority -> 2
-#### 
-<-> Zachary Sang
+#### Owner -> Zachary Sang
 #### Description 
 During ticket creation, if a user puts an invalid entry for one of the fields (Eg: invalid characters in the PIN or Phone number fields), the user will get see an error displayed next to the relevant field and be blocked from submitting the ticket until the errors are corrected and the error messages are removed.
 
