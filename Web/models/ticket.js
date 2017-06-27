@@ -16,6 +16,6 @@ var ticketSchema = new mongoose.Schema({
                 timestamp: String}],
     status: String,
     mentorName: String
-});
+},{bufferCommands: false});
 
 module.exports = mongoose.model('Ticket',ticketSchema);
