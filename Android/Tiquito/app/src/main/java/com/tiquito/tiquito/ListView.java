@@ -1,4 +1,4 @@
-package com.lauratebben.tiquito;
+package com.tiquito.tiquito;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
