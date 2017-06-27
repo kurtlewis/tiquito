@@ -1,4 +1,4 @@
-package com.lauratebben.tiquito;
+package com.tiquito.tiquito;
 
 import org.junit.Test;
 
