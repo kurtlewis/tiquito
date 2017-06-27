@@ -15,8 +15,7 @@ var ticketSchema = new mongoose.Schema({
                 body:String, 
                 timestamp: String}],
     status: String,
-    mentorName: String,
-
+    mentorName: String
 });
 
 module.exports = mongoose.model('Ticket',ticketSchema);
