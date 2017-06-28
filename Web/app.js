@@ -3,26 +3,12 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
 var api = require('./api');
 var app = express();
 
-// Create connection to the DB
-mongoose.connect(env.MONGO_URL,{useMongoClient: true},function(err){
-    if(err){
-        console.log(`mongo had an error :(. error was : ${err}`);
-    }else {
-        console.log('no errors in mongo connection!');
-    }
-});
-
-// Catch mongo runtime errors
-mongoose.connection.on('error',function(err){
-    console.log(`whoops! mongo hit an error: ${err}`);
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
