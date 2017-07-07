@@ -11,18 +11,18 @@ import java.util.ArrayList;
 public class Ticket {
 
 
-    private string id;
-    private string title;
-    private string description;
-    private string creationTime;
-    private string status;
-    private string mentorName;
-    private string creator;
-    private ArrayList<string> tags, comments;
+    private String id;
+    private String title;
+    private String description;
+    private String creationTime;
+    private String status;
+    private String mentorName;
+    private String creator;
+    private ArrayList<String> tags, comments;
 
-    public Ticket(string id, string title, string description, string creationTime, string status,
-                  string mentorName, string creator, ArrayList<string> tags,
-                  ArrayList<string> comments) {
+    public Ticket(String id, String title, String description, String creationTime, String status,
+                  String mentorName, String creator, ArrayList<String> tags,
+                  ArrayList<String> comments) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -39,7 +39,7 @@ public class Ticket {
      * @return ArrayList<Ticket>
      */
     public static ArrayList<Ticket> getTicketList() {
-        new ArrayList<Ticket> tickets;
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 
         return tickets;
     }
@@ -50,8 +50,8 @@ public class Ticket {
      */
     public static Ticket getTestTicket() {
         return new Ticket("abcdef123456789", "Test Ticket", "This is a real big problem folks!",
-                "07 June 2017", "Open", "Chris", "Dom", new ArrayList<string>(),
-                new ArrayList<string>());
+                "07 June 2017", "Open", "Chris", "Dom", new ArrayList<String>(),
+                new ArrayList<String>());
     }
 
     /**
@@ -60,12 +60,13 @@ public class Ticket {
      */
     public static ArrayList<Ticket> getTestTicketList() {
         ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-        tickets.append(getTestTicket());
-        tickets.append(getTestTicket());
-        tickets.append(getTestTicket());
-        tickets.append(getTestTicket());
-        tickets.append(getTestTicket());
-        tickets.append(getTestTicket());
+        tickets.add(getTestTicket());
+        tickets.add(getTestTicket());
+        tickets.add(getTestTicket());
+        tickets.add(getTestTicket());
+        tickets.add(getTestTicket());
+        tickets.add(getTestTicket());
+        tickets.add(getTestTicket());
         return tickets;
     }
 
@@ -73,75 +74,75 @@ public class Ticket {
      * getter and setter hell below. Beware all who enter
      */
 
-    public string getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(string id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public string getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(string title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public string getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(string description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public string getCreationTime() {
+    public String getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(string creationTime) {
+    public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
     }
 
-    public string getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(string status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public string getMentorName() {
+    public String getMentorName() {
         return mentorName;
     }
 
-    public void setMentorName(string mentorName) {
+    public void setMentorName(String mentorName) {
         this.mentorName = mentorName;
     }
 
-    public string getCreator() {
+    public String getCreator() {
         return creator;
     }
 
-    public void setCreator(string creator) {
+    public void setCreator(String creator) {
         this.creator = creator;
     }
 
-    public ArrayList<string> getTags() {
+    public ArrayList<String> getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<string> tags) {
+    public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }
 
-    public ArrayList<string> getComments() {
+    public ArrayList<String> getComments() {
         return comments;
     }
 
-    public void setComments(ArrayList<string> comments) {
+    public void setComments(ArrayList<String> comments) {
         this.comments = comments;
     }
 }
