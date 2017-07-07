@@ -34,13 +34,40 @@ public class Ticket {
         this.comments = comments;
     }
 
-    public ArrayList<Ticket> getTicketList() {
-        new ArrayList<Ticket> ticketes;
+    /**
+     * Hits the Tiquito api to recieve a list of tickets
+     * @return ArrayList<Ticket>
+     */
+    public static ArrayList<Ticket> getTicketList() {
+        new ArrayList<Ticket> tickets;
 
         return tickets;
     }
 
+    /**
+     * Builds a ticket for use in testing
+     * @return Ticket with fake values for fields
+     */
+    public static Ticket getTestTicket() {
+        return new Ticket("abcdef123456789", "Test Ticket", "This is a real big problem folks!",
+                "07 June 2017", "Open", "Chris", "Dom", new ArrayList<string>(),
+                new ArrayList<string>());
+    }
 
+    /**
+     * Builds a list of test tickets for use in testing
+     * @return ArrayList<Ticket> with fake values
+     */
+    public static ArrayList<Ticket> getTestTicketList() {
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        tickets.append(getTestTicket());
+        tickets.append(getTestTicket());
+        tickets.append(getTestTicket());
+        tickets.append(getTestTicket());
+        tickets.append(getTestTicket());
+        tickets.append(getTestTicket());
+        return tickets;
+    }
 
     /**
      * getter and setter hell below. Beware all who enter
