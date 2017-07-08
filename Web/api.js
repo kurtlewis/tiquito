@@ -20,29 +20,52 @@ mongoose.connection.on('error',function(err){
 });
 
 /*
+    URL: /create
+
+    Method: POST
+
+    Body Parameters:
+        Required: 
+            * 
+
+    Success Response:
+        Code: 200
+        Content: success
+
+    Failure Response:
+        Code: 400
+        Content: <error message>
 
 */
 router.use('/create',function(req,res){
+
+    if(!validateCreation(req.body)){
+        res.status(400).send('ticket invalid');
+    }
+
+    var body = req.body;
+
     var newTicket = new Ticket({
-        ticketId: req.body.ticketId,
-        problemTitle: req.body.problemTitle,
-        problemDescription: req.body.problemDescription,
-        creator: {firstName: req.body.firstName, 
-                lastName: req.body.lastName,
-                contactInfo: req.body.contactInfo,
-                location: req.body.location},
+        ticketId: (new Date()),
+        problemTitle: body.problemTitle,
+        problemDescription: body.problemDescription || '',
+        creator: {firstName: body.firstName, 
+                lastName: body.lastName || '',
+                contactInfo: body.contactInfo || '',
+                location: body.location},
         creationTime: (new Date()).toISOString(),
-        pin: req.body.pin,
-        Tags: getTagsList(req.body.tags),
+        pin: body.pin,
+        Tags: getTagsList(body.tags) || [''],
         comments: [],
         status: 'Open',
-        mentorName: 'None'
+        mentorName: body.mentorName || 'None'
     });
+
     newTicket.save(function(err){
         if(err){
-            res.send('error');
+            res.status(400).send('failure while saving ticket');
         }else{
-            res.send('success');
+            res.status(200).send('success');
         }
     });
 
@@ -68,6 +91,25 @@ function getTagsList(str){
     var delim = '~!~';
     str = str.replace(',',' ').replace('  ',' ').replace(' ',delim);
     return str.split(delim);
+}
+
+//checks that all fields in the given ticket object are valid for a newly created object
+// returns false
+function validateCreation(obj){
+    isValid = true;
+    //check all require fields are present
+    if(!obj.problemDescription){
+        isValid = false;
+    } else if (!obj.firstName){
+        isValid = false;
+    } else if (!obj.location) {
+        isValid = false;
+    } else if (!obj.pin) {
+        isValid = false;
+    }
+
+    return isvalid;
+
 }
 
 module.exports = router;
