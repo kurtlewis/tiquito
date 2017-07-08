@@ -1,11 +1,11 @@
 ## Web items to ignore
 
-# Downloaded dependencies. Instead install using 'npm install'
+# Ignore downloaded dependencies. Instead install using 'npm install'
 node_modules
 
-# Env files
+#Ignore env files
 env.json
 
-# Auto-generated files
+# Auto-generated files (logs,css)
 *.log
 *.css
