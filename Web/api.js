@@ -20,13 +20,20 @@ mongoose.connection.on('error',function(err){
 });
 
 /*
-    URL: /create
+    URL: /api/create
 
     Method: POST
 
-    Body Parameters:
-        Required: 
-            * 
+    Body Parameters (~ --> optional):
+        * problemTitle
+        * ~problemDescription
+        * firstName
+        * ~lastName
+        * ~contactInfo
+        * location
+        * pin
+        * ~tags (Note: this is just a string separated by commas or spaces)
+        * ~mentorName
 
     Success Response:
         Code: 200
@@ -71,10 +78,32 @@ router.use('/create',function(req,res){
 
 });
 
-// triggered on request to load more
+/*
+    URL: /api/load
+
+    Method: GET
+
+    Request Parameters (~ --> optional):
+        * ~offset (The amount to skip before first entry)
+        * ~limit (Max number of entries to get)
+
+    Success Response:
+        Code: 200
+        Content: <requested tickets>
+
+    Failure Response:
+        Code: 400
+        Content: <error message>
+ */
 router.get('/load',function(req,res){
-    var query = Ticket.find({},function(err,data){
-        res.send(data);
+    var offset = parseInt(req.query.offset) || 0;
+    var limit = parseInt(req.query.limit) || 10;
+
+    Ticket.find({}).skip(offset).limit(limit).exec(function(err,data){
+        if(err){
+            res.status(400).send(err)
+        }
+        res.status(200).send(data);
     });
 });
 
@@ -96,7 +125,7 @@ function getTagsList(str){
 //checks that all fields in the given ticket object are valid for a newly created object
 // returns false
 function validateCreation(obj){
-    isValid = true;
+    var isValid = true;
     //check all require fields are present
     if(!obj.problemDescription){
         isValid = false;
@@ -108,7 +137,7 @@ function validateCreation(obj){
         isValid = false;
     }
 
-    return isvalid;
+    return isValid;
 
 }
 
