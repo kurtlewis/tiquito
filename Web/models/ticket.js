@@ -11,9 +11,9 @@ var ticketSchema = new mongoose.Schema({
     creationTime: String,
     pin: String,
     Tags:[String],
-    comments: [{name: String, 
-                body:String, 
-                timestamp: String}],
+    comments: [{commenterName: String, 
+                commentText:String, 
+                commentTime: String}],
     status: String,
     mentorName: String
 },{bufferCommands: false});

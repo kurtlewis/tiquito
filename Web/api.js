@@ -19,24 +19,24 @@ mongoose.connection.on('error',function(err){
     console.log(`whoops! mongo hit an error: ${err}`);
 });
 
+/*
 
-router.get('/create',function(req,res){
+*/
+router.use('/create',function(req,res){
     var newTicket = new Ticket({
-        ticketId: 'testONLY',
-        problemTitle: 'test',
-        problemDescription: 'this is a test',
-        creator: {firstName: 'tester', 
-                lastName: 'mctesterson',
-                contactInfo: 'tester@aol.com',
-                location: '123 test st.'},
-        creationTime: '2017-06-27T22:04:05+00:00',
-        pin: '9999',
-        Tags:['testing'],
-        comments: [{name: 'troubled tester', 
-                body:'i am a tester who is also having trouble with this. I tried to steam it and applying organge but havent had any luck', 
-                timestamp: '2017-06-27T22:04:05+00:00'}],
+        ticketId: req.body.ticketId,
+        problemTitle: req.body.problemTitle,
+        problemDescription: req.body.problemDescription,
+        creator: {firstName: req.body.firstName, 
+                lastName: req.body.lastName,
+                contactInfo: req.body.contactInfo,
+                location: req.body.location},
+        creationTime: (new Date()).toISOString(),
+        pin: req.body.pin,
+        Tags: getTagsList(req.body.tags),
+        comments: [],
         status: 'Open',
-        mentorName: ''
+        mentorName: 'None'
     });
     newTicket.save(function(err){
         if(err){
@@ -63,5 +63,11 @@ router.use('/*',function(req,res){
     }
     res.send(responseObj);
 });
+
+function getTagsList(str){
+    var delim = '~!~';
+    str = str.replace(',',' ').replace('  ',' ').replace(' ',delim);
+    return str.split(delim);
+}
 
 module.exports = router;
