@@ -4,7 +4,7 @@
 node_modules
 
 # Env files
-env.json
+.env
 
 # Auto-generated files
 *.log

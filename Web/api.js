@@ -1,4 +1,4 @@
-var env = require('./env');
+var env = require('dotenv').config();
 var mongoose = require('mongoose');
 var express = require('express');
 var Ticket = require('./models/ticket');
@@ -6,7 +6,7 @@ var Ticket = require('./models/ticket');
 var router = express.Router();
 
 // Create connection to the DB
-mongoose.connect(env.MONGO_URL,function(err){
+mongoose.connect(process.env.MONGO_URL,function(err){
     if(err){
         console.log(`mongo had an error :(. error was : ${err}`);
     }else {
