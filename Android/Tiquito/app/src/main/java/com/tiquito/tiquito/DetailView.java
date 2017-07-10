@@ -33,7 +33,7 @@ public class DetailView extends AppCompatActivity{
         location.setText(details.getLocation());
 
         final TextView status = (TextView) findViewById(R.id.status_id);
-        status.setText(details.getTitle());
+        status.setText(details.getStatus());
 
         final TextView mentorName = (TextView) findViewById(R.id.mentorName_id);
         mentorName.setText(details.getMentorName());
