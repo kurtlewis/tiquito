@@ -14,22 +14,26 @@ public class Ticket {
     private String id;
     private String title;
     private String description;
+    private String location;
     private String creationTime;
     private String status;
     private String mentorName;
     private String creator;
+    private String contactInfo;
     private ArrayList<String> tags, comments;
 
-    public Ticket(String id, String title, String description, String creationTime, String status,
-                  String mentorName, String creator, ArrayList<String> tags,
+    public Ticket(String id, String title, String description, String location, String creationTime, String status,
+                  String mentorName, String creator, String contactInfo, ArrayList<String> tags,
                   ArrayList<String> comments) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.location = location;
         this.creationTime = creationTime;
         this.status = status;
         this.mentorName = mentorName;
         this.creator = creator;
+        this.contactInfo = contactInfo;
         this.tags = tags;
         this.comments = comments;
     }
@@ -50,7 +54,7 @@ public class Ticket {
      */
     public static Ticket getTestTicket() {
         return new Ticket("abcdef123456789", "Test Ticket", "This is a real big problem folks!",
-                "07 June 2017", "Open", "Chris", "Dom", new ArrayList<String>(),
+                "Rhodes 802", "07 June 2017", "Open", "Chris", "Dom", "123-456-7890", new ArrayList<String>(),
                 new ArrayList<String>());
     }
 
@@ -98,6 +102,10 @@ public class Ticket {
         this.description = description;
     }
 
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) { this.location = location; }
+
     public String getCreationTime() {
         return creationTime;
     }
@@ -129,6 +137,10 @@ public class Ticket {
     public void setCreator(String creator) {
         this.creator = creator;
     }
+
+    public String getContactInfo() { return contactInfo; }
+
+    public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
 
     public ArrayList<String> getTags() {
         return tags;
