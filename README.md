@@ -1,5 +1,12 @@
 # Tiquito Project Charter
 
+## Revision History
+|Name|Date of Change|Description of Change|
+|:-------|:------|:-------|
+|Zachary Collins|23 May, 2017|Expand scope|
+|Zachary Collins|01 June, 2017|Redo milestones, add title, add deliverables|
+|Zachary Collins, Zachary Sang|19 June, 2017|Add revision history to document, add quantified benefits|
+
 ## Background
 A hackathon is a programming competition that encourages people to learn new things and to build something creative and novel. Because of the explorative nature of hackathons, it is common for participants to have questions and issues throughout the event. While mentors are usually present, it is a challenge to connect teams having issues with mentors with the relevant knowledge. Tiquito is the solution to this. Tiquito is a customer service ticket tracking system designed for hackathons that will allow participants to publish a description of their issue with tags indicating the relevant topics. Mentors will then be able to view issues, assign themselves, and ultimately resolve the issues.
 
@@ -69,10 +76,13 @@ Developers on this project will communicate using a private channel in slack, ho
 - Mentors forget to close tickets
 
 ## Benefits
-- Expedites and simplifies ticket management for future hackathons 
-- Increases the interest of beginning programmers if they can easily receive help with complicated problems
-- Provides an easy way for participants to get connected with mentors
-- Reduces time taken from a problem arising to finding a solution
+- Expedites and simplifies ticket management for future hackathons
+- Reduces time from as much as 1 hour to less than 20 minutes for finding a suitable mentor for an issue
+- Increases the interest of beginner programmers by helping them find solutions to difficult problems
+- Reduces average number of idle mentors from 10 to less than 5
+- Provides an easy way for mentors to connect with participants
+- Doubles number of issues submitted (from roughly 30 to 60) to issue platform in use, reducing unsubmitted issues
+- Reduces overall time taken from a problem arising to finding a solution
 
 ## Project Milestones
 - 23 June, 2017 - Solution architecture complete
