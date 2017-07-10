@@ -1,0 +1,29 @@
+@import "global.scss";
+
+.detailLink {
+    background-color: $main-color;
+    color: $text-color;
+    padding: 1rem;
+    margin: 0.3rem;
+}
+
+.detailLink:hover {
+    border: 3px solid $text-color;
+    transition: 0.2s;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+table.list {
+    border-collapse: collapse;
+}
+
+table.list td{
+    border: 1px solid black;
+    padding: 0.5rem;
+}
