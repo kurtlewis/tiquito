@@ -170,6 +170,32 @@ router.get('/load',function(req,res){
     });
 });
 
+/*
+    URL: /api/load
+
+    Method: GET
+
+    Request Parameters (~ --> optional):
+        * id (ticketId of the ticket)
+
+    Success Response:
+        Code: 200
+        Content: requestedTicket
+
+    Failure Response:
+        Code: 400
+        Content: <error message>
+ */
+router.get('/loadById',function(req,res){
+
+    Ticket.find({ticketID: req.body.id}).exec(function(err,data){
+        if(err){
+            res.status(400).send(err)
+        }
+        res.status(200).send(data[0]);
+    });
+});
+
 // triggered for any get request to the api
 router.use('/*',function(req,res){
     res.status(200).send('welcome to the api');
