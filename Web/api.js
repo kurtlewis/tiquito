@@ -1,4 +1,4 @@
-var env = require('./env');
+var env = require('dotenv').config();
 var mongoose = require('mongoose');
 var express = require('express');
 var Ticket = require('./models/ticket');
@@ -6,7 +6,7 @@ var Ticket = require('./models/ticket');
 var router = express.Router();
 
 // Create connection to the DB
-mongoose.connect(env.MONGO_URL,function(err){
+mongoose.connect(process.env.MONGO_URL,function(err){
     if(err){
         console.log(`mongo had an error :(. error was : ${err}`);
     }else {
@@ -167,6 +167,32 @@ router.get('/load',function(req,res){
             res.status(400).send(err)
         }
         res.status(200).send(data);
+    });
+});
+
+/*
+    URL: /api/load
+
+    Method: GET
+
+    Request Parameters (~ --> optional):
+        * id (ticketId of the ticket)
+
+    Success Response:
+        Code: 200
+        Content: requestedTicket
+
+    Failure Response:
+        Code: 400
+        Content: <error message>
+ */
+router.get('/loadById',function(req,res){
+
+    Ticket.find({ticketID: req.body.id}).exec(function(err,data){
+        if(err){
+            res.status(400).send(err)
+        }
+        res.status(200).send(data[0]);
     });
 });
 

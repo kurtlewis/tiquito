@@ -4,10 +4,10 @@
  * Module dependencies.
  */
 
+var env = require('dotenv').config();
 var app = require('../app');
 var debug = require('debug')('web:server');
 var http = require('http');
-var env = require('../env')
 
 //check for running in dev mode
 var isDev = process.argv[2] == "dev";
@@ -15,12 +15,7 @@ var isDev = process.argv[2] == "dev";
 /**
  * Get port from environment and store in Express.
  */
-var port;
-if(isDev){
-  port = normalizePort(env.PORT);
-} else {
-  port = normalizePort(env.DEV_PORT);
-}
+var port = process.env.PORT || 3000;
 app.set('port', port);
 
 /**
