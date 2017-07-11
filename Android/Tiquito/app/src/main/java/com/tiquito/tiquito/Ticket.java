@@ -53,7 +53,7 @@ public class Ticket {
      * @return Ticket with fake values for fields
      */
     public static Ticket getTestTicket() {
-        return new Ticket("abcdef123456789", "Test Ticket", "This is a real big problem folks! I need to make this longer to check text wrapping. Alright even longer to see if automatic scrolling is a feature of Android. Hmm I think I have to manually enable it",
+        return new Ticket("abcdef123456789", "Test Ticket", "This is a real big problem folks!",
                 "Rhodes 802", "07 June 2017", "Open", "Chris", "Dom", "123-456-7890", new ArrayList<String>(),
                 new ArrayList<String>());
     }
