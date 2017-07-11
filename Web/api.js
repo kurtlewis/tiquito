@@ -89,6 +89,7 @@ URL: /api/edit
     Method: POST
 
     Body Parameters (~ --> optional):
+        * ticketId
         * problemTitle
         * ~problemDescription
         * firstName
@@ -212,7 +213,7 @@ function getTagsList(str){
 function validateCreation(obj){
     var isValid = true;
     //check all require fields are present
-    if(!obj.problemDescription){
+    if(!obj.problemTitle){
         isValid = false;
     } else if (!obj.firstName){
         isValid = false;
