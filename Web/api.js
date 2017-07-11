@@ -171,7 +171,7 @@ router.get('/load',function(req,res){
 });
 
 /*
-    URL: /api/load
+    URL: /api/loadById
 
     Method: GET
 
@@ -188,11 +188,11 @@ router.get('/load',function(req,res){
  */
 router.get('/loadById',function(req,res){
 
-    Ticket.find({ticketID: req.body.id}).exec(function(err,data){
+    Ticket.findOne({ticketID: req.body.id}).exec(function(err,data){
         if(err){
             res.status(400).send(err)
         }
-        res.status(200).send(data[0]);
+        res.status(200).send(data);
     });
 });
 
