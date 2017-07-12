@@ -54,7 +54,7 @@ public class Ticket {
      */
     public static Ticket getTestTicket() {
         return new Ticket("abcdef123456789", "Test Ticket", "This is a real big problem folks!",
-                "Rhodes 802", "07 June 2017", "Open", "Chris", "Dom", "123-456-7890", new ArrayList<String>(),
+                "Rhodes 802", "07 June 2017", "Open", "", "Dom", "123-456-7890", new ArrayList<String>(),
                 new ArrayList<String>());
     }
 
