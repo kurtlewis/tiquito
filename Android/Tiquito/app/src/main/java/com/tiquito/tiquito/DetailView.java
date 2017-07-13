@@ -1,12 +1,13 @@
 package com.tiquito.tiquito;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -77,35 +78,52 @@ public class DetailView extends AppCompatActivity{
         params.addRule(RelativeLayout.BELOW, R.id.mentorName_label_id);
         params.addRule(RelativeLayout.ALIGN_LEFT, R.id.status_id);
 
-        if(!details.getMentorName().isEmpty()) {
+        final TextView.OnEditorActionListener enterToDone = new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_NULL && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+
+                    rl.removeView(editMentor);
+                    rl.addView(mentorName, params);
+
+                    if (!editMentor.getText().toString().isEmpty()) {
+                        mentorName.setText(editMentor.getText());
+                        status.setText("In Progress");
+                        mentorName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+                        details.setMentorName(editMentor.getText().toString());
+                    }
+                    else{
+                        rl.addView(claimButton, params);
+                    }
+                }
+                return true;
+            }
+        };
+
+        if (!details.getMentorName().isEmpty()) {
             mentorName.setText(details.getMentorName());
             mentorName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
             rl.addView(mentorName, params);
-        }
-        else if (mentorName.getText().toString().isEmpty()){
+        } else if (mentorName.getText().toString().isEmpty()) {
             rl.addView(claimButton, params);
 
-            claimButton.setOnClickListener(new View.OnClickListener(){
+            claimButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v){
+                public void onClick(View v) {
+                    rl.removeView(claimButton);
                     final RelativeLayout.LayoutParams editMentorParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     editMentorParams.addRule(RelativeLayout.BELOW, R.id.mentorName_label_id);
                     editMentorParams.addRule(RelativeLayout.ALIGN_LEFT, R.id.status_id);
 
                     editMentor.setText("Enter Name");
-                    editMentor.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+                    editMentor.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     editMentor.setSelectAllOnFocus(true);
-                    rl.removeView(claimButton);
-
-                    //TODO: switch to In Progress and update editMentor after mentor commits their name
-                    status.setText("In Progress");
-                    details.setMentorName(editMentor.getText().toString());
-                    mentorName.setText(editMentor.getText().toString());
+                    editMentor.setOnEditorActionListener(enterToDone);
 
                     rl.addView(editMentor, editMentorParams);
                 }
             });
         }
-
     }
+
 }
