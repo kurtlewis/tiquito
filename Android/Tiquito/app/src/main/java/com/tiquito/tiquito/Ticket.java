@@ -52,6 +52,7 @@ public class Ticket {
      * Builds a ticket for use in testing
      * @return Ticket with fake values for fields
      */
+
     public static Ticket getTestTicket() {
         return new Ticket("abcdef123456789", "Test Ticket", "This is a real big problem folks!",
                 "Rhodes 802", "07 June 2017", "Open", "", "Dom", "123-456-7890", new ArrayList<String>(),

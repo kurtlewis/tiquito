@@ -45,9 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        android:layout_below="@+id/title_label_id"
+        android:layout_below="@+id/title_id"
+        android:layout_marginTop="8dp"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
         android:textSize="22sp" />
     <TextView
         android:id="@+id/name_id"
@@ -63,9 +63,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact Info"
-        android:layout_below="@+id/name_label_id"
+        android:layout_below="@+id/name_id"
+        android:layout_marginTop="8dp"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
         android:textSize="22sp" />
     <TextView
         android:id="@+id/contactInfo_id"
@@ -81,9 +81,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:layout_below="@+id/contactInfo_label_id"
+        android:layout_below="@+id/contactInfo_id"
+        android:layout_marginTop="8dp"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
         android:textSize="22sp" />
     <TextView
         android:id="@+id/description_id"
@@ -99,9 +99,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Location"
-        android:layout_below="@+id/description_label_id"
+        android:layout_below="@+id/description_id"
+        android:layout_marginTop="8dp"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
         android:textSize="22sp" />
     <TextView
         android:id="@+id/location_id"
@@ -117,9 +117,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Status"
-        android:layout_below="@+id/location_label_id"
+        android:layout_below="@+id/location_id"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:textSize="22sp" />
     <TextView
         android:id="@+id/status_id"
@@ -136,9 +136,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mentor Name"
-        android:layout_below="@+id/status_label_id"
+        android:layout_below="@+id/status_id"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:textSize="22sp" />
 
 </RelativeLayout>
