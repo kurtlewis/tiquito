@@ -151,6 +151,7 @@ router.use('/edit',function(req,res){
         * ~sort (criteria to sort by, can be any attribute in the model, Eg: creationTime, problemTitle)
         * ~direction (direction to sort: -1 for descending, 1 for ascending)
         * ~filter (status to filter by. Eg: 'Open', 'Closed')
+        * ~search (search phrase)
 
     Success Response:
         Code: 200
