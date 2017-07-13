@@ -165,19 +165,25 @@ router.use('/edit',function(req,res){
  */
 router.get('/load',function(req,res){
 
-    //pagination
+    // pagination
     var offset = parseInt(req.query.offset) || 0;
     var limit = parseInt(req.query.limit) || 10;
 
-    //sorting
+    // sorting
     var sortCrit = req.query.sort || '';
     var sortDir = parseInt(req.query.direction) || 0;
     var sort = `-status ${sortDir < 0 ? '-' : ''}${sortCrit} -creationTime`;
 
-    //filtering
+    // filtering
     var filter = {};
     if(req.query.filter){
         filter.status = req.query.filter;
+    }
+
+    // searching
+    if(req.query.search){
+        filter.problemTitle = { "$regex": req.query.search, "$options": "i" };
+        filter.problemDescription = { "$regex": req.query.search, "$options": "i" };
     }
 
     Ticket.find(filter,'-pin').
