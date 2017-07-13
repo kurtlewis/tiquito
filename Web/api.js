@@ -158,6 +158,9 @@ router.use('/edit',function(req,res){
     Failure Response:
         Code: 400
         Content: <error message>
+
+        Code: 404
+        Content: []
  */
 router.get('/load',function(req,res){
     var offset = parseInt(req.query.offset) || 0;
@@ -167,7 +170,11 @@ router.get('/load',function(req,res){
         if(err){
             res.status(400).send(err)
         }
-        res.status(200).send(data);
+        if(data.length > 0){
+            res.status(200).send(data);
+        } else {
+            res.status(404).send(data);
+        }
     });
 });
 
@@ -177,7 +184,7 @@ router.get('/load',function(req,res){
     Method: GET
 
     Request Parameters (~ --> optional):
-        * id (ticketId of the ticket)
+        * ticketId (ticketId of the ticket)
 
     Success Response:
         Code: 200
@@ -186,14 +193,24 @@ router.get('/load',function(req,res){
     Failure Response:
         Code: 400
         Content: <error message>
+
+        Code: 404
+        Content: {}
  */
 router.get('/loadById',function(req,res){
-
-    Ticket.findOne({ticketID: req.body.id},'-pin').exec(function(err,data){
+    if(!req.query.ticketId){
+        res.status(400).send('please specify an id');
+        return;
+    }
+    Ticket.findOne({ticketId: req.query.ticketId},'-pin').exec(function(err,data){
         if(err){
             res.status(400).send(err)
         }
-        res.status(200).send(data);
+        if(data){
+            res.status(200).send(data);
+        } else {
+            res.status(404).send({});
+        }
     });
 });
 
