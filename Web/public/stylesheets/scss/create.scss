@@ -1,0 +1,23 @@
+@import "global.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 50rem;
+}
+
+.navButton {
+    background-color: $main-color;
+    color: $text-color;
+    border: 2px solid black;
+    padding: 4rem;
+    margin: 2rem;
+    display: inline-block;
+}
+
+h1 {
+    font-size: 70;
+    color: $main-color;
+}

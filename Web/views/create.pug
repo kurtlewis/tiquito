@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    h1 Ticket Registration
+
+    div.container
+        form(method='POST' action='/api/create')
+            div.form-group
+                label(for='problemTitle') Problem Title:
+                input#problemTitle.form-control(type='text', placeholder='your problem title' name='problemTitle')
+            div.form-group
+                label(for='problemDescription') Problem Description:
+                input#problemDescription.form-control(type='text', placeholder='your problem description' name='problemDescription')
+            div.form-group
+                label(for='firstName') First Name:
+                input#firstName.form-control(type='text', placeholder='your first name' name='firstName')
+            div.form-group
+                label(for='lastName') Last Name:
+                input#lastName.form-control(type='text', placeholder='your last name' name='lastName')
+            div.form-group
+                label(for='contactInfo') Contact Info:
+                input#contactInfo.form-control(type='text', placeholder='any contact info you would like to provide' name='contactInfo')
+            div.form-group
+                label(for='location') Location:
+                input#location.form-control(type='text', placeholder='your last name' name='location')
+            div.form-group
+                label(for='pin') PIN:
+                input#pin.form-control(type='text', placeholder='any contact info you would like to provide' name='pin')
+            div.form-group
+                label(for='tags') Problem Tags:
+                input#tags.form-control(type='text', placeholder='any contact info you would like to provide' name='tags')
+            button.btn.btn-primary(type='submit') Submit Ticket
+
+block append head
+  link(rel="stylesheet", href="/create.css")
