@@ -41,10 +41,21 @@ app.use(/\/api/, api);
 //do routing for basic rendering functionality (get requests)
 app.get(/^\/([a-z0-9-_]*)\/?$/i,function(req,res){
   var targetUrl = req.params[0];
-  
-  res.render(`${targetUrl}`,{
-    "title": targetUrl
-  });
+
+    res.render(`${targetUrl}`,{
+      "title": targetUrl
+    },function(err,html){
+      if(!err){
+        res.send(html);
+      }
+      
+      if((err.message).slice(0,21) == 'Failed to lookup view'){
+        res.render('notfound');
+      }
+
+    });
+
+
 
 });
 
