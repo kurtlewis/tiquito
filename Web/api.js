@@ -47,7 +47,7 @@ mongoose.connection.on('error',function(err){
 router.use('/create',function(req,res){
 
     if(!validateCreation(req.body)){
-        res.status(400).send(req.body);
+        res.status(400).send('ticket invalid');
     }
 
     var body = req.body;
