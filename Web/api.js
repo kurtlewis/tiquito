@@ -163,7 +163,7 @@ router.get('/load',function(req,res){
     var offset = parseInt(req.query.offset) || 0;
     var limit = parseInt(req.query.limit) || 10;
 
-    Ticket.find({}).skip(offset).limit(limit).exec(function(err,data){
+    Ticket.find({},'-pin').skip(offset).limit(limit).exec(function(err,data){
         if(err){
             res.status(400).send(err)
         }
@@ -189,7 +189,7 @@ router.get('/load',function(req,res){
  */
 router.get('/loadById',function(req,res){
 
-    Ticket.findOne({ticketID: req.body.id}).exec(function(err,data){
+    Ticket.findOne({ticketID: req.body.id},'-pin').exec(function(err,data){
         if(err){
             res.status(400).send(err)
         }
