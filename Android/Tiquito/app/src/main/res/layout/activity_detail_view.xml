@@ -15,23 +15,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.tiquito.tiquito.DetailView">
 
+
+    <Button
+        android:id="@+id/edit_id"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:text="Edit"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
     <TextView
         android:id="@+id/title_label_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
         android:textSize="22sp" />
-    <ImageButton
-        android:id="@+id/imageButton_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX=".5"
-        android:scaleY=".5"
-        android:src="@android:drawable/ic_menu_edit"
-        android:layout_marginBottom="16dp"
-        android:layout_above="@+id/name_label_id"
-        android:layout_toEndOf="@+id/title_label_id" />
     <TextView
         android:id="@+id/title_id"
         android:layout_width="400dip"
@@ -46,20 +45,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        android:layout_below="@+id/title_id"
+        android:layout_below="@+id/title_label_id"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:textSize="22sp" />
-    <ImageButton
-        android:id="@+id/imageButton_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX=".5"
-        android:scaleY=".5"
-        android:src="@android:drawable/ic_menu_edit"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/contactInfo_label_id"
-        android:layout_toEndOf="@+id/name_label_id" />
     <TextView
         android:id="@+id/name_id"
         android:layout_width="wrap_content"
@@ -74,20 +63,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact Info"
-        android:layout_below="@+id/name_id"
+        android:layout_below="@+id/name_label_id"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:textSize="22sp" />
-    <ImageButton
-        android:id="@+id/imageButton_contactInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX=".5"
-        android:scaleY=".5"
-        android:src="@android:drawable/ic_menu_edit"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/description_label_id"
-        android:layout_toEndOf="@+id/contactInfo_label_id" />
     <TextView
         android:id="@+id/contactInfo_id"
         android:layout_width="wrap_content"
@@ -102,20 +81,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:layout_below="@+id/contactInfo_id"
+        android:layout_below="@+id/contactInfo_label_id"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:textSize="22sp" />
-    <ImageButton
-        android:id="@+id/imageButton_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX=".5"
-        android:scaleY=".5"
-        android:src="@android:drawable/ic_menu_edit"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/location_label_id"
-        android:layout_toEndOf="@+id/description_label_id" />
     <TextView
         android:id="@+id/description_id"
         android:layout_width="wrap_content"
@@ -130,20 +99,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Location"
-        android:layout_below="@+id/description_id"
+        android:layout_below="@+id/description_label_id"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:textSize="22sp" />
-    <ImageButton
-        android:id="@+id/imageButton_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX=".5"
-        android:scaleY=".5"
-        android:src="@android:drawable/ic_menu_edit"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/status_label_id"
-        android:layout_toEndOf="@+id/location_label_id" />
     <TextView
         android:id="@+id/location_id"
         android:layout_width="wrap_content"
@@ -158,37 +117,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Status"
-        android:layout_below="@+id/location_id"
+        android:layout_below="@+id/location_label_id"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:textSize="22sp" />
-    <ImageButton
-        android:id="@+id/imageButton_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX=".5"
-        android:scaleY=".5"
-        android:src="@android:drawable/ic_menu_edit"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/mentorName_label_id"
-        android:layout_toEndOf="@+id/status_label_id" />
     <TextView
         android:id="@+id/status_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Status"
-        android:layout_below="@+id/status_label_id"
-        android:layout_alignStart="@+id/location_id"
         android:textSize="22sp"
+        android:layout_below="@+id/status_label_id"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
         android:layout_alignParentEnd="true" />
     <TextView
         android:id="@+id/mentorName_label_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mentor Name"
-        android:layout_below="@+id/status_id"
+        android:layout_below="@+id/status_label_id"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:textSize="22sp" />
 
 </RelativeLayout>
