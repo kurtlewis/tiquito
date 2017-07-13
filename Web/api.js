@@ -150,6 +150,7 @@ router.use('/edit',function(req,res){
         * ~limit (Max number of entries to get)
         * ~sort (criteria to sort by, can be any attribute in the model, Eg: creationTime, problemTitle)
         * ~direction (direction to sort: -1 for descending, 1 for ascending)
+        * ~filter (status to filter by. Eg: 'Open', 'Closed')
 
     Success Response:
         Code: 200
@@ -164,16 +165,26 @@ router.use('/edit',function(req,res){
  */
 router.get('/load',function(req,res){
 
-    //pagination stuff
+    //pagination
     var offset = parseInt(req.query.offset) || 0;
     var limit = parseInt(req.query.limit) || 10;
 
-    //sorting stuff
+    //sorting
     var sortCrit = req.query.sort || '';
     var sortDir = parseInt(req.query.direction) || 0;
     var sort = `-status ${sortDir < 0 ? '-' : ''}${sortCrit} -creationTime`;
 
-    Ticket.find({},'-pin').skip(offset).limit(limit).sort(sort).exec(function(err,data){
+    //filtering
+    var filter = {};
+    if(req.query.filter){
+        filter.status = req.query.filter;
+    }
+
+    Ticket.find(filter,'-pin').
+    skip(offset).
+    limit(limit).
+    sort(sort).
+    exec(function(err,data){
         if(err){
             res.status(400).send(err)
         }
