@@ -53,7 +53,6 @@ router.use('/create',function(req,res){
     var body = req.body;
 
     var newTicket = new Ticket({
-        ticketId: (new Date()),
         problemTitle: body.problemTitle,
         problemDescription: body.problemDescription || '',
         creator: {firstName: body.firstName, 
@@ -117,9 +116,8 @@ router.use('/edit',function(req,res){
 
     var body = req.body;
 
-    Ticket.update({ticketId: body.ticketId},
+    Ticket.update({_id: body.ticketId},
     {
-        ticketId: body.ticketId,
         problemTitle: body.problemTitle,
         problemDescription: body.problemDescription,
         creator: {firstName: body.firstName, 
@@ -150,6 +148,8 @@ router.use('/edit',function(req,res){
     Request Parameters (~ --> optional):
         * ~offset (The amount to skip before first entry)
         * ~limit (Max number of entries to get)
+        * ~sort (criteria to sort by, can be any attribute in the model, Eg: creationTime, problemTitle)
+        * ~direction (direction to sort: -1 for descending, 1 for ascending)
 
     Success Response:
         Code: 200
@@ -163,10 +163,17 @@ router.use('/edit',function(req,res){
         Content: []
  */
 router.get('/load',function(req,res){
+
+    //pagination stuff
     var offset = parseInt(req.query.offset) || 0;
     var limit = parseInt(req.query.limit) || 10;
 
-    Ticket.find({},'-pin').skip(offset).limit(limit).exec(function(err,data){
+    //sorting stuff
+    var sortCrit = req.query.sort || '';
+    var sortDir = parseInt(req.query.direction) || 0;
+    var sort = `-status ${sortDir < 0 ? '-' : ''}${sortCrit} -creationTime`;
+
+    Ticket.find({},'-pin').skip(offset).limit(limit).sort(sort).exec(function(err,data){
         if(err){
             res.status(400).send(err)
         }
@@ -202,7 +209,7 @@ router.get('/loadById',function(req,res){
         res.status(400).send('please specify an id');
         return;
     }
-    Ticket.findOne({ticketId: req.query.ticketId},'-pin').exec(function(err,data){
+    Ticket.findOne({_id: req.query.ticketId},'-pin').exec(function(err,data){
         if(err){
             res.status(400).send(err)
         }
