@@ -48,6 +48,7 @@ router.use('/create',function(req,res){
 
     if(!validateCreation(req.body)){
         res.status(400).send('ticket invalid');
+        return;
     }
 
     var body = req.body;
@@ -112,6 +113,7 @@ router.use('/edit',function(req,res){
     
     if(!validateCreation(req.body)){
         res.status(400).send('ticket invalid');
+        return;
     }
 
     var body = req.body;
@@ -194,7 +196,9 @@ router.get('/load',function(req,res){
     exec(function(err,data){
         if(err){
             res.status(400).send(err)
+            return;
         }
+
         if(data.length > 0){
             res.status(200).send(data);
         } else {
@@ -230,7 +234,9 @@ router.get('/loadById',function(req,res){
     Ticket.findOne({_id: req.query.ticketId},'-pin').exec(function(err,data){
         if(err){
             res.status(400).send(err)
+            return;
         }
+
         if(data){
             res.status(200).send(data);
         } else {
@@ -259,14 +265,17 @@ router.get('/loadById',function(req,res){
         Content: 'not found'
 */
 router.get('/delete',function(req,res){
-    if(req.query.token != process.env.API_KEY){
+    if(!req.query.token || req.query.token != process.env.API_KEY){
         res.status(401).send('not authorized');
+        return;
     }
+
     if(req.query.ticketId){
         Ticket.findOne({_id: req.query.ticketId}).exec(function(err,data){
             // check for errors while finding ticket
             if(err){
                 res.status(400).send(err);
+                return;
             }
             
             // if ticket exists, try to delete it
