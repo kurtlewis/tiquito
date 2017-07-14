@@ -37,7 +37,7 @@ mongoose.connection.on('error',function(err){
 
     Success Response:
         Code: 200
-        Content: success
+        Content: 'success'
 
     Failure Response:
         Code: 400
@@ -101,7 +101,7 @@ URL: /api/edit
 
     Success Response:
         Code: 200
-        Content: success
+        Content: 'success'
 
     Failure Response:
         Code: 400
@@ -213,7 +213,7 @@ router.get('/load',function(req,res){
 
     Success Response:
         Code: 200
-        Content: requestedTicket
+        Content: <requestedTicket>
 
     Failure Response:
         Code: 400
@@ -237,6 +237,54 @@ router.get('/loadById',function(req,res){
             res.status(404).send({});
         }
     });
+});
+
+/*
+    URL: /api/delete
+
+    Method: GET
+
+    Request Parameters (~ --> optional):
+        * ticketId (ticketId of the ticket)
+
+    Success Response:
+        Code: 200
+        Content: 'removed'
+
+    Failure Response:
+        Code: 400
+        Content: <error message>
+
+        Code: 404
+        Content: 'not found'
+*/
+router.get('/delete',function(req,res){
+    if(req.query.token != process.env.API_KEY){
+        res.status(401).send('not authorized');
+    }
+    if(req.query.ticketId){
+        Ticket.findOne({_id: req.query.ticketId}).exec(function(err,data){
+            // check for errors while finding ticket
+            if(err){
+                res.status(400).send(err);
+            }
+            
+            // if ticket exists, try to delete it
+            if(data){
+                data.remove(function(err){
+                    if(err){
+                        res.status(500).send(err);
+                    } else {
+                        res.status(200).send('removed');
+                    }
+                });
+            } else {
+                res.status(404).send('not found');
+            }
+        })
+    } else {
+        res.status(400).send('please enter an id to delete');
+    }
 });
 
 // triggered for any get request to the api
