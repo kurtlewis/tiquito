@@ -37,7 +37,7 @@ mongoose.connection.on('error',function(err){
 
     Success Response:
         Code: 200
-        Content: success
+        Content: 'success'
 
     Failure Response:
         Code: 400
@@ -53,7 +53,6 @@ router.use('/create',function(req,res){
     var body = req.body;
 
     var newTicket = new Ticket({
-        ticketId: (new Date()),
         problemTitle: body.problemTitle,
         problemDescription: body.problemDescription || '',
         creator: {firstName: body.firstName, 
@@ -102,7 +101,7 @@ URL: /api/edit
 
     Success Response:
         Code: 200
-        Content: success
+        Content: 'success'
 
     Failure Response:
         Code: 400
@@ -117,9 +116,8 @@ router.use('/edit',function(req,res){
 
     var body = req.body;
 
-    Ticket.update({ticketId: body.ticketId},
+    Ticket.update({_id: body.ticketId},
     {
-        ticketId: body.ticketId,
         problemTitle: body.problemTitle,
         problemDescription: body.problemDescription,
         creator: {firstName: body.firstName, 
@@ -150,6 +148,10 @@ router.use('/edit',function(req,res){
     Request Parameters (~ --> optional):
         * ~offset (The amount to skip before first entry)
         * ~limit (Max number of entries to get)
+        * ~sort (criteria to sort by, can be any attribute in the model, Eg: creationTime, problemTitle)
+        * ~direction (direction to sort: -1 for descending, 1 for ascending)
+        * ~filter (status to filter by. Eg: 'Open', 'Closed')
+        * ~search (search phrase)
 
     Success Response:
         Code: 200
@@ -163,10 +165,33 @@ router.use('/edit',function(req,res){
         Content: []
  */
 router.get('/load',function(req,res){
+
+    // pagination
     var offset = parseInt(req.query.offset) || 0;
     var limit = parseInt(req.query.limit) || 10;
 
-    Ticket.find({},'-pin').skip(offset).limit(limit).exec(function(err,data){
+    // sorting
+    var sortCrit = req.query.sort || '';
+    var sortDir = parseInt(req.query.direction) || 0;
+    var sort = `-status ${sortDir < 0 ? '-' : ''}${sortCrit} -creationTime`;
+
+    // filtering
+    var filter = {};
+    if(req.query.filter){
+        filter.status = req.query.filter;
+    }
+
+    // searching
+    if(req.query.search){
+        filter.problemTitle = { "$regex": req.query.search, "$options": "i" };
+        filter.problemDescription = { "$regex": req.query.search, "$options": "i" };
+    }
+
+    Ticket.find(filter,'-pin').
+    skip(offset).
+    limit(limit).
+    sort(sort).
+    exec(function(err,data){
         if(err){
             res.status(400).send(err)
         }
@@ -188,7 +213,7 @@ router.get('/load',function(req,res){
 
     Success Response:
         Code: 200
-        Content: requestedTicket
+        Content: <requestedTicket>
 
     Failure Response:
         Code: 400
@@ -202,7 +227,7 @@ router.get('/loadById',function(req,res){
         res.status(400).send('please specify an id');
         return;
     }
-    Ticket.findOne({ticketId: req.query.ticketId},'-pin').exec(function(err,data){
+    Ticket.findOne({_id: req.query.ticketId},'-pin').exec(function(err,data){
         if(err){
             res.status(400).send(err)
         }
@@ -212,6 +237,54 @@ router.get('/loadById',function(req,res){
             res.status(404).send({});
         }
     });
+});
+
+/*
+    URL: /api/delete
+
+    Method: GET
+
+    Request Parameters (~ --> optional):
+        * ticketId (ticketId of the ticket)
+
+    Success Response:
+        Code: 200
+        Content: 'removed'
+
+    Failure Response:
+        Code: 400
+        Content: <error message>
+
+        Code: 404
+        Content: 'not found'
+*/
+router.get('/delete',function(req,res){
+    if(req.query.token != process.env.API_KEY){
+        res.status(401).send('not authorized');
+    }
+    if(req.query.ticketId){
+        Ticket.findOne({_id: req.query.ticketId}).exec(function(err,data){
+            // check for errors while finding ticket
+            if(err){
+                res.status(400).send(err);
+            }
+            
+            // if ticket exists, try to delete it
+            if(data){
+                data.remove(function(err){
+                    if(err){
+                        res.status(500).send(err);
+                    } else {
+                        res.status(200).send('removed');
+                    }
+                });
+            } else {
+                res.status(404).send('not found');
+            }
+        })
+    } else {
+        res.status(400).send('please enter an id to delete');
+    }
 });
 
 // triggered for any get request to the api

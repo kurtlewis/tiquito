@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var ticketSchema = new mongoose.Schema({
-    ticketId: String,
     problemTitle: String,
     problemDescription: String,
     creator: {firstName: String, 
