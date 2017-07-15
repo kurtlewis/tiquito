@@ -16,11 +16,11 @@
     tools:context="com.tiquito.tiquito.DetailView">
 
 
-    <Button
-        android:id="@+id/edit_id"
-        android:layout_width="62dp"
-        android:layout_height="62dp"
-        android:text="Edit"
+    <ImageButton
+        android:id="@+id/popup_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/actionOverflowButtonStyle"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 

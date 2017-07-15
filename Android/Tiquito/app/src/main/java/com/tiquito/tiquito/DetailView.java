@@ -3,15 +3,20 @@ package com.tiquito.tiquito;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.util.TypedValue;
 import android.view.KeyEvent;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -63,14 +68,37 @@ public class DetailView extends AppCompatActivity{
         final Button claimButton = new Button(this);
         claimButton.setText("Claim");
 
-
-        final Button editButton = (Button) findViewById(R.id.edit_id);
+        final ImageButton popupMenu = (ImageButton) findViewById(R.id.popup_id);
         final Intent intent = new Intent(this, EditView.class);
 
-        editButton.setOnClickListener(new View.OnClickListener() {
+        popupMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(intent);
+                final PopupMenu popupOptions = new PopupMenu(DetailView.this, popupMenu);
+                popupOptions.getMenu().add("Edit");
+                if(status.getText()=="In Progress" || status.getText() == "Open") {
+                    popupOptions.getMenu().add("Close");
+                }
+                else{
+                    popupOptions.getMenu().add("Reopen");
+                }
+                popupOptions.getMenuInflater().inflate(R.menu.popup_menu, popupOptions.getMenu());
+
+                popupOptions.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if(item.getTitle() == "Edit"){
+                            startActivity(intent);
+                        }
+                        else if (item.getTitle() == "Close"){
+                            status.setText("Closed");
+                        }
+                        else {
+                            status.setText("Open");
+                        }
+                        return true;
+                    }
+                });
+                popupOptions.show();
             }
         });
 
