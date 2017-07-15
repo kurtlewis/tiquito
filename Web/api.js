@@ -34,6 +34,7 @@ mongoose.connection.on('error',function(err){
         * pin
         * ~tags (Note: this is just a string separated by commas or spaces)
         * ~mentorName
+        * ~redir (URL to redirect to on success)
 
     Success Response:
         Code: 200
@@ -72,7 +73,11 @@ router.use('/create',function(req,res){
         if(err){
             res.status(400).send('failure while saving ticket');
         }else{
-            res.status(200).send('success');
+            if(body.redir){
+                res.redirect(200,redir);
+            } else {
+                res.status(200).send('success');
+            }
         }
     });
 
@@ -99,6 +104,7 @@ URL: /api/edit
         * pin
         * ~tags (Note: this is just a string separated by commas or spaces)
         * ~mentorName
+        * ~redir (url to redirect to on success)
 
     Success Response:
         Code: 200
@@ -134,7 +140,11 @@ router.use('/edit',function(req,res){
         mentorName: body.mentorName
     },function(err){
         if(!err){
-            res.status(200).send('success');
+            if(body.redir){
+                res.redirect(200,redir);
+            } else {
+                res.status(200).send('success');
+            }
         } else {
             res.status(400).send(err);
         }
@@ -200,7 +210,7 @@ router.get('/load',function(req,res){
         }
 
         if(data.length > 0){
-            res.status(200).send(data);
+            res.status(200).json(data);
         } else {
             res.status(404).send(data);
         }
@@ -238,7 +248,7 @@ router.get('/loadById',function(req,res){
         }
 
         if(data){
-            res.status(200).send(data);
+            res.status(200).json(data);
         } else {
             res.status(404).send({});
         }
@@ -252,6 +262,7 @@ router.get('/loadById',function(req,res){
 
     Request Parameters (~ --> optional):
         * ticketId (ticketId of the ticket)
+        * ~redir (url to redirect to on successful removal)
 
     Success Response:
         Code: 200
@@ -284,7 +295,11 @@ router.get('/delete',function(req,res){
                     if(err){
                         res.status(500).send(err);
                     } else {
-                        res.status(200).send('removed');
+                        if(body.redir){
+                            res.redirect(200,redir);
+                        } else {
+                            res.status(200).send('removed');
+                        }
                     }
                 });
             } else {
