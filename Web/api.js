@@ -262,6 +262,7 @@ router.get('/loadById',function(req,res){
 
     Request Parameters (~ --> optional):
         * ticketId (ticketId of the ticket)
+        * ~redir (url to redirect to on successful removal)
 
     Success Response:
         Code: 200
