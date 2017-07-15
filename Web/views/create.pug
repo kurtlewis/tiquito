@@ -1,34 +1,39 @@
 extends layout
 
 block content
-    h1 Ticket Registration
+    //h1 Tiquito
 
     div.container
-        form(method='POST' action='/api/create')
+        form(method='POST' action='/api/create' id="ticketsubmit")
+            h3 Create a New Ticket
+            p The below form can be used to submit a Tiquito help ticket. At a minimum, the attributes denoted with an asterisk are required to create a ticket.
+            
+            div.sep
+
             div.form-group
-                label(for='problemTitle') Problem Title:
-                input#problemTitle.form-control(type='text', placeholder='your problem title' name='problemTitle')
+                label(for='problemTitle') *Problem Title:
+                textarea#problemTitle.form-control(type='text', placeholder='Provide a title that sums up your issue' name='problemTitle')
             div.form-group
                 label(for='problemDescription') Problem Description:
-                input#problemDescription.form-control(type='text', placeholder='your problem description' name='problemDescription')
+                textarea#problemDescription.form-control(type='text', placeholder='Provide a description that will help our mentors better understand your issue.' name='problemDescription')
             div.form-group
-                label(for='firstName') First Name:
-                input#firstName.form-control(type='text', placeholder='your first name' name='firstName')
+                label(for='firstName') *First Name:
+                textarea#firstName.form-control(type='text', placeholder='Provide your first name' name='firstName')
             div.form-group
                 label(for='lastName') Last Name:
-                input#lastName.form-control(type='text', placeholder='your last name' name='lastName')
+                textarea#lastName.form-control(type='text', placeholder='Provide your last name' name='lastName')
             div.form-group
                 label(for='contactInfo') Contact Info:
-                input#contactInfo.form-control(type='text', placeholder='any contact info you would like to provide' name='contactInfo')
+                textarea#contactInfo.form-control(type='text', placeholder='Provide any contact information that you believe will help our mentors reach you' name='contactInfo')
             div.form-group
-                label(for='location') Location:
-                input#location.form-control(type='text', placeholder='your last name' name='location')
+                label(for='location') *Location:
+                textarea#location.form-control(type='text', placeholder='Describe your location at the hackathon' name='location')
             div.form-group
-                label(for='pin') PIN:
-                input#pin.form-control(type='text', placeholder='any contact info you would like to provide' name='pin')
+                label(for='pin') *PIN:
+                textarea#pin.form-control(type='text', placeholder='Provide a 4 digit PIN for future access to this ticket' name='pin')
             div.form-group
                 label(for='tags') Problem Tags:
-                input#tags.form-control(type='text', placeholder='any contact info you would like to provide' name='tags')
+                textarea#tags.form-control(type='text', placeholder='Provide any tags for your issue seperated by either spaces or comas' name='tags')
             button.btn.btn-primary(type='submit') Submit Ticket
 
 block append head
