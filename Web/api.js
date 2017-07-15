@@ -74,7 +74,7 @@ router.use('/create',function(req,res){
             res.status(400).send('failure while saving ticket');
         }else{
             if(body.redir){
-                res.redirect(200,redir);
+                res.redirect(200,body.redir);
             } else {
                 res.status(200).send('success');
             }
@@ -94,7 +94,6 @@ URL: /api/edit
     Method: POST
 
     Body Parameters (~ --> optional):
-        * ticketId
         * problemTitle
         * ~problemDescription
         * firstName
@@ -141,7 +140,7 @@ router.use('/edit',function(req,res){
     },function(err){
         if(!err){
             if(body.redir){
-                res.redirect(200,redir);
+                res.redirect(200,body.redir);
             } else {
                 res.status(200).send('success');
             }
@@ -296,7 +295,7 @@ router.get('/delete',function(req,res){
                         res.status(500).send(err);
                     } else {
                         if(body.redir){
-                            res.redirect(200,redir);
+                            res.redirect(200,body.redir);
                         } else {
                             res.status(200).send('removed');
                         }
