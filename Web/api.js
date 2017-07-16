@@ -5,6 +5,18 @@ var Ticket = require('./models/ticket');
 
 var router = express.Router();
 
+var fieldLengths = {
+    problemTitle: 10,
+    problemDescription: 500,
+    firstName: 30,
+    lastName: 30,
+    location: 30,
+    contactInfo: 30,
+    pin: 4,
+    tags: 15,
+    comments: 900
+}
+
 // Create connection to the DB
 mongoose.connect(process.env.MONGO_URL,function(err){
     if(err){
@@ -47,7 +59,7 @@ mongoose.connection.on('error',function(err){
 */
 router.use('/create',function(req,res){
 
-    if(!validateCreation(req.body)){
+    if(!validateCreation(req.body, res)){
         res.status(400).send('ticket invalid');
         return;
     }
@@ -323,21 +335,24 @@ function getTagsList(str){
 
 //checks that all fields in the given ticket object are valid for a newly created object
 // returns false
-function validateCreation(obj){
+function validateCreation(obj, res){
     var isValid = true;
     //check all require fields are present
-    if(!obj.problemTitle){
+    if(!obj.problemTitle || obj.problemTitle.length == 0 || obj.problemTitle.length > fieldLengths.problemTitle){
+        res.send("Title must be between 1 and 30 characters")
         isValid = false;
-    } else if (!obj.firstName){
+    } else if (!obj.firstName || obj.firstName.length == 0 || obj.firstName.length > fieldLengths.firstName){
+        res.send("First name must be between 1 and 20 characters")
         isValid = false;
-    } else if (!obj.location) {
+    } else if (!obj.location || obj.location.length == 0 || obj.location.legth > fieldLengths.location) {
+        res.send("Location must be between 1 and 50 characters")
         isValid = false;
-    } else if (!obj.pin) {
+    } else if (!obj.pin || obj.pin.length != fieldLengths.pin) {
+        res.send("PIN must be 4 characters")
         isValid = false;
     }
 
-    return isValid;
-
+    return isValid
 }
 
 module.exports = router;
