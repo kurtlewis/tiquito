@@ -108,13 +108,13 @@ URL: /api/edit
 
     Body Parameters (~ --> optional):
         * ticketId
-        * problemTitle
+        * ~problemTitle
         * ~problemDescription
-        * firstName
+        * ~firstName
         * ~lastName
         * ~contactInfo
-        * location
-        * pin
+        * ~location
+        * ~pin
         * ~tags (Note: this is just a string separated by commas or spaces)
         * ~mentorName
         * ~redir (url to redirect to on success)
@@ -138,6 +138,10 @@ router.use('/edit',function(req,res){
     }
 
     Ticket.findOne({_id: body.ticketId},'-pin').exec(function(err,ticket){
+        if(err){
+            res.status(400).send(err);
+        }
+
         //with the ticket, update values as needed
         if(body.problemTitle && body.problemTitle.length > 0 && body.problemTitle.length <= fieldLengths.problemTitle){
             ticket.problemTitle = body.problemTitle;
