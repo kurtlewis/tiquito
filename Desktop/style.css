@@ -1,4 +1,16 @@
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    height: 92%;
+}
+
 #container {
+    font-family: sans-serif;
+    position: relative;
     width: 100%;
     height: 100%;
     float: left;
@@ -6,12 +18,134 @@
 
 div#listView {
     float: left;
-    margin-right: 10px;
+    margin: auto;
+    height: 100%;
     width: 50%;
+    display: inline-block;
+    border-right: 2px solid #333333;
 }
 
-table#res tr {
+div#ticketView {
+    display: inline-block;
+    padding-top: 5px;
+    background-color: #555555;
+    border: 2px solid #333333;
+    color: #eeeeee;
+    font-size: 1.5rem;
+    margin: 0.4rem;
+    width: 98%;
+    height: 98%;
+}
+
+div#ticketView p {
     margin: 5px;
+}
+
+table#res {
+    margin: auto;
+    width: 100%;
+}
+
+div.ticket {
+    margin: 5px auto;
     display: block;
-    border: 1px solid red;
+    border: 1px solid #333333;
+    background-color: #555555;
+    color: #eeeeee;
+    height: 4rem;
+    width: 98%;
+}
+
+div.ticket:before {
+    content: "";
+    vertical-align: middle;
+    display: inline-block;
+    height: 100%;
+}
+
+div.ticket div {
+    display: inline-block;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    vertical-align: middle;
+    margin: auto;
+}
+
+div.highlight {
+    background-color: #ff2525!important;
+}
+
+div.ticketTitle, div.ticketTags {
+    width: 40%;
+}
+
+div.ticketTitle {
+    margin-left: 3px!important;
+}
+
+div.ticketStatus {
+    width: 19%;
+    text-align: right;
+}
+
+h1 {
+    text-align: center;
+    padding: 1rem;
+    margin: 0px auto;
+    background-color: #ff2525;
+    color: #eeeeee;
+}
+
+div#titlebar {
+    font-size: 1.5rem;
+    color: #333333;
+    display: block;
+    height: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+div#ticketViewOuter {
+    display: inline-block;
+    height: 100%;
+    width: 49.8%;
+}
+
+div#ticketView p.field {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    padding-left: 2rem;
+}
+
+div#ticketView p.field:hover {
+    background-color: #333333;
+}
+
+h2 {
+    color: #333333;
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    color: #333333;
+    font-weight: 100;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.left {
+    float: left;
+    width: 33.3333%;
+}
+
+.center {
+    float: left;
+    width: 33.3333%;
+    text-align: center;
+}
+
+.right {
+    float: right;
 }
