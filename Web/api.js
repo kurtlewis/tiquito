@@ -12,6 +12,7 @@ var fieldLengths = {
     lastName: 30,
     location: 30,
     contactInfo: 30,
+    mentorName: 20,
     pin: 4,
     tags: 15,
     comments: 900
@@ -138,23 +139,39 @@ router.use('/edit',function(req,res){
 
     Ticket.findOne({_id: body.ticketId},'-pin').exec(function(err,ticket){
         //with the ticket, update values as needed
-        if(body.problemTitle && body.problemTitle.length > 0){
+        if(body.problemTitle && body.problemTitle.length > 0 && body.problemTitle.length <= fieldLengths.problemTitle){
             ticket.problemTitle = body.problemTitle;
         }
 
-        if(body.problemDescription && body.problemDescription.length > 0){
+        if(body.problemDescription && body.problemDescription.length > 0 && body.problemDescription.length <= fieldLengths.problemDescription){
             ticket.problemDescription = body.problemDescription;
         }
 
-        if(body.firstName && body.firstName.length > 0){
+        if(body.firstName && body.firstName.length > 0 && body.firstName.length <= fieldLengths.firstName){
             ticket.creator.firstName = body.firstName;
         }
 
-        if(body.lastName && body.lastName.length > 0) {
+        if(body.lastName && body.lastName.length > 0 && body.lastName.length <= fieldLengths.lastName) {
             ticket.creator.lastName = body.lastName;
         }
 
-        if(body.tags && body.tags.length > 0){
+        if(body.location && body.location.length > 0 && body.location.length <= fieldLengths.location) {
+            ticket.creator.location = body.location
+        }
+
+        if(body.contactInfo && body.contactInfo.length > 0 && body.contactInfo.length <= fieldLengths.contactInfo){
+            ticket.creator.contactInfo = body.contactInfo;
+        }
+
+        if(body.status && (body.status == 'In progress' || body.status == 'Open' || body.status == 'Closed')){
+            ticket.status = body.status;
+        }
+
+        if(body.mentorName && body.mentorName.length > 0 && body.mentorName.length <= fieldLengths.mentorName){
+            ticket.mentorName = body.mentorName;
+        }
+
+        if(body.tags && body.tags.length > 0 && body.tags.length <= fieldLengths.tags){
             ticket.tags = getTagsList(body.tags);
         }
 
@@ -172,35 +189,6 @@ router.use('/edit',function(req,res){
         });
 
     });
-
-
-    /*
-    Ticket.update({_id: body.ticketId},
-    {
-        problemTitle: body.problemTitle,
-        problemDescription: body.problemDescription,
-        creator: {firstName: body.firstName, 
-                lastName: body.lastName,
-                contactInfo: body.contactInfo,
-                location: body.location},
-        creationTime: body.creationTime,
-        pin: body.pin,
-        Tags: getTagsList(body.tags),
-        comments: body.comments,
-        status: body.status,
-        mentorName: body.mentorName
-    },function(err){
-        if(!err){
-            if(body.redir){
-                res.redirect(200,body.redir);
-            } else {
-                res.status(200).send('success');
-            }
-        } else {
-            res.status(400).send(err);
-        }
-    });
-    */
 
 });
 
