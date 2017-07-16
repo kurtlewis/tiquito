@@ -94,6 +94,7 @@ URL: /api/edit
     Method: POST
 
     Body Parameters (~ --> optional):
+        * ticketId
         * problemTitle
         * ~problemDescription
         * firstName
@@ -115,14 +116,53 @@ URL: /api/edit
 
  */
 router.use('/edit',function(req,res){
+
+    var body = req.body;
     
-    if(!validateCreation(req.body)){
-        res.status(400).send('ticket invalid');
+    if(!body.ticketId){
+        res.status(400).send('please specify an id');
         return;
     }
 
-    var body = req.body;
+    Ticket.findOne({_id: body.ticketId},'-pin').exec(function(err,ticket){
+        //with the ticket, update values as needed
+        if(body.problemTitle && body.problemTitle.length > 0){
+            ticket.problemTitle = body.problemTitle;
+        }
 
+        if(body.problemDescription && body.problemDescription.length > 0){
+            ticket.problemDescription = body.problemDescription;
+        }
+
+        if(body.firstName && body.firstName.length > 0){
+            ticket.creator.firstName = body.firstName;
+        }
+
+        if(body.lastName && body.lastName.length > 0) {
+            ticket.creator.lastName = body.lastName;
+        }
+
+        if(body.tags && body.tags.length > 0){
+            ticket.tags = getTagsList(body.tags);
+        }
+
+        ticket.save(function(err){
+            if(err){
+                res.status(400).send(err)
+            } else {
+                res.status(200);
+                if(body.redir){
+                    res.redirect(redir);
+                } else {
+                    res.send('success');
+                }
+            }
+        });
+
+    });
+
+
+    /*
     Ticket.update({_id: body.ticketId},
     {
         problemTitle: body.problemTitle,
@@ -148,6 +188,7 @@ router.use('/edit',function(req,res){
             res.status(400).send(err);
         }
     });
+    */
 
 });
 
