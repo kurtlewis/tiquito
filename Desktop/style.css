@@ -27,7 +27,7 @@ div#listView {
 
 div#ticketView {
     display: inline-block;
-    padding-top: 5px;
+    padding-top: 2rem;
     background-color: #555555;
     border: 2px solid #333333;
     color: #eeeeee;
@@ -37,8 +37,17 @@ div#ticketView {
     height: 98%;
 }
 
-div#ticketView p {
+div#ticketView p, select {
+    font-weight: bold;
     margin: 5px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+select {
+    padding: 0.5rem;
+    margin-bottom: 1.5rem;
+    width: 10rem;
 }
 
 table#res {
@@ -94,6 +103,7 @@ h1 {
     margin: 0px auto;
     background-color: #ff2525;
     color: #eeeeee;
+    border-bottom: 2px solid #333333;
 }
 
 div#titlebar {
@@ -112,9 +122,10 @@ div#ticketViewOuter {
 }
 
 div#ticketView p.field {
-    margin-bottom: 1rem;
+    font-weight: 100;
+    margin-bottom: 1.5rem;
     padding: 0.5rem;
-    padding-left: 2rem;
+    background-color: #444444;
 }
 
 div#ticketView p.field:hover {
@@ -149,3 +160,4 @@ h3 {
 .right {
     float: right;
 }
+

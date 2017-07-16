@@ -68,7 +68,11 @@ function onListClick(e, ticket) {
     <p>Location</p>
     <p class="field" id="location" onmouseover="makeEditable(this)">${ticket.creator.location}</p>
     <p>Status</p>
-    <p class="field" id="status" onmouseover="makeEditable(this)">${ticket.status}</p>
+    <select name="status">
+        <option value="Open" ${ticket.status == "Open" ? "selected" : ""}>Open</option>
+        <option value="In Progress" ${ticket.status == "In Progress" ? "selected" : ""}>In Progress</option>
+        <option value="Closed" ${ticket.status == "Closed" ? "selected" : ""}>Closed</option>
+    </select>
     <p>Mentor Name</p>
     <p class="field" id="mentorname" onmouseover="makeEditable(this)">${ticket.mentorName}</p>
     `
