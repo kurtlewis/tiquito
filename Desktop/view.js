@@ -110,7 +110,7 @@ function onListClick(e, ticket) {
     <p>Comments</p>
     ${comments}
     <p>Timestamp</p>
-    <p class="field" id="timestamp">${ticket.creationTime}</p>
+    <p class="field noevents" id="timestamp">${ticket.creationTime}</p>
     `
     ticketView.innerHTML = html;
     var prev = document.getElementById(lastClicked);

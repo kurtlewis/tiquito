@@ -1,3 +1,7 @@
+/*CSS for Tiquito desktop app*/
+
+/*Entire Document*/
+/*--------------------------------------------------*/
 html {
     height: 99.5%;
     margin: 0;
@@ -16,6 +20,44 @@ body {
     float: left;
 }
 
+div#titlebar {
+    font-size: 1.5rem;
+    color: #333333;
+    display: block;
+    height: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+h1 {
+    text-align: center;
+    padding: 1rem;
+    margin: 0px auto;
+    background-color: #ff2525;
+    color: #eeeeee;
+    border-bottom: 2px solid #333333;
+}
+
+h2 {
+    color: #333333;
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    color: #333333;
+    font-weight: 100;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.noevents {
+    pointer-events: none;
+}
+/*--------------------------------------------------*/
+/*List View*/
+/*--------------------------------------------------*/
 div#listView {
     float: left;
     margin: auto;
@@ -24,38 +66,6 @@ div#listView {
     display: inline-block;
     border-right: 2px solid #333333;
     overflow: auto;
-}
-
-div#ticketView {
-    display: inline-block;
-    padding-top: 2rem;
-    background-color: #555555;
-    border: 2px solid #333333;
-    color: #eeeeee;
-    font-size: 1.5rem;
-    margin: 0.4rem;
-    width: 98%;
-    height: 96%;
-    overflow: auto;
-}
-
-div#ticketView p, select {
-    font-weight: bold;
-    margin: 5px;
-    margin-left: 2rem;
-    margin-right: 2rem;
-}
-
-select {
-    padding: 0.5rem;
-    margin-bottom: 1.5rem;
-    width: 10rem;
-    font-size: 1rem;
-}
-
-table#res {
-    margin: auto;
-    width: 100%;
 }
 
 div.ticket {
@@ -100,54 +110,10 @@ div.ticketStatus {
     text-align: right;
 }
 
-h1 {
-    text-align: center;
-    padding: 1rem;
-    margin: 0px auto;
-    background-color: #ff2525;
-    color: #eeeeee;
-    border-bottom: 2px solid #333333;
-}
-
-div#titlebar {
-    font-size: 1.5rem;
-    color: #333333;
-    display: block;
-    height: 2rem;
+button#refresh {
+    float: left;
     margin-left: 1rem;
-    margin-right: 1rem;
-}
-
-div#ticketViewOuter {
-    display: inline-block;
-    height: 100%;
-    width: 49.8%;
-}
-
-div#ticketView p.field {
-    font-weight: 100;
-    margin-bottom: 1.5rem;
-    padding: 0.5rem;
-    min-height: 1.75rem;
-    background-color: #444444;
-}
-
-div#ticketView p.field:hover {
-    background-color: #333333;
-}
-
-h2 {
-    color: #333333;
-    font-weight: 100;
-    text-align: center;
-    margin-bottom: 0.5rem;
-}
-
-h3 {
-    color: #333333;
-    font-weight: 100;
-    text-align: center;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 .left {
@@ -164,8 +130,55 @@ h3 {
 .right {
     float: right;
 }
+/*--------------------------------------------------*/
+/*Detail View*/
+/*--------------------------------------------------*/
+div#ticketViewOuter {
+    display: inline-block;
+    height: 100%;
+    width: 49.8%;
+}
 
-button#comment {
+div#ticketView {
+    display: inline-block;
+    padding-top: 2rem;
+    background-color: #555555;
+    border: 2px solid #333333;
+    color: #eeeeee;
+    font-size: 1.5rem;
+    margin: 0.4rem;
+    width: 98%;
+    height: 96%;
+    overflow: auto;
+}
+
+div#ticketView p, div#ticketView select {
+    font-weight: bold;
+    margin: 5px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+div#ticketView select {
+    padding: 0.5rem;
+    margin-bottom: 1.5rem;
+    width: 10rem;
+    font-size: 1rem;
+}
+
+div#ticketView p.field {
+    font-weight: 100;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    min-height: 1.75rem;
+    background-color: #444444;
+}
+
+div#ticketView p.field:hover {
+    background-color: #333333;
+}
+
+div#commentButton button {
     padding: 0.5rem;
     margin-bottom: 1.5rem;
     margin-left: 2rem;
@@ -173,8 +186,4 @@ button#comment {
     font-size: 1rem;
 }
 
-button#refresh {
-    float: left;
-    margin-left: 1rem;
-    margin-top: 1rem;
-}
+/*--------------------------------------------------*/
