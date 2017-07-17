@@ -18,7 +18,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import static android.R.attr.id;
 
@@ -28,7 +41,66 @@ import static android.R.attr.id;
 
 public class DetailView extends AppCompatActivity{
     public static final String TICKET_PARAM = "com.tiquito.tiquito.TICKET_PARAM";
+    Thread ithread = null;
+    String httpResponse = null;
+    Ticket details;
+    public void MakeHttpGetRequest(final String ticketID) {
 
+        ithread = new Thread(new Runnable() {
+            @Override
+            public void run(){
+                try {
+                    HttpsURLConnection connection = (HttpsURLConnection) (new URL("https://test.tiquito.com/api/loadById?ticketId="+ticketID)).openConnection();
+
+                    // Read and store the result line by line then return the entire string.
+                    InputStream in;
+
+                    int status = connection.getResponseCode();
+
+                    if (status != HttpURLConnection.HTTP_OK)
+                        in = connection.getErrorStream();
+                    else
+                        in = new BufferedInputStream(connection.getInputStream());
+
+                    java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
+                    String result = s.hasNext() ? s.next() : "";
+
+                    JSONObject ticketInfo = new JSONObject(result);
+
+                    String id = ticketInfo.getString("_id");
+                    String title = ticketInfo.getString("problemTitle");
+                    JSONObject creator = ticketInfo.getJSONObject("creator");
+                    String name = creator.getString("firstName") + " " + creator.getString("lastName");
+                    String contact = creator.getString("contactInfo");
+                    String loc = creator.getString("location");
+                    String mentor = ticketInfo.getString("mentorName");
+                    if (mentor.equals("None")){
+                        mentor = "";
+                    }
+                    String jstatus = ticketInfo.getString("status");
+                    String description = ticketInfo.getString("problemDescription");
+                    ArrayList<String> tags = new ArrayList<String>();
+
+                    // Tags are a list, so get it as an array and iterate through it
+                    JSONArray jsonTags = ticketInfo.getJSONArray("Tags");
+                    for (int k = 0; k < jsonTags.length(); k++) {
+                        tags.add(jsonTags.getString(k));
+                    }
+
+                    details = new Ticket(id, title, description, loc, "", jstatus, mentor, name, contact, tags, new ArrayList<String>());
+
+                    in.close();
+
+                    httpResponse = result;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    httpResponse=e.toString();
+                }
+            }
+        });
+        ithread.start();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +109,15 @@ public class DetailView extends AppCompatActivity{
         Intent incomingIntent = getIntent();
         String ticketId = incomingIntent.getStringExtra(TICKET_PARAM);
 
-        // DELETE THIS CODE ONCE WE LOAD TICKETS
-        Toast toast = Toast.makeText(getApplicationContext(), ticketId, Toast.LENGTH_LONG);
-        toast.show();
+        MakeHttpGetRequest(ticketId);
+        try {
+            ithread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
         final RelativeLayout rl = (RelativeLayout) findViewById(R.id.activity_detail_view);
-
-        final Ticket details = Ticket.getTestTicket();
 
         final ArrayList<TextView> allTextViews = new ArrayList<TextView>();
 
