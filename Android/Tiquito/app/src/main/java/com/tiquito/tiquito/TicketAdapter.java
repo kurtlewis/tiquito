@@ -26,11 +26,11 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         // each data item is just a string in this case
         public Ticket ticket;
         public TextView mTitle;
-        public TextView mDescription;
+        public TextView mTags;
         public ViewHolder(View itemView) {
             super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.ticket_list_title);
-            mDescription = (TextView) itemView.findViewById(R.id.ticket_list_description);
+            mTags = (TextView) itemView.findViewById(R.id.ticket_list_tags);
 
             // Click listener for item clicks
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +59,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        // Inflate the cusotm layout
+        // Inflate the custom layout
         View ticketView = inflater.inflate(R.layout.item_ticket, parent, false);
 
         // Return a new holder instance
@@ -76,10 +76,20 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
         holder.ticket = ticket;
         // - replace the contents of the view with that element
+
+        // title
         TextView textView = holder.mTitle;
         textView.setText(ticket.getTitle());
-        textView = holder.mDescription;
-        textView.setText(ticket.getDescription());
+
+        // Convert tags to string list
+        textView = holder.mTags;
+        String tags = "";
+        ArrayList<String> tagsList = ticket.getTags();
+        for (int i = 0; i < tagsList.size(); i++) {
+            tags += tagsList.get(i) + ",";
+        }
+        tags = (String)tags.subSequence(0, tags.length()-1);
+        textView.setText(tags);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
