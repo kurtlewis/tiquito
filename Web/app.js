@@ -35,6 +35,7 @@ app.use(require('node-sass-middleware')({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*
 //if the redir param is present, redirect
 app.post('*',function(req,res,next){
   if(req.body.redir){
@@ -43,6 +44,7 @@ app.post('*',function(req,res,next){
     next();
   }
 });
+*/
 
 // handle requests to api
 app.use(/\/api/, api);

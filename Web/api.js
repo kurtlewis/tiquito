@@ -58,7 +58,7 @@ mongoose.connection.on('error',function(err){
         Content: <error message>
 
 */
-router.use('/create',function(req,res){
+router.post('/create',function(req,res){
 
     if(!validateCreation(req.body, res)){
         res.status(400).send('ticket invalid');
@@ -128,7 +128,7 @@ URL: /api/edit
         Content: <error message>
 
  */
-router.use('/edit',function(req,res){
+router.post('/edit',function(req,res){
 
     var body = req.body;
     
@@ -137,49 +137,51 @@ router.use('/edit',function(req,res){
         return;
     }
 
-    Ticket.findOne({_id: body.ticketId},'-pin').exec(function(err,ticket){
+    Ticket.findOne({_id: body.ticketId}).exec(function(err,ticket){
         if(err){
             res.status(400).send(err);
         }
 
+        var authed = (body.pin == ticket.pin || body.token == process.env.API_KEY);
+
         //with the ticket, update values as needed
-        if(body.problemTitle && body.problemTitle.length > 0 && body.problemTitle.length <= fieldLengths.problemTitle){
+        if(authed && body.problemTitle && body.problemTitle.length > 0 && body.problemTitle.length <= fieldLengths.problemTitle){
             ticket.problemTitle = body.problemTitle;
         }
 
-        if(body.problemDescription && body.problemDescription.length > 0 && body.problemDescription.length <= fieldLengths.problemDescription){
+        if(authed && body.problemDescription && body.problemDescription.length > 0 && body.problemDescription.length <= fieldLengths.problemDescription){
             ticket.problemDescription = body.problemDescription;
         }
 
-        if(body.firstName && body.firstName.length > 0 && body.firstName.length <= fieldLengths.firstName){
+        if(authed && body.firstName && body.firstName.length > 0 && body.firstName.length <= fieldLengths.firstName){
             ticket.creator.firstName = body.firstName;
         }
 
-        if(body.lastName && body.lastName.length > 0 && body.lastName.length <= fieldLengths.lastName) {
+        if(authed && body.lastName && body.lastName.length > 0 && body.lastName.length <= fieldLengths.lastName) {
             ticket.creator.lastName = body.lastName;
         }
 
-        if(body.location && body.location.length > 0 && body.location.length <= fieldLengths.location) {
+        if(authed && body.location && body.location.length > 0 && body.location.length <= fieldLengths.location) {
             ticket.creator.location = body.location
         }
 
-        if(body.contactInfo && body.contactInfo.length > 0 && body.contactInfo.length <= fieldLengths.contactInfo){
+        if(authed && body.contactInfo && body.contactInfo.length > 0 && body.contactInfo.length <= fieldLengths.contactInfo){
             ticket.creator.contactInfo = body.contactInfo;
         }
 
-        if(body.status && (body.status == 'In progress' || body.status == 'Open' || body.status == 'Closed')){
+        if(authed && body.status && (body.status == 'In progress' || body.status == 'Open' || body.status == 'Closed')){
             ticket.status = body.status;
         }
 
-        if(body.mentorName && body.mentorName.length > 0 && body.mentorName.length <= fieldLengths.mentorName){
+        if(authed && body.mentorName && body.mentorName.length > 0 && body.mentorName.length <= fieldLengths.mentorName){
             ticket.mentorName = body.mentorName;
         }
 
-        if(body.tags && body.tags.length > 0 && body.tags.length <= fieldLengths.tags){
+        if(authed && body.tags && body.tags.length > 0 && body.tags.length <= fieldLengths.tags){
             ticket.tags = getTagsList(body.tags);
         }
 
-        if(body.comments && validateComments(body.comments)){
+        if(authed && body.comments && validateComments(body.comments)){
             ticket.comments = body.comments;
 
             //timestamp
@@ -366,6 +368,63 @@ router.get('/delete',function(req,res){
     }
 });
 
+/*
+    URL: /api/comment
+
+    Method: POST
+
+    Request Parameters (~ --> optional):
+        * ticketId (ticketId of the ticket)
+        * commenterName
+        * commentText
+
+    Success Response:
+        Code: 200
+        Content: 'success'
+
+    Failure Response:
+        Code: 400
+        Content: <error message>
+ */
+router.post('/comment',function(req,res){
+    var body = req.body;
+    
+    if(!body.ticketId){
+        res.status(400).send('please specify an id');
+        return;
+    }
+
+    Ticket.findOne({_id: body.ticketId}).exec(function(err,ticket){
+        if(err){
+            res.status(400).send(err);
+        }
+
+        var newComment;
+        newComment.commenterName = body.commenterName;
+        newComment.commentText = body.commentText;
+
+        if(validateComment(newComment)){
+            newComment.commentTime = (Date()).toISOString();
+            ticket.comments.push(newComment);
+        } else {
+            res.status(400).send('invalid comment');
+        }
+
+        ticket.save(function(err){
+            if(err){
+                res.status(400).send(err)
+            } else {
+                res.status(200);
+                if(body.redir){
+                    res.redirect(redir);
+                } else {
+                    res.send('success');
+                }
+            }
+        });
+    });    
+});
+
 // triggered for any get request to the api
 router.use('/*',function(req,res){
     res.status(200).send('welcome to the api');
@@ -383,16 +442,26 @@ function validateComments(comments){
     }
     var isValid = true;
     for(var i = 0; i < comments.length; i++){
-        if(!(comments[i].commenterName && comments[i].commenterName.length > 0 && comments[i].commenterName.length <= fieldLengths.comments)){
-            isValid = false;
-        }
-        if(!(comments[i].commentText && comments[i].commentText.length > 0 && comments[i].commentText.length <= fieldLengths.comments)){
-            isValid = false;
-        }
+        isValid = validateComment(comments[i]);
     }
 
     return isValid;
 }
+
+function validateComment(comment){
+    var isValid = true;
+
+    if(!(comment.commenterName && comment.commenterName.length > 0 && comment.commenterName.length > fieldLengths.comments)){
+        isValid = false;
+    }
+
+    if(!(comment.commentText && comment.commentText.length > 0 && comment.commentText.length > fieldLengths.comments)){
+        isValid = false;
+    }
+
+    return isValid;
+}
+
 
 //checks that all fields in the given ticket object are valid for a newly created object
 // returns false
@@ -413,7 +482,7 @@ function validateCreation(obj, res){
         isValid = false;
     }
 
-    return isValid
+    return isValid;
 }
 
 module.exports = router;
