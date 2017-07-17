@@ -6,7 +6,7 @@ var Ticket = require('./models/ticket');
 var router = express.Router();
 
 var fieldLengths = {
-    problemTitle: 10,
+    problemTitle: 30,
     problemDescription: 500,
     firstName: 30,
     lastName: 30,
