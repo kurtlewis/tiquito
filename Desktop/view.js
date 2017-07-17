@@ -1,5 +1,14 @@
+/*Scripts for Tiquito desktop app*/
+
+/*Globals*/
+// List of all currently displayed tickets
 var tickets = [];
+// ID of last ticket in list, used for catching duplicates in load function
 var lastClicked = "";
+
+/*Load function
+  Takes offset (number of tickets to skip), count (maximum number of tickets to fetch)
+  Skips any duplicate tickets, but duplicates are counted in count parameter*/
 function load(offset, count) {
     var req = new XMLHttpRequest();
     req.open('GET', "http://test.tiquito.com/api/load?offset=" + offset + "&limit=" + count, true);
@@ -22,7 +31,6 @@ function load(offset, count) {
                 listView.innerHTML = titlebar;
                 tickets = [];
             }
-            console.log(tickets.length);
             if (tickets.length > 0) {
                 var lastTicketId = tickets[tickets.length - 1]._id;
                 for (var i = 0; i < res.length; i++) {
@@ -57,11 +65,15 @@ function load(offset, count) {
     req.send();
 }
 
+/*Onclick function to make an html item editable
+  Takes clicked item*/
 function makeEditable(item) {
     item.contentEditable = "true";
-    console.log("here");
 }
 
+/*Onclick function to change the "add a comment" button to an editable paragraph
+  Takes clicked button
+  NOTE: clicked button must be in a div with id "commentButton"*/
 function changeToP(item) {
     var div = document.getElementById("commentButton");
     div.innerHTML = '<p class="field" id="comment" contentEditable="true"></p>'
@@ -69,20 +81,23 @@ function changeToP(item) {
     div.scrollTop = div.scrollHeight;
 }
 
+/*Onscroll function for listview to load more tickets when scrolled to bottom
+  Takes scrolled item*/
 function onListViewScroll(listView) {
     console.log("scrolling");
     if (listView.scrollTop === (listView.scrollHeight - listView.offsetHeight)) {
-        console.log(tickets.length);
         load(tickets.length, 10);
     }
 }
 
+/*Onclick function to submit edits made to a ticket*/
 function submit() {
     
 }
 
+/*Onclick function to display the full contents of a ticket
+  Takes event, clicked ticket*/
 function onListClick(e, ticket) {
-    console.log(ticket);
     ticketView = document.getElementById("ticketView");
     ticketView.innerHTML = "";
     var comments = "";
