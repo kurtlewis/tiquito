@@ -1,17 +1,16 @@
 var tickets = [];
 var lastClicked = "";
-function load(offset) {
+function load(offset, count) {
     var req = new XMLHttpRequest();
-    req.open('GET', "http://test.tiquito.com/api/load", true);
+    req.open('GET', "http://test.tiquito.com/api/load?offset=" + offset + "&limit=" + count, true);
     req.onreadystatechange = function(e) {
         if (this.readyState == 4) {
             var res = JSON.parse(req.responseText);
-            console.log(res);
-            tickets.concat(res);
             var listView = document.getElementById("listView");
             if (offset == 0) {
                 listView.innerHTML = "";
                 var titlebar = `
+                <button id="refresh" type="button" onclick="load(0, 15)">&#xe031; Refresh</button>&nbsp;
                 <h2>All Tickets</h2>
                 <h3>Select one to view more details</h3>
                 <div id="titlebar">
@@ -21,7 +20,19 @@ function load(offset) {
                 </div>           
                 `
                 listView.innerHTML = titlebar;
+                tickets = [];
             }
+            console.log(tickets.length);
+            if (tickets.length > 0) {
+                var lastTicketId = tickets[tickets.length - 1]._id;
+                for (var i = 0; i < res.length; i++) {
+                    if (res[i]._id == lastTicketId) {
+                        res = res.slice(i + 1, res.length);
+                        break;
+                    }
+                }
+            }
+            tickets = tickets.concat(res);
             res.map(function(obj) {
                 var row = document.createElement("div");
                 row.id = obj._id;
@@ -30,7 +41,6 @@ function load(offset) {
                 var title = document.createElement("div");
                 var tags = document.createElement("div");
                 var status = document.createElement("div");
-                console.log(obj);
                 title.innerHTML = obj.problemTitle;
                 title.className = "ticketTitle";
                 tags.innerHTML = obj.Tags;
@@ -57,6 +67,14 @@ function changeToP(item) {
     div.innerHTML = '<p class="field" id="comment" contentEditable="true"></p>'
     div = document.getElementById("ticketView");
     div.scrollTop = div.scrollHeight;
+}
+
+function onListViewScroll(listView) {
+    console.log("scrolling");
+    if (listView.scrollTop === (listView.scrollHeight - listView.offsetHeight)) {
+        console.log(tickets.length);
+        load(tickets.length, 10);
+    }
 }
 
 function onListClick(e, ticket) {
@@ -103,7 +121,7 @@ function onListClick(e, ticket) {
 }
 
 // main
-load(0);
+load(0, 15);
 
 /* Sample Ticket Here
 Tags:Array[2]
