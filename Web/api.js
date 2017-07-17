@@ -179,6 +179,17 @@ router.use('/edit',function(req,res){
             ticket.tags = getTagsList(body.tags);
         }
 
+        if(body.comments && validateComments(body.comments)){
+            ticket.comments = body.comments;
+
+            //timestamp
+            for(var i = 0; i < ticket.comments.length; i++){
+                if(!ticket.comments[i].commentTime){
+                    ticket.comments[i].commentTime = (new Date()).toISOString();
+                }
+            }
+        }
+
         ticket.save(function(err){
             if(err){
                 res.status(400).send(err)
@@ -364,6 +375,23 @@ function getTagsList(str){
     var delim = '~!~';
     str = str.replace(',',' ').replace('  ',' ').replace(' ',delim);
     return str.split(delim);
+}
+
+function validateComments(comments){
+    if(!comments){
+        return false;
+    }
+    var isValid = true;
+    for(var i = 0; i < comments.length; i++){
+        if(!(comments[i].commenterName && comments[i].commenterName.length > 0 && comments[i].commenterName.length <= fieldLengths.comments)){
+            isValid = false;
+        }
+        if(!(comments[i].commentText && comments[i].commentText.length > 0 && comments[i].commentText.length <= fieldLengths.comments)){
+            isValid = false;
+        }
+    }
+
+    return isValid;
 }
 
 //checks that all fields in the given ticket object are valid for a newly created object
