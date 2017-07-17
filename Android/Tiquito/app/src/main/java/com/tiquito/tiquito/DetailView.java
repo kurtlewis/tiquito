@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -42,8 +43,10 @@ import static android.R.attr.id;
 public class DetailView extends AppCompatActivity{
     public static final String TICKET_PARAM = "com.tiquito.tiquito.TICKET_PARAM";
     Thread ithread = null;
+    Thread jthread = null;
     String httpResponse = null;
     Ticket details;
+    JSONObject editedTicket;
     public void MakeHttpGetRequest(final String ticketID) {
 
         ithread = new Thread(new Runnable() {
@@ -107,7 +110,7 @@ public class DetailView extends AppCompatActivity{
         setContentView(R.layout.activity_detail_view);
 
         Intent incomingIntent = getIntent();
-        String ticketId = incomingIntent.getStringExtra(TICKET_PARAM);
+        final String ticketId = incomingIntent.getStringExtra(TICKET_PARAM);
 
         MakeHttpGetRequest(ticketId);
         try {
@@ -174,9 +177,17 @@ public class DetailView extends AppCompatActivity{
                         }
                         else if (item.getTitle() == "Close"){
                             status.setText("Closed");
+                            JSONObject closeTicket = new JSONObject();
+                            try {
+                                closeTicket.put("ticketId", ticketId);
+                                closeTicket.put("status", "Closed");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            MakeHttpsPostRequest(ticketId, closeTicket);
                         }
                         else {
-                            status.setText("Open");
+                            status.setText("Reopen");
                         }
                         return true;
                     }
@@ -202,6 +213,22 @@ public class DetailView extends AppCompatActivity{
                         status.setText("In Progress");
                         mentorName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
                         details.setMentorName(editMentor.getText().toString());
+
+                        editedTicket = new JSONObject();
+                        try {
+                            editedTicket.put("ticketId", ticketId);
+                            editedTicket.put("mentorName", editMentor.getText().toString());
+                            editedTicket.put("status", "In progress");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        MakeHttpsPostRequest(ticketId, editedTicket);
+                        try {
+                            jthread.join();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                     else{
                         rl.addView(claimButton, params);
@@ -236,5 +263,48 @@ public class DetailView extends AppCompatActivity{
             });
         }
     }
+    public void MakeHttpsPostRequest(final String ticketId, final JSONObject ticket) {
 
+        jthread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    HttpsURLConnection connection = (HttpsURLConnection) (new URL("https://test.tiquito.com/api/edit")).openConnection();
+
+                    connection.setRequestMethod("POST");
+                    String body = ticket.toString();
+
+                    connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+
+                    DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+                    wr.writeBytes(body);
+
+                    InputStream in;
+
+                    int status = connection.getResponseCode();
+
+                    if (status != HttpURLConnection.HTTP_OK)
+                        in = connection.getErrorStream();
+                    else
+                        in = new BufferedInputStream(connection.getInputStream());
+
+                    BufferedReader rd = new BufferedReader(new InputStreamReader(in));
+                    String line;
+                    StringBuffer response = new StringBuffer();
+                    while ((line = rd.readLine()) != null) {
+                        response.append(line);
+                        response.append('\r');
+                    }
+                    rd.close();
+                    response.toString();
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+
+                }
+            }
+        });
+        jthread.start();
+    }
 }
