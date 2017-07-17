@@ -8,12 +8,18 @@
         android:label="Tiquito"
         android:supportsRtl="true"
         android:theme="@style/CustomTheme">
-        <activity android:name=".DetailView">
+        <activity android:name=".ListView">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.inent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailView">
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name=".EditView" android:parentActivityName=".DetailView">
             <meta-data

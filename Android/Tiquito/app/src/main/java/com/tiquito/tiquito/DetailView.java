@@ -27,11 +27,19 @@ import static android.R.attr.id;
  */
 
 public class DetailView extends AppCompatActivity{
+    public static final String TICKET_PARAM = "com.tiquito.tiquito.TICKET_PARAM";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view);
+
+        Intent incomingIntent = getIntent();
+        String ticketId = incomingIntent.getStringExtra(TICKET_PARAM);
+
+        // DELETE THIS CODE ONCE WE LOAD TICKETS
+        Toast toast = Toast.makeText(getApplicationContext(), ticketId, Toast.LENGTH_LONG);
+        toast.show();
 
         final RelativeLayout rl = (RelativeLayout) findViewById(R.id.activity_detail_view);
 
