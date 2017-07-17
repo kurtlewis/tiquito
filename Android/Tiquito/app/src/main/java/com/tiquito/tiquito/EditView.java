@@ -3,7 +3,6 @@ package com.tiquito.tiquito;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -12,22 +11,104 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by ltebb on 7/13/2017.
  */
 
 public class EditView extends AppCompatActivity {
+    public static final String TICKET_PARAM = "com.tiquito.tiquito.TICKET_PARAM";
+    Thread ithread = null;
+    Thread jthread = null;
+    String httpResponse = null;
+    Ticket details;
+    public void MakeHttpGetRequest(final String ticketID) {
 
+        ithread = new Thread(new Runnable() {
+            @Override
+            public void run(){
+                try {
+                    HttpsURLConnection connection = (HttpsURLConnection) (new URL("https://test.tiquito.com/api/loadById?ticketId="+ticketID)).openConnection();
+
+                    // Read and store the result line by line then return the entire string.
+                    InputStream in;
+
+                    int status = connection.getResponseCode();
+
+                    if (status != HttpURLConnection.HTTP_OK)
+                        in = connection.getErrorStream();
+                    else
+                        in = new BufferedInputStream(connection.getInputStream());
+
+                    java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
+                    String result = s.hasNext() ? s.next() : "";
+
+                    JSONObject ticketInfo = new JSONObject(result);
+
+                    String id = ticketInfo.getString("_id");
+                    String title = ticketInfo.getString("problemTitle");
+                    JSONObject creator = ticketInfo.getJSONObject("creator");
+                    String name = creator.getString("firstName") + " " + creator.getString("lastName");
+                    String contact = creator.getString("contactInfo");
+                    String loc = creator.getString("location");
+                    String mentor = ticketInfo.getString("mentorName");
+                    if (mentor.equals("None")){
+                        mentor = "";
+                    }
+                    String jstatus = ticketInfo.getString("status");
+                    String description = ticketInfo.getString("problemDescription");
+                    ArrayList<String> tags = new ArrayList<String>();
+
+                    // Tags are a list, so get it as an array and iterate through it
+                    JSONArray jsonTags = ticketInfo.getJSONArray("Tags");
+                    for (int k = 0; k < jsonTags.length(); k++) {
+                        tags.add(jsonTags.getString(k));
+                    }
+
+                    details = new Ticket(id, title, description, loc, "", jstatus, mentor, name, contact, tags, new ArrayList<String>());
+
+                    in.close();
+
+                    httpResponse = result;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    httpResponse=e.toString();
+                }
+            }
+        });
+        ithread.start();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_view);
 
-        final RelativeLayout rl = (RelativeLayout) findViewById(R.id.activity_edit_view);
+        Intent incomingIntent = getIntent();
+        final String ticketId = incomingIntent.getStringExtra(TICKET_PARAM);
 
-        final Ticket details = Ticket.getTestTicket();
+        MakeHttpGetRequest(ticketId);
+        try {
+            ithread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        final RelativeLayout rl = (RelativeLayout) findViewById(R.id.activity_edit_view);
 
         final ArrayList<EditText> allEditViews = new ArrayList<EditText>();
 
@@ -81,19 +162,93 @@ public class EditView extends AppCompatActivity {
 
         final Button doneButton = (Button) findViewById(R.id.done_id);
         final Intent intent = new Intent(this, DetailView.class);
+        intent.putExtra(DetailView.TICKET_PARAM, details.getId());
 
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                details.setTitle(editTitle.getText().toString());
-                details.setCreator(editCreator.getText().toString());
-                details.setContactInfo(editContactInfo.getText().toString());
-                details.setDescription(editDescription.getText().toString());
-                details.setLocation(editLocation.getText().toString());
-                details.setMentorName(editMentor.getText().toString());
+                String title = editTitle.getText().toString();
+                String creator = editCreator.getText().toString();
+                String contactInfo = editContactInfo.getText().toString();
+                String description = editDescription.getText().toString();
+                String location = editLocation.getText().toString();
+                String mentor = editMentor.getText().toString();
+
+                details.setTitle(title);
+                details.setCreator(creator);
+                details.setContactInfo(contactInfo);
+                details.setDescription(description);
+                details.setLocation(location);
+                details.setMentorName(mentor);
+
+                JSONObject editedTicket = new JSONObject();
+                try {
+                    editedTicket.put("ticketId", ticketId);
+                    editedTicket.put("problemTitle", title);
+                    editedTicket.put("problemDescription", description);
+                    editedTicket.put("firstName", creator);
+                    editedTicket.put("lastName", creator);
+                    editedTicket.put("location", location);
+                    editedTicket.put("contactInfo", contactInfo);
+                    editedTicket.put("status", status);
+                    editedTicket.put("mentorName", mentor);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                MakeHttpsPostRequest(ticketId, editedTicket);
+                try {
+                    jthread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 startActivity(intent);
             }
         });
+    }
+    public void MakeHttpsPostRequest(final String ticketId, final JSONObject ticket) {
+
+        jthread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    HttpsURLConnection connection = (HttpsURLConnection) (new URL("https://test.tiquito.com/api/edit")).openConnection();
+
+                    connection.setRequestMethod("POST");
+                    String body = ticket.toString();
+
+                    connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+
+                    DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+                    wr.writeBytes(body);
+
+                    InputStream in;
+
+                    int status = connection.getResponseCode();
+
+                    if (status != HttpURLConnection.HTTP_OK)
+                        in = connection.getErrorStream();
+                    else
+                        in = new BufferedInputStream(connection.getInputStream());
+
+                    BufferedReader rd = new BufferedReader(new InputStreamReader(in));
+                    String line;
+                    StringBuffer response = new StringBuffer();
+                    while ((line = rd.readLine()) != null) {
+                        response.append(line);
+                        response.append('\r');
+                    }
+                    rd.close();
+                    response.toString();
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+
+                }
+            }
+        });
+        jthread.start();
     }
 }

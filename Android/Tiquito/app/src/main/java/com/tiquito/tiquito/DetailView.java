@@ -152,13 +152,14 @@ public class DetailView extends AppCompatActivity{
 
         final ImageButton popupMenu = (ImageButton) findViewById(R.id.popup_id);
         final Intent intent = new Intent(this, EditView.class);
+        intent.putExtra(DetailView.TICKET_PARAM, details.getId());
 
         popupMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final PopupMenu popupOptions = new PopupMenu(DetailView.this, popupMenu);
                 popupOptions.getMenu().add("Edit");
-                if(status.getText()=="In Progress" || status.getText() == "Open") {
+                if(status.getText().equals("In Progress") || status.getText().equals("Open")) {
                     popupOptions.getMenu().add("Close");
                 }
                 else{
