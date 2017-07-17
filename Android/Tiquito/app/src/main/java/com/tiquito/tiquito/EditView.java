@@ -213,6 +213,7 @@ public class EditView extends AppCompatActivity {
             @Override
             public void run() {
                 try {
+                    ticket.put("token", getString(R.string.API_KEY));
                     HttpsURLConnection connection = (HttpsURLConnection) (new URL("https://test.tiquito.com/api/edit")).openConnection();
 
                     connection.setRequestMethod("POST");

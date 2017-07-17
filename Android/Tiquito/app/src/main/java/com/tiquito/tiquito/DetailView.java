@@ -217,6 +217,7 @@ public class DetailView extends AppCompatActivity{
                         editedTicket = new JSONObject();
                         try {
                             editedTicket.put("ticketId", ticketId);
+                            editedTicket.put("token", "test-api-key123");
                             editedTicket.put("mentorName", editMentor.getText().toString());
                             editedTicket.put("status", "In progress");
                         } catch (JSONException e) {
@@ -269,6 +270,7 @@ public class DetailView extends AppCompatActivity{
             @Override
             public void run() {
                 try {
+                    ticket.put("token", getString(R.string.API_KEY));
                     HttpsURLConnection connection = (HttpsURLConnection) (new URL("https://test.tiquito.com/api/edit")).openConnection();
 
                     connection.setRequestMethod("POST");
