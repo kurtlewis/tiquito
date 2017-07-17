@@ -77,6 +77,10 @@ function onListViewScroll(listView) {
     }
 }
 
+function submit() {
+    
+}
+
 function onListClick(e, ticket) {
     console.log(ticket);
     ticketView = document.getElementById("ticketView");
@@ -86,6 +90,7 @@ function onListClick(e, ticket) {
         comments += '<p class="field" id="comment" onmouseover="makeEditable(this)">' + ticket.comments[i].body + '</p>\n'
     }
     comments += '<div id="commentButton"><button type="button" onclick="changeToP(this)">Add a comment</button></div>'
+    var submitChanges = '<div id="submitButton"><button type="button" onclick="submit()">Submit Changes</button></div>'
     var html = `
     <p>Title</p>
     <p class="field" id="title" onmouseover="makeEditable(this)">${ticket.problemTitle}</p>
@@ -111,6 +116,7 @@ function onListClick(e, ticket) {
     ${comments}
     <p>Timestamp</p>
     <p class="field noevents" id="timestamp">${ticket.creationTime}</p>
+    ${submitChanges}
     `
     ticketView.innerHTML = html;
     var prev = document.getElementById(lastClicked);
