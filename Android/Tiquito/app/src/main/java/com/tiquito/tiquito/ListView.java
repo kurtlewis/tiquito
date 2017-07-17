@@ -1,13 +1,11 @@
 package com.tiquito.tiquito;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
+import android.widget.Toast;
+
 
 import java.util.ArrayList;
 
@@ -23,10 +21,14 @@ public class ListView extends AppCompatActivity {
         setContentView(R.layout.activity_list_view);
 
         // Get ticket list
-        mTicketList = Ticket.getTestTicketList();
-        mTicketList.addAll(Ticket.getTestTicketList());
-        mTicketList.addAll(Ticket.getTestTicketList());
+        mTicketList = Ticket.getTicketList();
 
+        // if the list size is 0, an error probably occurred
+        if (mTicketList.size() == 0) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "An error occurred while loading tickets", Toast.LENGTH_LONG);
+            toast.show();
+        }
 
         mRecyclerView = (RecyclerView) findViewById(R.id.ticket_recycler_view);
 

@@ -1,6 +1,17 @@
 package com.tiquito.tiquito;
 
+import android.os.AsyncTask;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by kurt on 7/6/17.
@@ -43,9 +54,77 @@ public class Ticket {
      * @return ArrayList<Ticket>
      */
     public static ArrayList<Ticket> getTicketList() {
-        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        try {
+            return new RetrieveTicketListTask().execute("").get();
+        } catch (Exception e) { // TODO: catch more specific exceptions
+            e.printStackTrace();
+            // Something went wrong - return a blank list.
+            return new ArrayList<Ticket>();
+        }
+    }
 
-        return tickets;
+
+    /**
+     * Static class for hitting the api for loading lists in the background
+     * TODO: catch more specific exceptions
+     */
+    private static class RetrieveTicketListTask extends AsyncTask<String, Void, ArrayList<Ticket>> {
+
+        @Override
+        protected ArrayList<Ticket> doInBackground(String... params) {
+            ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+
+            try {
+                URL url = new URL("https://test.tiquito.com/api/load");
+                HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+
+                try {
+
+                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+                    // Convert input stream to string
+                    java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
+                    String result = s.hasNext() ? s.next() : "";
+
+                    // Convert the string of the json array to a json array object
+                    JSONArray jsonTicketList = new JSONArray(result);
+
+                    for (int i = 0; i < jsonTicketList.length(); i++) {
+                        JSONObject jT = jsonTicketList.getJSONObject(i);
+                        String id = jT.getString("_id");
+                        String title = jT.getString("problemTitle");
+                        String status = jT.getString("status");
+                        String description = jT.getString("problemDescription");
+                        ArrayList<String> tags = new ArrayList<String>();
+
+                        // Tags are a list, so get it as an array and iterate through it
+                        JSONArray jsonTags = jT.getJSONArray("Tags");
+                        for (int k = 0; k < jsonTags.length(); k++) {
+                            tags.add(jsonTags.getString(k));
+                        }
+
+                        // ***************************************************************
+                        // NOTE - COME BACK HERE IF I WANT MORE ACTUAL DATA IN THE TICKETS
+                        // ***************************************************************
+                        // Create the actual ticket
+                        // plugging in blank values for now, because the list doesn't display them
+                        Ticket ticket = new Ticket(id, title, description, "", "", status, "", "",
+                                "", tags, new ArrayList<String>());
+                        tickets.add(ticket);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    // Free up the connection
+                    urlConnection.disconnect();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return tickets;
+        }
+
     }
 
     /**
