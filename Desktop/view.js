@@ -52,10 +52,22 @@ function makeEditable(item) {
     console.log("here");
 }
 
+function changeToP(item) {
+    var div = document.getElementById("commentButton");
+    div.innerHTML = '<p class="field" id="comment" contentEditable="true"></p>'
+    div = document.getElementById("ticketView");
+    div.scrollTop = div.scrollHeight;
+}
+
 function onListClick(e, ticket) {
     console.log(ticket);
     ticketView = document.getElementById("ticketView");
     ticketView.innerHTML = "";
+    var comments = "";
+    for (var i = 0; i < ticket.comments.length; i++) {
+        comments += '<p class="field" id="comment" onmouseover="makeEditable(this)">' + ticket.comments[i].body + '</p>\n'
+    }
+    comments += '<div id="commentButton"><button type="button" onclick="changeToP(this)">Add a comment</button></div>'
     var html = `
     <p>Title</p>
     <p class="field" id="title" onmouseover="makeEditable(this)">${ticket.problemTitle}</p>
@@ -75,6 +87,10 @@ function onListClick(e, ticket) {
     </select>
     <p>Mentor Name</p>
     <p class="field" id="mentorname" onmouseover="makeEditable(this)">${ticket.mentorName}</p>
+    <p>Tags</p>
+    <p class="field" id="tags" onmouseover="makeEditable(this)">${ticket.Tags}</p>
+    <p>Comments</p>
+    ${comments}
     `
     ticketView.innerHTML = html;
     var prev = document.getElementById(lastClicked);
