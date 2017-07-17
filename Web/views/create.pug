@@ -34,6 +34,7 @@ block content
             div.form-group
                 label(for='tags') Problem Tags:
                 textarea#tags.form-control(type='text', placeholder='Provide any tags for your issue seperated by either spaces or comas' name='tags')
+            input(type="text", name="redir", value="/list" style="display:none")
             button.btn.btn-primary(type='submit') Submit Ticket
 
 block append head
