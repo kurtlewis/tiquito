@@ -87,7 +87,7 @@ router.post('/create',function(req,res){
             res.status(400).send('failure while saving ticket');
         }else{
             if(body.redir){
-                res.redirect(200,body.redir);
+                res.redirect(body.redir);
             } else {
                 res.status(200).send('success');
             }
@@ -196,11 +196,10 @@ router.post('/edit',function(req,res){
             if(err){
                 res.status(400).send(err)
             } else {
-                res.status(200);
                 if(body.redir){
-                    res.redirect(redir);
+                    res.redirect(body.redir);
                 } else {
-                    res.send('success');
+                    res.status(200).send('success');
                 }
             }
         });
@@ -353,7 +352,7 @@ router.get('/delete',function(req,res){
                         res.status(500).send(err);
                     } else {
                         if(body.redir){
-                            res.redirect(200,body.redir);
+                            res.redirect(body.redir);
                         } else {
                             res.status(200).send('removed');
                         }
@@ -414,11 +413,10 @@ router.post('/comment',function(req,res){
             if(err){
                 res.status(400).send(err)
             } else {
-                res.status(200);
                 if(body.redir){
-                    res.redirect(redir);
-                } else {
-                    res.send('success');
+                    res.redirect(body.redir);
+                } else {  
+                    res.status(200).send('success');
                 }
             }
         });
