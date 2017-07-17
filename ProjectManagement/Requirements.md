@@ -6,6 +6,7 @@
 |Kurt Lewis, Laura Tebben, Zachary Collins, James Hillman, Zachary Sang|23 May, 2017|Created|
 |Zachary Collins, Zachary Sang|19 June, 2017|Add roles, add constraints, add actors to requirements|
 |Kurt Lewis, Laura Tebben|19 June, 2017|Add Scenarios|
+|Kurt Lewis | 17 July, 2017| Modify priority of R2009, R2010, R2011 |
 
 ## Introduction
 A hackathon is a programming competition that encourages people to learn new things and to build something creative and novel. Because of the explorative nature of hackathons, it is common for participants to have questions and issues throughout the event. While mentors are usually present, it is a challenge to connect teams having issues with mentors with the relevant knowledge. Tiquito is the solution to this. Tiquito is a customer service ticket tracking system designed for hackathons that allows participants to publish a description of their issue with tags indicating the relevant topics. Mentors will then be able to view issues, assign themselves, and ultimately resolve the issues.
@@ -548,21 +549,21 @@ When viewing the list of tickets, users should be able to click “detail view�
 When viewing the list of tickets, users should be able to enter a search query in a text box and click “Search.” The result will be the list of tickets that contain their search term.
 
 ## R2009 - All users should be able to filter tickets on the website
-#### Priority -> 1
+#### Priority -> 2
 #### Owner -> James Hillman
 #### Actor -> Participant
 #### Description 
 When viewing the list of tickets, users should be able to select “Open”, “Closed”, or “Open and Closed” from a dropdown to filter for tickets matching the selected status. The result will be the list of tickets matching the selected status.
 
 ## R2010 - All users should be able to sort tickets on the website
-#### Priority -> 1
+#### Priority -> 2
 #### Owner -> James Hillman
 #### Actor -> Participant
 #### Description
 When viewing the list of tickets, users should be able to sort tickets according to Submission Time or Title by clicking on the corresponding header cell. The result will be the list of tickets sorted chronologically by time or alphabetically by title. 
 
 ## R2011 - Any user must be able to comment on tickets through the website
-#### Priority -> 1 
+#### Priority -> 2 
 #### Owner -> Zachary Sang
 #### Actor -> Participant
 #### Description
