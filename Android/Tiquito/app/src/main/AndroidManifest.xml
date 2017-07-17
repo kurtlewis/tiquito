@@ -14,7 +14,10 @@
                 <category android:name="android.inent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailView">
+        <activity android:name=".DetailView" android:parentActivityName=".ListView">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ListView" />
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
