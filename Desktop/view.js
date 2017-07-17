@@ -10,7 +10,7 @@ function load(offset, count) {
             if (offset == 0) {
                 listView.innerHTML = "";
                 var titlebar = `
-                <button id="refresh" type="button" onclick="load(0, 15)">&#xe031; Refresh</button>&nbsp;
+                <button id="refresh" type="button" onclick="load(0, 15)">&#x27f3; Refresh</button>&nbsp;
                 <h2>All Tickets</h2>
                 <h3>Select one to view more details</h3>
                 <div id="titlebar">
@@ -109,6 +109,8 @@ function onListClick(e, ticket) {
     <p class="field" id="tags" onmouseover="makeEditable(this)">${ticket.Tags}</p>
     <p>Comments</p>
     ${comments}
+    <p>Timestamp</p>
+    <p class="field" id="timestamp">${ticket.creationTime}</p>
     `
     ticketView.innerHTML = html;
     var prev = document.getElementById(lastClicked);
