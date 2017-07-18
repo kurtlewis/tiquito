@@ -177,8 +177,17 @@ router.post('/edit',function(req,res){
             ticket.mentorName = body.mentorName;
         }
 
-        if(authed && body.tags && body.tags.length > 0 && body.tags.length <= fieldLengths.tags){
-            ticket.Tags = getTagsList(body.tags);
+        if(authed && body.tags && body.tags.length > 0){
+            var tagList = getTagsList(body.tags);
+            var isValid = true;
+            for(var i = 0; i < tagList.length; i++){
+                if(!(tagList[i].length > 0 && tagList[i].length <= fieldLengths.tags)){
+                    isValid = false;
+                }
+            }
+            if(isValid){
+                ticket.Tags = tagList;
+            }
         }
 
         if(authed && body.comments && validateComments(body.comments)){
