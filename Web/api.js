@@ -178,7 +178,7 @@ router.post('/edit',function(req,res){
         }
 
         if(authed && body.tags && body.tags.length > 0 && body.tags.length <= fieldLengths.tags){
-            ticket.tags = getTagsList(body.tags);
+            ticket.Tags = getTagsList(body.tags);
         }
 
         if(authed && body.comments && validateComments(body.comments)){
