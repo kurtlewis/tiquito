@@ -82,24 +82,17 @@ function viewmore(){
     url = '/api/load?';
     url += 'offset=' + viewmore_offset + '&';
     renderTable();
-    div.innerHTML = viewmore_offset;
 }
 
 function detailview(data){
-    div.innerHTML = data;
     window.location.href = '/detail?ticketid='+data;
 }
 
 // getUrlParameter('post'); // "1234"
 // getUrlParameter('action'); // "edit"
 
-var div = document.createElement("div");
-div.style.width = "300px";
-div.style.height = "100px";
-div.style.background = "red";
-div.style.color = "white";
-div.innerHTML = url;
-document.body.appendChild(div);
+
+
 
 const table = document.getElementById('commentstable');
 var url = '/api/loadById?ticketId=';
