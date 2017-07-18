@@ -162,7 +162,7 @@ public class DetailView extends AppCompatActivity{
             public void onClick(View view) {
                 final PopupMenu popupOptions = new PopupMenu(DetailView.this, popupMenu);
                 popupOptions.getMenu().add("Edit");
-                if(status.getText().equals("In Progress") || status.getText().equals("Open")) {
+                if(status.getText().equals("In Progress") || status.getText().equals("In progress") || status.getText().equals("Open")) {
                     popupOptions.getMenu().add("Close");
                 }
                 else{
@@ -185,9 +185,27 @@ public class DetailView extends AppCompatActivity{
                                 e.printStackTrace();
                             }
                             MakeHttpsPostRequest(ticketId, closeTicket);
+                            try {
+                                jthread.join();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
                         else {
                             status.setText("Reopen");
+                            JSONObject openTicket = new JSONObject();
+                            try {
+                                openTicket.put("ticketId", ticketId);
+                                openTicket.put("status", "Open");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            MakeHttpsPostRequest(ticketId, openTicket);
+                            try {
+                                jthread.join();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
                         return true;
                     }
