@@ -27,10 +27,12 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         public Ticket ticket;
         public TextView mTitle;
         public TextView mTags;
+        public TextView mStatus;
         public ViewHolder(View itemView) {
             super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.ticket_list_title);
             mTags = (TextView) itemView.findViewById(R.id.ticket_list_tags);
+            mStatus = (TextView) itemView.findViewById(R.id.ticket_list_status);
 
             // Click listener for item clicks
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +92,9 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         }
         tags = (String)tags.subSequence(0, tags.length()-1);
         textView.setText(tags);
+
+        textView = holder.mStatus;
+        textView.setText(ticket.getStatus());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
