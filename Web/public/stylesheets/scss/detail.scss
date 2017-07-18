@@ -1,0 +1,198 @@
+@import "global.scss";
+
+body{
+    margin-top: 25px;
+    margin-bottom: 50px;
+    font-family: "Helvetica Neue", Helvetica, Arial;
+    // background: -webkit-linear-gradient(left, #3a1c71,#d76d77,#ffaf7b);
+    background: -webkit-linear-gradient(left,#ffffff, #ece9e6);
+    // background: -webkit-linear-gradient(left,#ef3b36,#870000);
+}
+
+h1{
+    color: $main-color;
+    // color: white;
+    font-size: 50px;
+}
+
+h3{
+    color: $main-color;
+    // color:white;
+    margin-left: 10%;
+}
+
+.container {
+    margin: auto;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#backplate {
+    // padding: 0px 25px 25px;
+    background: white;
+    box-shadow: 0px 0px 0px 0px rgba( 255,255,255,0.4), 0px 4px 10px rgba( 0,0,0,0.33 );
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:5px;
+}
+
+#backplate .sep {
+    height: 1px;
+    background: $main-color;
+    width: 95%;
+    padding: 1px;
+    margin: auto;
+}
+
+#firstdiv{
+    height: 20px;
+}
+
+#titletable {
+    width:100%;
+    min-width:500px;
+    border-collapse:collapse;
+}
+
+#fancytable{  
+  width:98%;
+  margin: auto;
+  min-width:500px;
+  border-collapse:collapse;  
+  font-weight:bold;
+  color:#6b6b6b;
+    -moz-box-shadow:
+        0px 10px 10px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    -webkit-box-shadow:
+        0px 10px 10px rgba(000,000,000,0.1),
+        inset 0px 5px 0px rgba(255,255,255,0.5);
+    box-shadow:
+        0px 10px 10px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    // text-align: left;
+}
+
+#fancytable{
+    background:#f6f3f7;
+    border-bottom:rgba(0,0,0,.05) 1px solid;
+}
+  
+ td{    
+    box-sizing:border-box;
+    padding-left:30px;
+}
+
+ th{
+    padding-left: 30px;
+    text-align: left;
+}
+
+#commentstable{  
+  width:98%;
+  margin: auto;
+  min-width:500px;
+  border-collapse:seperate;  
+  font-weight:bold;
+  color:white;
+    -moz-box-shadow:
+        0px 10px 10px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    -webkit-box-shadow:
+        0px 10px 10px rgba(000,000,000,0.1),
+        inset 0px 5px 0px rgba(255,255,255,0.5);
+    box-shadow:
+        0px 10px 10px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    // text-align: left;
+}
+
+#commentstable{
+    background: #808080;
+}
+
+#headingTr2{
+    height: 30px;
+    background: #4d4d4d;
+    color: white;
+    font-size: 12pt;
+    border:0px solid;
+}
+
+#headingTr{
+    height:30px;
+    background: $main-color;
+    color:#f6f3f7; 
+    font-size:12pt;
+    border:0px solid;
+}  
+
+#centerme {
+    text-align: center;
+}
+
+textarea{
+    background: #e6e6e6;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    padding: 5px 5px;
+    height: 100px;
+    width: 95%;
+    margin: 10px;
+    box-shadow: inset 0px 2px 3px rgba( 0,0,0,0.1 );
+    clear: both;
+    font-family: Helvetica, Arial;
+
+}
+
+textarea:focus {
+    background: white;
+    box-shadow: 0px 0px 0px 1px black, inset 0px 2px 3px rgba(0,0,0,0.2), 0px 5px 5px rgba(0,0,0,0.15);
+    outline:none;
+}
+
+#commentbutton {
+    width: 160px;
+    height: 35px;
+    margin-left: 80%;
+    // padding: 15px 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+        background: -moz-linear-gradient(
+        top,
+        #b9c5dd 0%,
+        #a4b0cb);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(#808080),
+        to(#4d4d4d));
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #737b8d;
+    -moz-box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    -webkit-box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    text-shadow:
+        0px 1px 3px rgba(000,000,000,0.3),
+        0px 0px 0px rgba(255,255,255,0);
+    display: table;
+    position: static;
+    clear: both;
+}
+
