@@ -133,7 +133,11 @@ router.post('/edit',function(req,res){
     var body = req.body;
     
     if(!body.ticketId){
-        res.status(400).send('please specify an id');
+        if(body.redir){
+            res.redirect(body.redir)
+        }else{
+            res.status(400).send('please specify an id');
+        }
         return;
     }
 
@@ -203,7 +207,11 @@ router.post('/edit',function(req,res){
 
         ticket.save(function(err){
             if(err){
-                res.status(400).send(err)
+                if(body.redir){
+                    res.redirect(body.redir);
+                } else {
+                    res.status(400).send(err)
+                }
             } else {
                 if(body.redir){
                     res.redirect(body.redir);
@@ -408,7 +416,7 @@ router.post('/comment',function(req,res){
             res.status(400).send(err);
         }
 
-        var newComment;
+        var newComment = {};
         newComment.commenterName = body.commenterName;
         newComment.commentText = body.commentText;
 
