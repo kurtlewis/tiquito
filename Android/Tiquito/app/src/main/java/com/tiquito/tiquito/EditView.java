@@ -217,7 +217,9 @@ public class EditView extends AppCompatActivity {
                     editedTicket.put("problemTitle", title);
                     editedTicket.put("problemDescription", description);
                     editedTicket.put("firstName", nameArray[0]);
-                    editedTicket.put("lastName", nameArray[1]);
+                    if(nameArray.length > 1){
+                        editedTicket.put("lastName", nameArray[1]);
+                    }
                     editedTicket.put("location", location);
                     editedTicket.put("contactInfo", contactInfo);
                     editedTicket.put("status", status);
