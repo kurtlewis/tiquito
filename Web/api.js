@@ -376,6 +376,7 @@ router.get('/delete',function(req,res){
         * ticketId (ticketId of the ticket)
         * commenterName
         * commentText
+        * ~redir (url toi redirect to)
 
     Success Response:
         Code: 200
