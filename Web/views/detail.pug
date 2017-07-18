@@ -57,20 +57,17 @@ block content
                 th Comments
                 th Date of Post
                 th Author
-            tr
-                td This is me testing the comments
-                td May 5th
-                td Author Mc Author
-            tr
-                td This is me testing the comments
-                td May 5th
-                td Author Mc Author
         
         div#firstdiv
+        form(method='POST' action='/api/comment')
+            div.form-group
+                textarea#CommentSpot.form-control(type='text', placeholder='Do you have a solution to this problem? Leave a comment here!', name='commentText')
+            div.form-group
+                textarea#CommentAuthor.form-control(type='text', placeholder='Your Handle Here', name='commenterName')
+            input(type="text", name="redir", id="redir",style="display:none")
+            input(type="text", name="ticketId", id="ticketId",style="display:none")
+            button.btn.btn-primary#commentbutton(type='submit') Submit Comment
 
-        textarea#CommentSpot(type='text', placeholder='Do you have a solution to this problem? Leave a comment here!' name='tags')
-
-        button#commentbutton(onclick="submitcommentfunction();") Submit Comment
 
         div#firstdiv
 
