@@ -4,6 +4,7 @@ var ticketId = getUrlParameter('ticketId');
 var ticketUrl = `/api/loadById?ticketId=${ticketId}`;
 fetch(ticketUrl)
 .then(function(res){
+    console.log(res);
     return res.json();
 })
 .then(function(ticket){
@@ -31,7 +32,6 @@ fetch(ticketUrl)
 });
 
 //fix up the edit redir
-console.log('heyyya' + ticketId);
 document.getElementById('redir').setAttribute('value',`/detail?ticketid=${ticketId}`);
 document.getElementById('ticketId').setAttribute('value',ticketId);
 
