@@ -45,4 +45,21 @@ public class ListView extends AppCompatActivity {
         mRecyclerView.setAdapter(mTicketAdapter);
 
     }
+
+    // Overriding this function to force the list to update anytime it is reopened.
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Get ticket list
+        mTicketList = Ticket.getTicketList();
+
+        // if the list size is 0, an error probably occurred
+        if (mTicketList.size() == 0) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "An error occurred while loading tickets", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        mTicketAdapter = new TicketAdapter(this, mTicketList);
+        mRecyclerView.setAdapter(mTicketAdapter);
+    }
 }
