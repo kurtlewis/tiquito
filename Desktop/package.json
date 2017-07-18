@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "main": "main.js",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "jquery": "^3.2.1"
   }
 }

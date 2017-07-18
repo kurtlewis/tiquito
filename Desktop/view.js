@@ -6,12 +6,14 @@ var tickets = [];
 // ID of last ticket in list, used for catching duplicates in load function
 var lastClicked = "";
 
+require('dotenv').config();
+
 /*Load function
   Takes offset (number of tickets to skip), count (maximum number of tickets to fetch)
   Skips any duplicate tickets, but duplicates are counted in count parameter*/
 function load(offset, count) {
     var req = new XMLHttpRequest();
-    req.open('GET', "http://test.tiquito.com/api/load?offset=" + offset + "&limit=" + count, true);
+    req.open('GET', "https://test.tiquito.com/api/load?offset=" + offset + "&limit=" + count, true);
     req.onreadystatechange = function(e) {
         if (this.readyState == 4) {
             var res = JSON.parse(req.responseText);
@@ -76,7 +78,7 @@ function makeEditable(item) {
   NOTE: clicked button must be in a div with id "commentButton"*/
 function changeToP(item) {
     var div = document.getElementById("commentButton");
-    div.innerHTML = '<p class="field" id="comment" contentEditable="true"></p>'
+    div.innerHTML = '<p class="field comment" contentEditable="true"></p>'
     div = document.getElementById("ticketView");
     div.scrollTop = div.scrollHeight;
 }
@@ -92,7 +94,53 @@ function onListViewScroll(listView) {
 
 /*Onclick function to submit edits made to a ticket*/
 function submit() {
-    
+    var id = document.getElementsByClassName("highlight")[0].id;
+    var ticketToEdit = tickets.find(x => x._id == id);
+    if (ticketToEdit) {
+        ticketToEdit.token = process.env.TOKEN;
+        ticketToEdit.ticketId = ticketToEdit._id;
+        ticketToEdit.problemTitle = document.getElementById("title").innerHTML;
+        ticketToEdit.problemDescription = document.getElementById("description").innerHTML;
+        var name = document.getElementById("name").innerHTML;
+        ticketToEdit.creator.firstName = name.substr(0,name.indexOf(' '));
+        ticketToEdit.creator.lastName = name.substr(name.indexOf(' ') + 1);
+        ticketToEdit.creator.location = document.getElementById("location").innerHTML;
+        ticketToEdit.creator.contactInfo = document.getElementById("contactinfo").innerHTML;
+        ticketToEdit.status = document.getElementById("status").options[document.getElementById("status").selectedIndex].value;
+        ticketToEdit.mentorName = document.getElementById("mentorname").innerHTML;
+        ticketToEdit.Tags = document.getElementById("tags").innerHTML;
+        var comments = document.getElementsByClassName("comment");
+        for (var i = 0; i < ticketToEdit.comments.length; i++) {
+            if (comments[i].innerHTML == "") {
+                comments.splice(i, 1);
+                ticketToEdit.comments.splice(i, 1);
+                i--;
+            }
+            else {
+                ticketToEdit.comments[i].commentText = comments[i].innerHTML;
+            }
+        }
+        if (comments.length - 1 == ticketToEdit.comments.length && comments[comments.length - 1].innerHTML != "" ) {
+            var newComment = {};
+            newComment.commentText = comments[comments.length - 1].innerHTML;
+            var mentor = document.getElementById("mentorname").innerHTML;
+            newComment.commenterName = mentor != "" ? mentor : "Anonymous Organizer";
+            ticketToEdit.comments.push(newComment);
+        }
+
+        var req = new XMLHttpRequest();
+        req.open('POST', 'https://test.tiquito.com/api/edit', true);
+        var strToSend = JSON.stringify(ticketToEdit);
+        req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        req.onreadystatechange = function() {
+            console.log("changed");
+            if(req.readyState == XMLHttpRequest.DONE && req.status == 200) {
+                alert(req.responseText);
+            }
+        }
+        console.log(strToSend);
+        req.send(strToSend);
+    }
 }
 
 /*Onclick function to display the full contents of a ticket
@@ -102,7 +150,7 @@ function onListClick(e, ticket) {
     ticketView.innerHTML = "";
     var comments = "";
     for (var i = 0; i < ticket.comments.length; i++) {
-        comments += '<p class="field" id="comment" onmouseover="makeEditable(this)">' + ticket.comments[i].body + '</p>\n'
+        comments += '<p class="field comment" onmouseover="makeEditable(this)">' + ticket.comments[i].body + '</p>\n'
     }
     comments += '<div id="commentButton"><button type="button" onclick="changeToP(this)">Add a comment</button></div>'
     var submitChanges = '<div id="submitButton"><button type="button" onclick="submit()">Submit Changes</button></div>'
@@ -118,9 +166,9 @@ function onListClick(e, ticket) {
     <p>Location</p>
     <p class="field" id="location" onmouseover="makeEditable(this)">${ticket.creator.location}</p>
     <p>Status</p>
-    <select name="status">
+    <select name="status" id="status">
         <option value="Open" ${ticket.status == "Open" ? "selected" : ""}>Open</option>
-        <option value="In Progress" ${ticket.status == "In Progress" ? "selected" : ""}>In Progress</option>
+        <option value="In progress" ${ticket.status == "In Progress" ? "selected" : ""}>In Progress</option>
         <option value="Closed" ${ticket.status == "Closed" ? "selected" : ""}>Closed</option>
     </select>
     <p>Mentor Name</p>
