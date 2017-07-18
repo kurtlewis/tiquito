@@ -7,6 +7,7 @@
 |Zachary Collins, Zachary Sang|19 June, 2017|Add roles, add constraints, add actors to requirements|
 |Kurt Lewis, Laura Tebben|19 June, 2017|Add Scenarios|
 |Kurt Lewis | 17 July, 2017| Modify priority of R2009, R2010, R2011 |
+|Kurt Lewis | 17 July, 2017| Add R4007 |
 
 ## Introduction
 A hackathon is a programming competition that encourages people to learn new things and to build something creative and novel. Because of the explorative nature of hackathons, it is common for participants to have questions and issues throughout the event. While mentors are usually present, it is a challenge to connect teams having issues with mentors with the relevant knowledge. Tiquito is the solution to this. Tiquito is a customer service ticket tracking system designed for hackathons that allows participants to publish a description of their issue with tags indicating the relevant topics. Mentors will then be able to view issues, assign themselves, and ultimately resolve the issues.
@@ -726,3 +727,9 @@ There must be the option to view closed tickets on the android app. On the list 
 #### Actor -> Organizer, Mentor
 #### Description 
 The Android application will be compatible with devices running Android KitKat (4.4+) as to accommodate a reasonably wide range of users.
+
+## R4007 - Android app will be able to search tickets
+#### Priority -> 3
+#### Owner -> Kurt Lewis
+#### Description 
+The Android application will be able to search tickets on the list view app.
