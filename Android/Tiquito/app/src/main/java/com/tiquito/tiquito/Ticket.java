@@ -76,7 +76,7 @@ public class Ticket {
 
             try {
                 // TODO: figure out a way to load tickets dynamically instead of 40 at a time
-                URL url = new URL("https://test.tiquito.com/api/load?limit=40");
+                URL url = new URL("https://tiquito.com/api/load?limit=40");
                 HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
 
                 try {
