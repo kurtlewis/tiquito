@@ -1,7 +1,7 @@
 @import "global.scss";
 
 body{
-    margin-top: 50px;
+    margin-top: 25px;
     margin-bottom: 50px;
     font-family: "Helvetica Neue", Helvetica, Arial;
     // background: -webkit-linear-gradient(left, #3a1c71,#d76d77,#ffaf7b);
@@ -13,15 +13,31 @@ h1{
     color: $main-color;
     // color: white;
     font-size: 50px;
-    margin-left: 10%;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 h3{
     color: $main-color;
     // color:white;
     margin-left: 10%;
+}
+
+#headwrapper{
+    // border: 1px solid black;
+    overflow:hidden;
+    width: 80%;
+    margin-left: 10%;
+    // margin-top: 20px;
+    // margin-bottom: 20px;
+}
+
+#firstdiv{
+    float:left;
+    // border: 1px solid red;
+}
+
+#seconddiv{
+    float:right;
+    // border: 1px solid blue;
 }
 
 .container {
@@ -70,21 +86,23 @@ h3{
 //     padding: 5px;
 // }
 
-// .form-group textarea{
-//     background: #f5f5f5;
-//     -moz-border-radius: 3px;
-//     -webkit-border-radius: 3px;
-//     border-radius: 3px;
-//     border: none;
-//     padding: 13px 10px;
-//     height: 19px;
-//     width: 95%;
-//     margin-bottom: 5px;
-//     box-shadow: inset 0px 2px 3px rgba( 0,0,0,0.1 );
-//     clear: both;
-//     font-family: Helvetica, Arial;
-
-// }
+#searchbox{
+    text-align: center;
+    background: #e6e6e6;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    // padding: 13px 10px;
+    height: 20px;
+    width: 300px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    box-shadow: inset 0px 2px 3px rgba( 0,0,0,0.1 );
+    clear: both;
+    font-family: Helvetica, Arial;
+}
 
 // .form-group textarea:focus {
 //     background: white;
@@ -134,6 +152,84 @@ button {
     clear: both;
 }
 
+#searchbutton {
+    width: 100px;
+    height: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    // padding: 15px 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+        background: -moz-linear-gradient(
+        top,
+        #b9c5dd 0%,
+        #a4b0cb);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(red),
+        to($main-color));
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #737b8d;
+    -moz-box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    -webkit-box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    text-shadow:
+        0px 1px 3px rgba(000,000,000,0.3),
+        0px 0px 0px rgba(255,255,255,0);
+        
+    clear: both;
+}
+
+#viewmorebutton {
+    margin: auto;
+    // padding: 15px 0;
+    margin-top: 15px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+        background: -moz-linear-gradient(
+        top,
+        #b9c5dd 0%,
+        #a4b0cb);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(red),
+        to($main-color));
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #737b8d;
+    -moz-box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    -webkit-box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    text-shadow:
+        0px 1px 3px rgba(000,000,000,0.3),
+        0px 0px 0px rgba(255,255,255,0);
+        
+    clear: both;
+}
 // #problemDescription {
 //     height: 100px;
 // }
@@ -206,7 +302,7 @@ button {
 // tr:nth-child(even) td{background: #F1F1F1;}
 // tr:nth-child(odd) td{background: #ffe6e6;}
 
-table{  
+#listItems{  
   width:100%;
   min-width:500px;
   border-collapse:collapse;  

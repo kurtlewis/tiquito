@@ -1,0 +1,89 @@
+extends layout
+
+block content
+
+    h1 Tiquito
+
+    div.container#backplate 
+        div#firstdiv
+        div.sep
+        table#Titletable
+            tr
+                td#Ticketid 
+                    h3#TicketIdSpot Ticket: 596db4f6597d5d04b836032c
+                td
+                td#TicketTitle
+                    h3 Title: Our group can't figure out OHM's Law
+        div.sep
+        div#firstdiv
+
+        table#fancytable
+            tr#headingTr
+                th First Name
+                th Location at the Hackerspace
+                th Ticket Status
+            tr
+                td#FirstName James
+                td#Location We are in the main hall near the information desk. I am now testing to see how much this cell can hold.
+                td#TicketStatus Open
+
+        div#firstdiv
+        div#firstdiv
+
+        table#fancytable
+            tr#headingTr
+                th#centerme Detailed Description of Problem
+            tr
+                td#ProblemDescription I understand what voltage is and how it is the electric potential energy and that it is the integral of the electric field strength, but I cannot get the whole picture.
+
+        div#firstdiv
+        div#firstdiv
+
+        table#fancytable
+            tr#headingTr
+                th Assigned Mentor
+                th Relevant Tags
+                th Ticket Creation Date
+            tr
+                td#Mentor None
+                td#Tags Space Travel
+                td#CreationDate 1942
+
+        div#firstdiv
+        div#firstdiv
+
+        table#commentstable
+            tr#headingTr2
+                th Comments
+                th Date of Post
+                th Author
+            tr
+                td This is me testing the comments
+                td May 5th
+                td Author Mc Author
+            tr
+                td This is me testing the comments
+                td May 5th
+                td Author Mc Author
+        
+        div#firstdiv
+
+        textarea#CommentSpot(type='text', placeholder='Do you have a solution to this problem? Leave a comment here!' name='tags')
+
+        button#commentbutton(onclick="submitcommentfunction();") Submit Comment
+
+        div#firstdiv
+
+        script
+            include detail.js
+
+
+
+
+        
+
+
+
+
+block append head
+    link(rel="stylesheet", href="/detail.css")

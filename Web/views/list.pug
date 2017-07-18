@@ -2,7 +2,14 @@ extends layout
 
 block content
 
-    h1 Tiquito
+    div#headwrapper
+        div#firstdiv
+            h1 Tiquito
+        div#seconddiv
+            div#seconddiv
+                input#searchbox(type='text', placeholder='Your Query' name='search')
+            div#seconddiv
+                button#searchbutton(onclick="searchfunction();") Search
     //- h3 List View
 
     div.container#backplate
@@ -24,10 +31,10 @@ block content
         //- script
         //-     include scripttest.js
 
+    button#viewmorebutton(onclick="viewmore();") View More
+
         script
             include scripttable.js
-
-
     
 //- mixin newTicket(title,tags,status,id)
 //-     tr.ticket
