@@ -13,6 +13,8 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 
+
+
 function renderTable() {
     fetch(url)
 .then((resp) => resp.json())
@@ -27,6 +29,8 @@ function renderTable() {
 
     },200)
     
+    ticketident = ticket._id;
+
     document.getElementById('TicketTitle').innerHTML = `<h3>Title: ${ticket.problemTitle}</h3>`;
 
     
@@ -73,6 +77,12 @@ function searchfunction(){
     var searchquery = document.getElementById("searchbox").value;
 
     window.location.href = '/list?search='+searchquery+'&';
+}
+
+var ticketident;
+
+function editcall(){
+    window.location.href = '/edit?ticketId=' + ticketident;
 }
 
 var viewmore_offset = 0;
