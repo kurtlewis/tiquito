@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <color name="custom_ribbon_color">#ff2525</color>
+    <color name="custom_accent_color">#555555</color>
+    <color name="custom_white">#eeeeee</color>
+    <style name="CustomTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/custom_ribbon_color</item>
+        <!--<item name="android:colorBackground">@color/custom_white</item> -->
+        <item name="colorPrimaryDark">@color/custom_accent_color</item>
+        <item name="colorAccent">@color/custom_accent_color</item>
+    </style>
+
 </resources>

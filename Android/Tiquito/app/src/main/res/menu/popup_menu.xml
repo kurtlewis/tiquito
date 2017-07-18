@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button
+        android:id="@+id/edit_id"
+        android:title="Edit"/>
+
+    <Button
+        android:id="@+id/close_id"
+        android:title="Close"/>
+</menu>
