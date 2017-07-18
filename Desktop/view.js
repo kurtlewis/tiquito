@@ -97,36 +97,52 @@ function submit() {
     var id = document.getElementsByClassName("highlight")[0].id;
     var ticketToEdit = tickets.find(x => x._id == id);
     if (ticketToEdit) {
+        console.log(ticketToEdit);
         ticketToEdit.token = process.env.TOKEN;
         ticketToEdit.ticketId = ticketToEdit._id;
         ticketToEdit.problemTitle = document.getElementById("title").innerHTML;
         ticketToEdit.problemDescription = document.getElementById("description").innerHTML;
         var name = document.getElementById("name").innerHTML;
-        ticketToEdit.creator.firstName = name.substr(0,name.indexOf(' '));
-        ticketToEdit.creator.lastName = name.substr(name.indexOf(' ') + 1);
-        ticketToEdit.creator.location = document.getElementById("location").innerHTML;
-        ticketToEdit.creator.contactInfo = document.getElementById("contactinfo").innerHTML;
+        if (!name.endsWith(' ') && name.indexOf(' ') > -1) {
+            ticketToEdit.firstName = name.substr(0,name.indexOf(' '));
+            ticketToEdit.lastName = name.substr(name.indexOf(' ') + 1);
+            ticketToEdit.creator.firstName = name.substr(0,name.indexOf(' '));
+            ticketToEdit.creator.lastName = name.substr(name.indexOf(' ') + 1);
+        }
+        else {
+            ticketToEdit.firstName = name;
+            ticketToEdit.lastName = "";
+            ticketToEdit.creator.firstName = name;
+            ticketToEdit.creator.lastName = "";
+        }
+        ticketToEdit.location = document.getElementById("location").innerHTML;
+        ticketToEdit.contactInfo = document.getElementById("contactinfo").innerHTML;
+        ticketToEdit.creator.location = ticketToEdit.location;
+        ticketToEdit.creator.contactInfo = ticketToEdit.contactInfo;
         ticketToEdit.status = document.getElementById("status").options[document.getElementById("status").selectedIndex].value;
         ticketToEdit.mentorName = document.getElementById("mentorname").innerHTML;
         ticketToEdit.Tags = document.getElementById("tags").innerHTML;
+        ticketToEdit.tags = ticketToEdit.Tags;
         var comments = document.getElementsByClassName("comment");
-        for (var i = 0; i < ticketToEdit.comments.length; i++) {
+        var initLength = ticketToEdit.comments.length;
+        for (var i = ticketToEdit.comments.length - 1; i >= 0; i--) {
             if (comments[i].innerHTML == "") {
-                comments.splice(i, 1);
+                delete comments[i];
                 ticketToEdit.comments.splice(i, 1);
-                i--;
             }
             else {
                 ticketToEdit.comments[i].commentText = comments[i].innerHTML;
             }
+            console.log(ticketToEdit.comments);
         }
-        if (comments.length - 1 == ticketToEdit.comments.length && comments[comments.length - 1].innerHTML != "" ) {
+        if (comments.length - 1 == initLength && comments[comments.length - 1].innerHTML != "" ) {
             var newComment = {};
             newComment.commentText = comments[comments.length - 1].innerHTML;
             var mentor = document.getElementById("mentorname").innerHTML;
-            newComment.commenterName = mentor != "" ? mentor : "Anonymous Organizer";
+            newComment.commenterName = mentor != "None" ? mentor : "Anonymous Organizer";
             ticketToEdit.comments.push(newComment);
         }
+        console.log(ticketToEdit.comments);
 
         var req = new XMLHttpRequest();
         req.open('POST', 'https://test.tiquito.com/api/edit', true);
@@ -135,7 +151,11 @@ function submit() {
         req.onreadystatechange = function() {
             console.log("changed");
             if(req.readyState == XMLHttpRequest.DONE && req.status == 200) {
-                alert(req.responseText);
+                alert("Success!");
+                load(0, tickets.length);
+            }
+            else if (req.readyState == XMLHttpRequest.DONE) {
+                alert("Error " + req.status);
             }
         }
         console.log(strToSend);
@@ -150,7 +170,7 @@ function onListClick(e, ticket) {
     ticketView.innerHTML = "";
     var comments = "";
     for (var i = 0; i < ticket.comments.length; i++) {
-        comments += '<p class="field comment" onmouseover="makeEditable(this)">' + ticket.comments[i].body + '</p>\n'
+        comments += '<p class="field comment" onmouseover="makeEditable(this)">' + ticket.comments[i].commentText + '</p>\n'
     }
     comments += '<div id="commentButton"><button type="button" onclick="changeToP(this)">Add a comment</button></div>'
     var submitChanges = '<div id="submitButton"><button type="button" onclick="submit()">Submit Changes</button></div>'
