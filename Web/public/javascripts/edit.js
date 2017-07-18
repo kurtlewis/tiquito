@@ -1,7 +1,7 @@
 var ticketId = getUrlParameter('ticketId');
 
 //populate the edit field values with the ticket
-var ticketUrl = `/api/loadById?ticketId=${ticketId}`;
+var ticketUrl = `/api/loadById?ticketid=${ticketId}`;
 fetch(ticketUrl)
 .then(function(res){
     return res.json();
@@ -32,7 +32,7 @@ fetch(ticketUrl)
 
 //fix up the edit redir
 console.log('heyyya' + ticketId);
-document.getElementById('redir').setAttribute('value',`/detail?ticketId=${ticketId}`);
+document.getElementById('redir').setAttribute('value',`/detail?ticketid=${ticketId}`);
 document.getElementById('ticketId').setAttribute('value',ticketId);
 
 
