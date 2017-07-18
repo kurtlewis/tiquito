@@ -1,7 +1,7 @@
 var ticketId = getUrlParameter('ticketId');
 
 //populate the edit field values with the ticket
-var ticketUrl = `/api/loadById?ticketid=${ticketId}`;
+var ticketUrl = `/api/loadById?ticketId=${ticketId}`;
 fetch(ticketUrl)
 .then(function(res){
     return res.json();
