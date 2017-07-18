@@ -61,7 +61,7 @@ var viewmore_offset = 0;
 function viewmore(){
     viewmore_offset += 10;
     url = '/api/load?';
-    url += 'offset=' + viewmore_offset + '&';
+    url += 'offset=' + viewmore_offset;
     renderTable();
     div.innerHTML = viewmore_offset;
 }

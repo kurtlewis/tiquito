@@ -16,34 +16,53 @@ function getUrlParameter(name) {
 function renderTable() {
     fetch(url)
 .then((resp) => resp.json())
-.then(function(data) {
-    let Titletable = data;
-    return Titletable.map(function(titletable){
+.then(function(ticket) {
+
+    document.getElementById('Ticketid').innerHTML = `<h3>Ticket ID: ${ticket._id}</h3>`;
+    setTimeout(function(){
+        
+    document.getElementById('redir').setAttribute('value','/detail?ticketid='+ticket._id);
+
+    document.getElementById('ticketId').setAttribute('value',ticket._id);
+
+    },200)
+    
+    document.getElementById('TicketTitle').innerHTML = `<h3>Title: ${ticket.problemTitle}</h3>`;
+
+    
+    document.getElementById('FirstName').innerHTML = ticket.creator.firstName;
+
+    document.getElementById('Location').innerHTML = ticket.creator.location;
+
+    document.getElementById('TicketStatus').innerHTML = ticket.status;
+
+    document.getElementById('ProblemDescription').innerHTML = ticket.problemDescription || 'No Description.';
+
+    document.getElementById('Mentor').innerHTML = ticket.mentorName;
+
+    document.getElementById('Tags').innerHTML = ticket.Tags || 'No Description.';
+
+    document.getElementById('CreationDate').innerHTML = ticket.creationTime || 'No Description.';
+
+    var list = ticket.comments;
+
+    list.forEach(function(curr){
         let tr = createNode('tr'),
-            problemtitle = createNode('td'),
-            tags = createNode('td'),
-            ticketstatus = createNode('td');
-            buttonlink = createNode('button');
-        // span.innerHTML = '${item.firstname}';
-        // img.src = item.picture.medium;
-        buttonlink.innerHTML = "View";
-        buttonlink.addEventListener('click', function(){
-            detailview(`${titletable._id}`);
-        })
-        // buttonlink.setAttribute('onclick','detailview();');
-        // buttonlink.setAttribute('onclick',"detailview(\''+`${listItem._id}`+'\');");
-        // buttonlink.onclick = "detailview(`${listItem._id}`);";
-        // buttonlink.onclick = 'detailview(' + `${listItem._id}` + ');';
-        problemtitle.innerHTML = `${titletable.problemTitle}`;
-        tags.innerHTML = `${titletable.Tags}`; 
-        ticketstatus.innerHTML = `${titletable.status}`;
-        // append(li, img);
-        append(tr, problemtitle);
-        append(tr, tags);
-        append(tr, ticketstatus);
-        append(tr, buttonlink);
-        append(table, tr);
+            td1= createNode('td'),
+            td2= createNode('td'),
+            td3= createNode('td');
+            td1.innerHTML = curr.commentText;
+            td2.innerHTML = curr.commentTime;
+            td3.innerHTML = curr.commenterName;
+
+            append(tr, td1);
+            append(tr, td2);
+            append(tr, td3);
+            append(table, tr);
+
+
     })
+    
 })
 .catch(function(error){
     console.log(error);
@@ -82,7 +101,7 @@ div.style.color = "white";
 div.innerHTML = url;
 document.body.appendChild(div);
 
-const table = document.getElementById('Titletable');
+const table = document.getElementById('commentstable');
 var url = '/api/loadById?ticketId=';
 
 var ticketid = getUrlParameter('ticketid');

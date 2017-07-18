@@ -414,6 +414,7 @@ router.post('/comment',function(req,res){
     Ticket.findOne({_id: body.ticketId}).exec(function(err,ticket){
         if(err){
             res.status(400).send(err);
+            return;
         }
 
         var newComment = {};
@@ -421,10 +422,13 @@ router.post('/comment',function(req,res){
         newComment.commentText = body.commentText;
 
         if(validateComment(newComment)){
-            newComment.commentTime = (Date()).toISOString();
+           
+            newComment.commentTime = (new Date()).toISOString();
             ticket.comments.push(newComment);
         } else {
+             
             res.status(400).send('invalid comment');
+            return;
         }
 
         ticket.save(function(err){
@@ -474,6 +478,7 @@ function validateComment(comment){
     if(!(comment.commentText && comment.commentText.length > 0 && comment.commentText.length <= fieldLengths.comments)){
         isValid = false;
     }
+
 
     return isValid;
 }
