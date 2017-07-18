@@ -44,7 +44,7 @@ public class EditView extends AppCompatActivity {
             @Override
             public void run(){
                 try {
-                    HttpsURLConnection connection = (HttpsURLConnection) (new URL("https://test.tiquito.com/api/loadById?ticketId="+ticketID)).openConnection();
+                    HttpsURLConnection connection = (HttpsURLConnection) (new URL("https://tiquito.com/api/loadById?ticketId="+ticketID)).openConnection();
 
                     // Read and store the result line by line then return the entire string.
                     InputStream in;
@@ -251,7 +251,7 @@ public class EditView extends AppCompatActivity {
             public void run() {
                 try {
                     ticket.put("token", getString(R.string.API_KEY));
-                    HttpsURLConnection connection = (HttpsURLConnection) (new URL("https://test.tiquito.com/api/edit")).openConnection();
+                    HttpsURLConnection connection = (HttpsURLConnection) (new URL("https://tiquito.com/api/edit")).openConnection();
 
                     connection.setRequestMethod("POST");
                     String body = ticket.toString();
