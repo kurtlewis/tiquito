@@ -192,7 +192,7 @@ public class DetailView extends AppCompatActivity{
                             }
                         }
                         else {
-                            status.setText("Reopen");
+                            status.setText("Open");
                             JSONObject openTicket = new JSONObject();
                             try {
                                 openTicket.put("ticketId", ticketId);
