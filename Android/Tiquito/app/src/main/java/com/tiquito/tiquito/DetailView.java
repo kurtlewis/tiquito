@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.MenuInflater;
@@ -90,7 +91,17 @@ public class DetailView extends AppCompatActivity{
                         tags.add(jsonTags.getString(k));
                     }
 
-                    details = new Ticket(id, title, description, loc, "", jstatus, mentor, name, contact, tags, new ArrayList<String>());
+                    ArrayList<String> comments = new ArrayList<String>();
+
+                    // Tags are a list, so get it as an array and iterate through it
+                    JSONArray comment = ticketInfo.getJSONArray("comments");
+
+                    for (int k = 0; k < comment.length(); k++) {
+                        JSONObject jsonComments = comment.getJSONObject(k);
+                        comments.add(jsonComments.getString("commentText"));
+                    }
+
+                    details = new Ticket(id, title, description, loc, "", jstatus, mentor, name, contact, tags, comments);
 
                     in.close();
 
@@ -146,6 +157,16 @@ public class DetailView extends AppCompatActivity{
 
         final TextView status = (TextView) findViewById(R.id.status_id);
         status.setText(details.getStatus());
+
+        final TextView comments = (TextView) findViewById(R.id.comments_id);
+        String strComments = TextUtils.join(", ", details.getComments());
+        comments.setText(strComments);
+        allTextViews.add(comments);
+
+        final TextView tags = (TextView) findViewById(R.id.tags_id);
+        String strTags = TextUtils.join(", ", details.getTags());
+        tags.setText(strTags);
+        allTextViews.add(tags);
 
         final TextView mentorName = new TextView(this);
         final EditText editMentor = new EditText(this);

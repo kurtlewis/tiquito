@@ -3,6 +3,7 @@ package com.tiquito.tiquito;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -23,6 +24,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -79,7 +81,17 @@ public class EditView extends AppCompatActivity {
                         tags.add(jsonTags.getString(k));
                     }
 
-                    details = new Ticket(id, title, description, loc, "", jstatus, mentor, name, contact, tags, new ArrayList<String>());
+                    ArrayList<String> comments = new ArrayList<String>();
+
+                    // Tags are a list, so get it as an array and iterate through it
+                    JSONArray comment = ticketInfo.getJSONArray("comments");
+
+                    for (int k = 0; k < comment.length(); k++) {
+                        JSONObject jsonComments = comment.getJSONObject(k);
+                        comments.add(jsonComments.getString("commentText"));
+                    }
+
+                    details = new Ticket(id, title, description, loc, "", jstatus, mentor, name, contact, tags, comments);
 
                     in.close();
 
@@ -147,6 +159,18 @@ public class EditView extends AppCompatActivity {
         allEditViews.add(editLocation);
         editLocation.setOnEditorActionListener(enterToDone);
 
+        final EditText editComments = (EditText) findViewById(R.id.comments_edit_id);
+        String strComments = TextUtils.join(", ", details.getComments());
+        editComments.setText(strComments);
+        allEditViews.add(editComments);
+        editComments.setOnEditorActionListener(enterToDone);
+
+        final EditText editTags = (EditText) findViewById(R.id.tags_edit_id);
+        String strTags = TextUtils.join(", ", details.getTags());
+        editTags.setText(strTags);
+        allEditViews.add(editTags);
+        editTags.setOnEditorActionListener(enterToDone);
+
         final TextView status = (TextView) findViewById(R.id.status_edit_id);
         status.setText(details.getStatus());
 
@@ -174,12 +198,18 @@ public class EditView extends AppCompatActivity {
                 String location = editLocation.getText().toString();
                 String mentor = editMentor.getText().toString();
                 String[] nameArray = creator.split("\\s+");
+                String comments = editComments.getText().toString();
+                String tagsString = editTags.getText().toString();
+
                 details.setTitle(title);
                 details.setCreator(creator);
                 details.setContactInfo(contactInfo);
                 details.setDescription(description);
                 details.setLocation(location);
                 details.setMentorName(mentor);
+                ArrayList<String> com = new ArrayList<String>(Arrays.asList(comments.split("\\s*,\\s*")));
+                details.setComments(com);
+                details.setTags(new ArrayList<String>(Arrays.asList(tagsString.split("\\s*,\\s*"))));
 
                 JSONObject editedTicket = new JSONObject();
                 try {
@@ -192,6 +222,13 @@ public class EditView extends AppCompatActivity {
                     editedTicket.put("contactInfo", contactInfo);
                     editedTicket.put("status", status);
                     editedTicket.put("mentorName", mentor);
+                    editedTicket.put("tags", tagsString);
+                    JSONObject commentElement = new JSONObject();
+                    for(String c : com){
+                        commentElement.put("commenterName", "Placeholder");
+                        commentElement.put("commentText", c);
+                    }
+                    editedTicket.put("comments", commentElement);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
