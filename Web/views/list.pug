@@ -1,26 +1,62 @@
 extends layout
 
-mixin newTicket(title,tags,status,id)
-    tr.ticket
-        td.ticketTitle= title
-        td.ticketTags= tags
-        td.ticketStatus= status
-        td
-            a.detailLink(href="/detail?id=" + id) View
-
 block content
-    div.header
-        h1 Tiquito 
-        //Consider moving the above stuff into the layout.pug so it appears in every page
-    div.query
-        div.sort
-        div.filter
-        div.search
-    div.results
-        table.list
-            +newTicket("tomatoes are too soft for what we need","cooking","open")
-            +newTicket("how come I can't juice this pumpkin","help","in progress")
-            +newTicket("apples are too hard for what we need","rendering","closed")
+
+    div#headwrapper
+        div#firstdiv
+            h1 Tiquito
+        div#seconddiv
+            div#seconddiv
+                input#searchbox(type='text', placeholder='Your Query' name='search')
+            div#seconddiv
+                button#searchbutton(onclick="searchfunction();") Search
+    //- h3 List View
+
+    div.container#backplate
+
+        //- ul#items
+
+        table#listItems
+            tr#titleTr
+                td Ticket Archive
+                td
+                td
+                td
+            tr#headingTr
+                th Problem Title
+                th Tags
+                th Ticket Status
+                th
+
+        //- script
+        //-     include scripttest.js
+
+    button#viewmorebutton(onclick="viewmore();") View More
+
+        script
+            include scripttable.js
+    
+//- mixin newTicket(title,tags,status,id)
+//-     tr.ticket
+//-         td.ticketTitle= title
+//-         td.ticketTags= tags
+//-         td.ticketStatus= status
+//-         td
+//-             a.detailLink(href="/detail?id=" + id) View
+
+//- block content
+//-     div.header
+//-         h1 Tiquito 
+//-         //Consider moving the above stuff into the layout.pug so it appears in every page
+//-     div.query
+//-         div.sort
+//-         div.filter
+//-         div.search
+//-     div.results
+//-         table.list
+//-             +newTicket("tomatoes are too soft for what we need","cooking","open")
+//-             +newTicket("how come I can't juice this pumpkin","help","in progress")
+//-             +newTicket("apples are too hard for what we need","rendering","closed")
 
 block append head
     link(rel="stylesheet", href="/list.css")
