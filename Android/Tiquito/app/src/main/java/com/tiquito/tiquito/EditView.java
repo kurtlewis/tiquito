@@ -23,6 +23,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -173,7 +175,7 @@ public class EditView extends AppCompatActivity {
                 String description = editDescription.getText().toString();
                 String location = editLocation.getText().toString();
                 String mentor = editMentor.getText().toString();
-
+                String[] nameArray = creator.split("\\s+");
                 details.setTitle(title);
                 details.setCreator(creator);
                 details.setContactInfo(contactInfo);
@@ -186,8 +188,8 @@ public class EditView extends AppCompatActivity {
                     editedTicket.put("ticketId", ticketId);
                     editedTicket.put("problemTitle", title);
                     editedTicket.put("problemDescription", description);
-                    editedTicket.put("firstName", creator);
-                    editedTicket.put("lastName", creator);
+                    editedTicket.put("firstName", nameArray[0]);
+                    editedTicket.put("lastName", nameArray[1]);
                     editedTicket.put("location", location);
                     editedTicket.put("contactInfo", contactInfo);
                     editedTicket.put("status", status);
