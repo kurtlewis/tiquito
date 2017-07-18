@@ -133,7 +133,11 @@ router.post('/edit',function(req,res){
     var body = req.body;
     
     if(!body.ticketId){
-        res.status(400).send('please specify an id');
+        if(body.redir){
+            res.redirect(body.redir)
+        }else{
+            res.status(400).send('please specify an id');
+        }
         return;
     }
 
@@ -177,8 +181,17 @@ router.post('/edit',function(req,res){
             ticket.mentorName = body.mentorName;
         }
 
-        if(authed && body.tags && body.tags.length > 0 && body.tags.length <= fieldLengths.tags){
-            ticket.tags = getTagsList(body.tags);
+        if(authed && body.tags && body.tags.length > 0){
+            var tagList = getTagsList(body.tags);
+            var isValid = true;
+            for(var i = 0; i < tagList.length; i++){
+                if(!(tagList[i].length > 0 && tagList[i].length <= fieldLengths.tags)){
+                    isValid = false;
+                }
+            }
+            if(isValid){
+                ticket.Tags = tagList;
+            }
         }
 
         if(authed && body.comments && validateComments(body.comments)){
@@ -194,7 +207,11 @@ router.post('/edit',function(req,res){
 
         ticket.save(function(err){
             if(err){
-                res.status(400).send(err)
+                if(body.redir){
+                    res.redirect(body.redir);
+                } else {
+                    res.status(400).send(err)
+                }
             } else {
                 if(body.redir){
                     res.redirect(body.redir);
@@ -376,6 +393,7 @@ router.get('/delete',function(req,res){
         * ticketId (ticketId of the ticket)
         * commenterName
         * commentText
+        * ~redir (url toi redirect to)
 
     Success Response:
         Code: 200
