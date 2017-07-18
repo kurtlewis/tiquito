@@ -450,11 +450,11 @@ function validateComments(comments){
 function validateComment(comment){
     var isValid = true;
 
-    if(!(comment.commenterName && comment.commenterName.length > 0 && comment.commenterName.length > fieldLengths.comments)){
+    if(!(comment.commenterName && comment.commenterName.length > 0 && comment.commenterName.length <= fieldLengths.comments)){
         isValid = false;
     }
 
-    if(!(comment.commentText && comment.commentText.length > 0 && comment.commentText.length > fieldLengths.comments)){
+    if(!(comment.commentText && comment.commentText.length > 0 && comment.commentText.length <= fieldLengths.comments)){
         isValid = false;
     }
 
