@@ -1,4 +1,3 @@
-var env = require('./env');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -36,16 +35,38 @@ app.use(require('node-sass-middleware')({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*
+//if the redir param is present, redirect
+app.post('*',function(req,res,next){
+  if(req.body.redir){
+    res.redirect(req.body.redir);
+  } else {
+    next();
+  }
+});
+*/
+
 // handle requests to api
 app.use(/\/api/, api);
 
 //do routing for basic rendering functionality (get requests)
 app.get(/^\/([a-z0-9-_]*)\/?$/i,function(req,res){
   var targetUrl = req.params[0];
-  
-  res.render(`${targetUrl}`,{
-    "title": targetUrl
-  });
+
+    res.render(`${targetUrl}`,{
+      "title": targetUrl
+    },function(err,html){
+      if(!err){
+        res.send(html);
+      }
+      
+      if((err.message).slice(0,21) == 'Failed to lookup view'){
+        res.render('notfound');
+      }
+
+    });
+
+
 
 });
 

@@ -4,7 +4,8 @@
 |Name|Date of Change| Description of Change|
 |:----------------------------------|:--------------|:------------------|
 |Kurt Lewis, Laura Tebben, Zachary Collins, James Hillman, Zachary Sang| 19 June, 2017|Created|
- 
+|Zachary Sang|8 July, 2017| Made comment field names mroe descriptive|
+
 # Introduction
 Tiquito is an application built for connecting students with mentors and other support options at hackathons. It is a customer service ticket tracking system designed for hackathons that allows participants to publish a description of their issue with tags indicating the relevant topics. Mentors will then be able to view, assign, and resolve the issues.
  
@@ -292,7 +293,7 @@ A person who is part of the group hosting the event
 |Tickets|PIN|String|4|Y||A passcode to be used by the ticket creator for editing and closing their ticket|Used for closing ticket|
 |Tickets|Tags|[String]|15 each|N|[empty string]|A set of keywords that help categorize and describe a ticket|Set of tags used to help identify the problem|
 |Tickets|Contact Info|String|50|N|''|Information on how a mentor can contact the creator of the ticket||
-|Tickets|Comments|[{String name, String body,  String timestamp}]|900 each|N||Set of comments on the problem||
+|Tickets|Comments|[{String commenterName, String commentText,  String commentTime}]|900 each|N||Set of comments on the problem||
 |Tickets|Status|String|12|Y||The current status of the ticket|"Open","Closed" or "In progress"|
 |Tickets|Mentor Name|String|20|N|'None'|The name of the mentor who has claimed the ticket||
  

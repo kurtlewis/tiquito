@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var ticketSchema = new mongoose.Schema({
-    ticketId: String,
     problemTitle: String,
     problemDescription: String,
     creator: {firstName: String, 
@@ -11,9 +10,9 @@ var ticketSchema = new mongoose.Schema({
     creationTime: String,
     pin: String,
     Tags:[String],
-    comments: [{name: String, 
-                body:String, 
-                timestamp: String}],
+    comments: [{commenterName: String, 
+                commentText:String, 
+                commentTime: String}],
     status: String,
     mentorName: String
 },{bufferCommands: false});
