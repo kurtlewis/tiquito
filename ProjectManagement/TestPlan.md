@@ -77,10 +77,22 @@ The first cycle is intended to find bugs that may not have been thought of durin
 The second test cycle is to identify any large functionality breaking defects that would inhibit a user from enjoying the product. 
 
 ## Validation and Defect Management
+Each team member is expected to run the test cases each time a change is made to the software. If a team member identifies an aspect of the project that does not have a test case associated with it, they will be expected to execute the test and add it to the Test Cases section of this document. 
+
+All test failures will be tracked in github as issues. The tester that finds the bug will be responsible for opening the issue and providing enough information about it that developers can follow the procedures to reproduce the bug.
 # Test Management
 ## Test Management Tool
+We are using github issues to track defects and assign them to developers to fix. This test plan is also uploaded to github for convenience. Each member of our team will have read/write access to add or modify test cases as necessary. As testers perfom their tests, they will update the status of each test in the appropirate results table below and open issues for failed tests. After the defect is fixed, the tester will be asked to perform the test again to ensure the fix works.
 ## Test Design Process
+Each test will be designed to test one or more requirements. Each functional requirement must have at least one test case. Nonfunctional requirements will receive test cases when they are testable with normal use of the applications. Test cases will be mapped to requirements using the requirements traceability matrix.
+
+If a test is designed to test a requirement, it must test the entire requirement. Each test case must be reviewed by the owner of the requirement(s) it is testing before it is submitted.
 ## Test Execution Process
+Once all test cases are written and approved by their owners and by the owners of the requirements they test, the testers will use an exploratory testing of the applications to ensure they are ready to be tested. If any application is not usable, all of its tests fail. Test cases will be carried out by team members who are not owners of the test cases. Owners are free to run through their test cases, but a test result cannot be validated by the owner of the test case.
+
+Each tester will run through the steps of the test cases they are assigned. If steps are unclear, an Issue will be opened on the Tiquito GitHub page against the test, and the test is counted as "Not Run." If any of the steps are unable to be completed, or the expected result does not occur, the test is Failed. If any problems arise that are not part of the test case, an Issue will be opened on the Tiquito GitHub page.
+
+Each time a Pull Request is submitted to the Tiquito Master branch, every test case for the application modified in the Pull Request must be run. The Pull Request cannot be merged until it causes no regressions. If the Pull Request intentionally causes a regression, the test document must be modified to remove the test cases in question before the Pull Request is merged.
 # Test Case Template
 ```
 ## TXYYY - <Title>
