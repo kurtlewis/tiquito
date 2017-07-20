@@ -1,23 +1,79 @@
 @import "global.scss";
 
-.container {
+body{
+    height: 100vh;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    font-family: "Helvetica Neue", Helvetica, Arial;
+    // background: -webkit-linear-gradient(left, #3a1c71,#d76d77,#ffaf7b);
+    background: -webkit-linear-gradient(left,#ffffff, #ece9e6);
+    // background: -webkit-linear-gradient(left,#ef3b36,#870000);
+    
+}
+
+.containerContainer{
+    height: 50vh;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 50rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin: auto;
+    display: inline-block;
+    vertical-align: middle;
+    background: white;
+    box-shadow: 0px 0px 0px 0px rgba( 255,255,255,0.4), 0px 4px 10px rgba( 0,0,0,0.33 );
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:5px;
+    display: table;
+    position: static;
 }
 
 .navButton {
-    background-color: $main-color;
-    color: $text-color;
-    border: 2px solid black;
+
     padding: 4rem;
     margin: 2rem;
     display: inline-block;
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+        background: -moz-linear-gradient(
+        top,
+        #b9c5dd 0%,
+        #a4b0cb);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(red),
+        to($main-color));
+    border: 1px solid #737b8d;
+    -moz-box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    -webkit-box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    box-shadow:
+        0px 5px 5px rgba(000,000,000,0.1),
+        inset 0px 1px 0px rgba(255,255,255,0.5);
+    text-shadow:
+        0px 1px 3px rgba(000,000,000,0.3),
+        0px 0px 0px rgba(255,255,255,0);
 }
 
 h1 {
-    font-size: 70;
+    margin-left: 10%;
+    font-size: 50px;
     color: $main-color;
 }
+
+h2{
+    margin-left: 10%;
+}
+

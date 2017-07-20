@@ -3,9 +3,10 @@ extends layout
 block content
   h1 Tiquito
   h2 RevolutionUC's Mentor Management System
-  div.container
-    a(href="/create").navButton Create a New Ticket
-    a(href="/list").navButton View Existing Tickets
+  div.containerContainer
+    div.container
+      a(href="/create").navButton Create a New Ticket
+      a(href="/list").navButton View Existing Tickets
 
 block append head
   link(rel="stylesheet", href="/home.css")
