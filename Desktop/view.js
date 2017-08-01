@@ -13,13 +13,13 @@ require('dotenv').config();
   Skips any duplicate tickets, but duplicates are counted in count parameter*/
 function load(offset, count) {
     var req = new XMLHttpRequest();
-    req.open('GET', "https://test.tiquito.com/api/load?offset=" + offset + "&limit=" + count, true);
+    req.open('GET', 'https://test.tiquito.com/api/load?offset=' + offset + '&limit=' + count, true);
     req.onreadystatechange = function(e) {
         if (this.readyState == 4) {
             var res = JSON.parse(req.responseText);
-            var listView = document.getElementById("listView");
+            var listView = document.getElementById('listView');
             if (offset == 0) {
-                listView.innerHTML = "";
+                listView.innerHTML = '';
                 var titlebar = `
                 <button id="refresh" type="button" onclick="load(0, 15)">&#x27f3; Refresh</button>&nbsp;
                 <h2>All Tickets</h2>
@@ -44,19 +44,19 @@ function load(offset, count) {
             }
             tickets = tickets.concat(res);
             res.map(function(obj) {
-                var row = document.createElement("div");
+                var row = document.createElement('div');
                 row.id = obj._id;
-                row.className = "ticket";
-                row.addEventListener("click", function(e) {onListClick(e, obj)});
-                var title = document.createElement("div");
-                var tags = document.createElement("div");
-                var status = document.createElement("div");
+                row.className = 'ticket';
+                row.addEventListener('click', function(e) {onListClick(e, obj)});
+                var title = document.createElement('div');
+                var tags = document.createElement('div');
+                var status = document.createElement('div');
                 title.innerHTML = obj.problemTitle;
-                title.className = "ticketTitle";
+                title.className = 'ticketTitle';
                 tags.innerHTML = obj.Tags;
-                tags.className = "ticketTags";
+                tags.className = 'ticketTags';
                 status.innerHTML = obj.status;
-                status.className = "ticketStatus";
+                status.className = 'ticketStatus';
                 row.appendChild(title);
                 row.appendChild(tags);
                 row.appendChild(status);
@@ -70,23 +70,23 @@ function load(offset, count) {
 /*Onclick function to make an html item editable
   Takes clicked item*/
 function makeEditable(item) {
-    item.contentEditable = "true";
+    item.contentEditable = 'true';
 }
 
 /*Onclick function to change the "add a comment" button to an editable paragraph
   Takes clicked button
   NOTE: clicked button must be in a div with id "commentButton"*/
 function changeToP(item) {
-    var div = document.getElementById("commentButton");
+    var div = document.getElementById('commentButton');
     div.innerHTML = '<p class="field comment" contentEditable="true"></p>'
-    div = document.getElementById("ticketView");
+    div = document.getElementById('ticketView');
     div.scrollTop = div.scrollHeight;
 }
 
 /*Onscroll function for listview to load more tickets when scrolled to bottom
   Takes scrolled item*/
 function onListViewScroll(listView) {
-    console.log("scrolling");
+    console.log('scrolling');
     if (listView.scrollTop === (listView.scrollHeight - listView.offsetHeight)) {
         load(tickets.length, 10);
     }
@@ -94,15 +94,15 @@ function onListViewScroll(listView) {
 
 /*Onclick function to submit edits made to a ticket*/
 function submit() {
-    var id = document.getElementsByClassName("highlight")[0].id;
+    var id = document.getElementsByClassName('highlight')[0].id;
     var ticketToEdit = tickets.find(x => x._id == id);
     if (ticketToEdit) {
         console.log(ticketToEdit);
         ticketToEdit.token = process.env.TOKEN;
         ticketToEdit.ticketId = ticketToEdit._id;
-        ticketToEdit.problemTitle = document.getElementById("title").innerHTML;
-        ticketToEdit.problemDescription = document.getElementById("description").innerHTML;
-        var name = document.getElementById("name").innerHTML;
+        ticketToEdit.problemTitle = document.getElementById('title').innerHTML;
+        ticketToEdit.problemDescription = document.getElementById('description').innerHTML;
+        var name = document.getElementById('name').innerHTML;
         if (!name.endsWith(' ') && name.indexOf(' ') > -1) {
             ticketToEdit.firstName = name.substr(0,name.indexOf(' '));
             ticketToEdit.lastName = name.substr(name.indexOf(' ') + 1);
@@ -111,22 +111,22 @@ function submit() {
         }
         else {
             ticketToEdit.firstName = name;
-            ticketToEdit.lastName = "";
+            ticketToEdit.lastName = '';
             ticketToEdit.creator.firstName = name;
-            ticketToEdit.creator.lastName = "";
+            ticketToEdit.creator.lastName = '';
         }
-        ticketToEdit.location = document.getElementById("location").innerHTML;
-        ticketToEdit.contactInfo = document.getElementById("contactinfo").innerHTML;
+        ticketToEdit.location = document.getElementById('location').innerHTML;
+        ticketToEdit.contactInfo = document.getElementById('contactinfo').innerHTML;
         ticketToEdit.creator.location = ticketToEdit.location;
         ticketToEdit.creator.contactInfo = ticketToEdit.contactInfo;
-        ticketToEdit.status = document.getElementById("status").options[document.getElementById("status").selectedIndex].value;
-        ticketToEdit.mentorName = document.getElementById("mentorname").innerHTML;
-        ticketToEdit.Tags = document.getElementById("tags").innerHTML;
+        ticketToEdit.status = document.getElementById('status').options[document.getElementById('status').selectedIndex].value;
+        ticketToEdit.mentorName = document.getElementById('mentorname').innerHTML;
+        ticketToEdit.Tags = document.getElementById('tags').innerHTML;
         ticketToEdit.tags = ticketToEdit.Tags;
-        var comments = document.getElementsByClassName("comment");
+        var comments = document.getElementsByClassName('comment');
         var initLength = ticketToEdit.comments.length;
         for (var i = ticketToEdit.comments.length - 1; i >= 0; i--) {
-            if (comments[i].innerHTML == "") {
+            if (comments[i].innerHTML == '') {
                 delete comments[i];
                 ticketToEdit.comments.splice(i, 1);
             }
@@ -135,11 +135,11 @@ function submit() {
             }
             console.log(ticketToEdit.comments);
         }
-        if (comments.length - 1 == initLength && comments[comments.length - 1].innerHTML != "" ) {
+        if (comments.length - 1 == initLength && comments[comments.length - 1].innerHTML != '' ) {
             var newComment = {};
             newComment.commentText = comments[comments.length - 1].innerHTML;
-            var mentor = document.getElementById("mentorname").innerHTML;
-            newComment.commenterName = mentor != "None" ? mentor : "Anonymous Organizer";
+            var mentor = document.getElementById('mentorname').innerHTML;
+            newComment.commenterName = mentor != 'None' ? mentor : 'Anonymous Organizer';
             ticketToEdit.comments.push(newComment);
         }
         console.log(ticketToEdit.comments);
@@ -147,15 +147,15 @@ function submit() {
         var req = new XMLHttpRequest();
         req.open('POST', 'https://test.tiquito.com/api/edit', true);
         var strToSend = JSON.stringify(ticketToEdit);
-        req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         req.onreadystatechange = function() {
-            console.log("changed");
+            console.log('changed');
             if(req.readyState == XMLHttpRequest.DONE && req.status == 200) {
-                alert("Success!");
+                alert('Success!');
                 load(0, tickets.length);
             }
             else if (req.readyState == XMLHttpRequest.DONE) {
-                alert("Error " + req.status);
+                alert('Error ' + req.status);
             }
         }
         console.log(strToSend);
@@ -166,9 +166,9 @@ function submit() {
 /*Onclick function to display the full contents of a ticket
   Takes event, clicked ticket*/
 function onListClick(e, ticket) {
-    ticketView = document.getElementById("ticketView");
-    ticketView.innerHTML = "";
-    var comments = "";
+    ticketView = document.getElementById('ticketView');
+    ticketView.innerHTML = '';
+    var comments = '';
     for (var i = 0; i < ticket.comments.length; i++) {
         comments += '<p class="field comment" onmouseover="makeEditable(this)">' + ticket.comments[i].commentText + '</p>\n'
     }
@@ -204,10 +204,10 @@ function onListClick(e, ticket) {
     ticketView.innerHTML = html;
     var prev = document.getElementById(lastClicked);
     if (prev) {
-        prev.className = "ticket";
+        prev.className = 'ticket';
     }
     var current = document.getElementById(ticket._id);
-    current.className = "ticket highlight";
+    current.className = 'ticket highlight';
     lastClicked = ticket._id;
 }
 
