@@ -15,7 +15,7 @@ function load(offset, count) {
     var req = new XMLHttpRequest();
     req.open('GET', 'https://tiquito.com/api/load?offset=' + offset + '&limit=' + count, true);
     req.onreadystatechange = function(e) {
-        if (this.readyState == 4) {
+        if (this.readyState == XMLHttpRequest.DONE) {
             var res = JSON.parse(req.responseText);
             var listView = document.getElementById('listView');
             if (offset == 0) {
