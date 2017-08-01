@@ -268,8 +268,8 @@ router.get('/load',function(req,res){
 
     // searching
     if(req.query.search){
-        filter.problemTitle = { "$regex": req.query.search, "$options": "i" };
-        filter.problemDescription = { "$regex": req.query.search, "$options": "i" };
+        filter.problemTitle = { '$regex': req.query.search, '$options': 'i' };
+        filter.problemDescription = { '$regex': req.query.search, '$options': 'i' };
     }
 
     Ticket.find(filter,'-pin').
