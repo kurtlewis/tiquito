@@ -4,7 +4,7 @@
 // List of all currently displayed tickets
 var tickets = [];
 // ID of last ticket in list, used for catching duplicates in load function
-var lastClicked = "";
+var lastClicked = '';
 
 require('dotenv').config();
 
@@ -13,7 +13,7 @@ require('dotenv').config();
   Skips any duplicate tickets, but duplicates are counted in count parameter*/
 function load(offset, count) {
     var req = new XMLHttpRequest();
-    req.open('GET', 'https://test.tiquito.com/api/load?offset=' + offset + '&limit=' + count, true);
+    req.open('GET', 'https://tiquito.com/api/load?offset=' + offset + '&limit=' + count, true);
     req.onreadystatechange = function(e) {
         if (this.readyState == 4) {
             var res = JSON.parse(req.responseText);
@@ -145,7 +145,7 @@ function submit() {
         console.log(ticketToEdit.comments);
 
         var req = new XMLHttpRequest();
-        req.open('POST', 'https://test.tiquito.com/api/edit', true);
+        req.open('POST', 'https://tiquito.com/api/edit', true);
         var strToSend = JSON.stringify(ticketToEdit);
         req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         req.onreadystatechange = function() {

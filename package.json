@@ -1,0 +1,8 @@
+{
+    "name":"Tiquito",
+    "description":"Tiquito",
+    "version":"0.0.1",
+    "scripts":{
+        "heroku-prebuild":"rm package.json && mv Web/* ."
+    }
+}

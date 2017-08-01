@@ -1,0 +1,87 @@
+extends layout
+
+block content
+
+    h1 Tiquito
+
+    div.container#backplate 
+        div#firstdiv
+        div.sep
+        table#Titletable
+            tr
+                td#Ticketid 
+                    h3#TicketIdSpot Ticket:
+                td#TicketTitle
+                    h3 Title:
+                td 
+                    button#editbutton(onclick="editcall();") Edit Ticket
+        div.sep
+        div#firstdiv
+
+        table#fancytable
+            tr#headingTr
+                th First Name
+                th Location at the Hackerspace
+                th Ticket Status
+            tr
+                td#FirstName
+                td#Location 
+                td#TicketStatus
+
+        div#firstdiv
+        div#firstdiv
+
+        table#fancytable
+            tr#headingTr
+                th#centerme Detailed Description of Problem
+            tr
+                td#ProblemDescription 
+
+        div#firstdiv
+        div#firstdiv
+
+        table#fancytable
+            tr#headingTr
+                th Assigned Mentor
+                th Relevant Tags
+                th Ticket Creation Date
+            tr
+                td#Mentor 
+                td#Tags 
+                td#CreationDate 
+
+        div#firstdiv
+        div#firstdiv
+
+        table#commentstable
+            tr#headingTr2
+                th Comments
+                th Date of Post
+                th Author
+        
+        div#firstdiv
+        form(method='POST' action='/api/comment')
+            div.form-group
+                textarea#CommentSpot.form-control(type='text', placeholder='Do you have a solution to this problem? Leave a comment here!', name='commentText')
+            div.form-group
+                textarea#CommentAuthor.form-control(type='text', placeholder='Your Handle Here', name='commenterName')
+            input(type="text", name="redir", id="redir",style="display:none")
+            input(type="text", name="ticketId", id="ticketId",style="display:none")
+            button.btn.btn-primary#commentbutton(type='submit') Submit Comment
+
+
+        div#firstdiv
+
+        script
+            include detail.js
+
+
+
+
+        
+
+
+
+
+block append head
+    link(rel="stylesheet", href="/detail.css")

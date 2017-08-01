@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_detail_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.tiquito.tiquito.DetailView">
+
+
+    <ImageButton
+        android:id="@+id/popup_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/actionOverflowButtonStyle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/title_label_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:layout_marginTop="30dp"
+        android:textSize="22sp" />
+    <TextView
+        android:id="@+id/title_id"
+        android:layout_width="400dip"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="22sp"
+        android:layout_below="@+id/title_label_id"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="17dp" />
+    <TextView
+        android:id="@+id/name_label_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:layout_below="@+id/title_id"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentStart="true"
+        android:textSize="22sp" />
+    <TextView
+        android:id="@+id/name_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:layout_below="@+id/name_label_id"
+        android:layout_alignStart="@+id/title_id"
+        android:textSize="22sp"
+        android:layout_alignEnd="@+id/title_id" />
+    <TextView
+        android:id="@+id/contactInfo_label_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Info"
+        android:layout_below="@+id/name_id"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentStart="true"
+        android:textSize="22sp" />
+    <TextView
+        android:id="@+id/contactInfo_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Info"
+        android:layout_below="@+id/contactInfo_label_id"
+        android:layout_alignStart="@+id/name_id"
+        android:textSize="22sp"
+        android:layout_alignEnd="@+id/name_id" />
+    <TextView
+        android:id="@+id/description_label_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:layout_below="@+id/contactInfo_id"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentStart="true"
+        android:textSize="22sp" />
+    <TextView
+        android:id="@+id/description_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:layout_below="@+id/description_label_id"
+        android:layout_alignStart="@+id/contactInfo_id"
+        android:textSize="22sp"
+        android:layout_alignEnd="@+id/contactInfo_id" />
+    <TextView
+        android:id="@+id/location_label_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:layout_below="@+id/description_id"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentStart="true"
+        android:textSize="22sp" />
+    <TextView
+        android:id="@+id/location_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:layout_below="@+id/location_label_id"
+        android:layout_alignStart="@+id/description_id"
+        android:textSize="22sp"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:id="@+id/status_label_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:layout_below="@+id/location_id"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:textSize="22sp" />
+    <TextView
+        android:id="@+id/status_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textSize="22sp"
+        android:layout_below="@+id/status_label_id"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:id="@+id/comments_label_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comments"
+        android:layout_below="@+id/status_id"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:textSize="22sp" />
+    <TextView
+        android:id="@+id/comments_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comments"
+        android:textSize="22sp"
+        android:layout_below="@+id/comments_label_id"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:id="@+id/tags_label_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tags"
+        android:layout_below="@+id/comments_id"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:textSize="22sp" />
+    <TextView
+        android:id="@+id/tags_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tags"
+        android:textSize="22sp"
+        android:layout_below="@+id/tags_label_id"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:id="@+id/mentorName_label_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mentor Name"
+        android:layout_below="@+id/tags_id"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:textSize="22sp" />
+
+</RelativeLayout>
+</ScrollView>

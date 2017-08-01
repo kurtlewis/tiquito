@@ -1,0 +1,49 @@
+extends layout
+
+block content
+    //h1 Tiquito
+
+    div.container
+        form(method='POST' action='/api/edit' id="ticketsubmit")
+            h3 Edit Ticket
+            p The below form can be used to edit a Tiquito help ticket. At a minimum, the attributes denoted with an asterisk are required to be filled in.
+            
+            div.sep
+
+            div.form-group
+                label(for='problemTitle') *Problem Title:
+                textarea#problemTitle.form-control(type='text', name='problemTitle')
+            div.form-group
+                label(for='problemDescription') Problem Description:
+                textarea#problemDescription.form-control(type='text', name='problemDescription')
+            div.form-group
+                label(for='firstName') *First Name:
+                textarea#firstName.form-control(type='text', name='firstName')
+            div.form-group
+                label(for='lastName') Last Name:
+                textarea#lastName.form-control(type='text', name='lastName')
+            div.form-group
+                label(for='contactInfo') Contact Info:
+                textarea#contactInfo.form-control(type='text', name='contactInfo')
+            div.form-group
+                label(for='location') *Location:
+                textarea#location.form-control(type='text', name='location')
+            div.form-group
+                label(for='tags') Problem Tags:
+                textarea#tags.form-control(type='text', name='tags')
+            div.form-group
+                label(for='mentorName') Mentor Name:
+                textarea#mentorName.form-control(type='text', name='mentorName')
+            div.form-group
+                label(for='status') Status:
+                textarea#status.form-control(type='text', name='status')
+            div.form-group
+                label(for='pin') *PIN:
+                textarea#pin.form-control(type='text', name='pin')
+            input(type="text", name="redir", style="display:none")#redir
+            input(type="text", name="ticketId", style="display:none")#ticketId
+            button.btn.btn-primary(type='submit') Submit Changes
+
+block append head
+  link(rel="stylesheet", href="/create.css")
+  script(src="/javascripts/edit.js" type="text/javascript" defer)
