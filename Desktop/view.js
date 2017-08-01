@@ -12,12 +12,18 @@ require('dotenv').config();
   Takes offset (number of tickets to skip), count (maximum number of tickets to fetch)
   Skips any duplicate tickets, but duplicates are counted in count parameter*/
 function load(offset, count) {
+    /*Create XHR*/
     var req = new XMLHttpRequest();
     req.open('GET', 'https://tiquito.com/api/load?offset=' + offset + '&limit=' + count, true);
+  
+    /*define onreadystatechange callback*/
     req.onreadystatechange = function(e) {
         if (this.readyState == XMLHttpRequest.DONE) {
+            /*Parse JSON of XHR response from server*/
             var res = JSON.parse(req.responseText);
+            /*Get HTML element for left pane of desktop app screen.*/
             var listView = document.getElementById('listView');
+            /*If we're loading the first set of tickets, create a titlebar and headings.*/
             if (offset == 0) {
                 listView.innerHTML = '';
                 var titlebar = `
@@ -33,6 +39,7 @@ function load(offset, count) {
                 listView.innerHTML = titlebar;
                 tickets = [];
             }
+            /*If we already have a few tickets loaded, make sure we're not getting any duplicates.*/
             if (tickets.length > 0) {
                 var lastTicketId = tickets[tickets.length - 1]._id;
                 for (var i = 0; i < res.length; i++) {
@@ -42,7 +49,9 @@ function load(offset, count) {
                     }
                 }
             }
+            /*Concatenate local tickets array with response from HXR*/
             tickets = tickets.concat(res);
+            /*Build up html with each object in XHR's json response*/
             res.map(function(obj) {
                 var row = document.createElement('div');
                 row.id = obj._id;
@@ -64,6 +73,7 @@ function load(offset, count) {
             });
         }
     }
+    /*send request*/
     req.send();
 }
 
